@@ -72,11 +72,59 @@
       <DependentUpon>Fosec.mdf</DependentUpon>
     </Content>
     <Content Include="Web.config" />
+    <Content Include="WebPage\CreateThread.aspx" />
+    <Content Include="WebPage\Home.aspx" />
+    <Content Include="WebPage\Profile.aspx" />
+    <Content Include="WebPage\SignupAndLogin.aspx" />
+    <Content Include="WebPage\Thread.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="WebPage\CreateThread.aspx.cs">
+      <DependentUpon>CreateThread.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebPage\CreateThread.aspx.designer.cs">
+      <DependentUpon>CreateThread.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebPage\Fosec.Master.cs">
+      <DependentUpon>Fosec.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebPage\Fosec.Master.designer.cs">
+      <DependentUpon>Fosec.Master</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebPage\Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebPage\Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebPage\Profile.aspx.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebPage\Profile.aspx.designer.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebPage\SignupAndLogin.aspx.cs">
+      <DependentUpon>SignupAndLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebPage\SignupAndLogin.aspx.designer.cs">
+      <DependentUpon>SignupAndLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebPage\Thread.aspx.cs">
+      <DependentUpon>Thread.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebPage\Thread.aspx.designer.cs">
+      <DependentUpon>Thread.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="WebPage\Fosec.Master" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
