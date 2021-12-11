@@ -79,6 +79,7 @@
     <Content Include="WebPage\Thread.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Database\ConnectionProvider.cs" />
     <Compile Include="WebPage\CreateThread.aspx.cs">
       <DependentUpon>CreateThread.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
