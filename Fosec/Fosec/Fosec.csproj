@@ -80,6 +80,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database\ConnectionProvider.cs" />
+    <Compile Include="Database\TagDb.cs" />
+    <Compile Include="Database\ThreadDb.cs" />
     <Compile Include="Database\UserDb.cs" />
     <Compile Include="WebPage\CreateThread.aspx.cs">
       <DependentUpon>CreateThread.aspx</DependentUpon>
