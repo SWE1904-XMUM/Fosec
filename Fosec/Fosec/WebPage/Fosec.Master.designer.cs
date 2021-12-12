@@ -31,6 +31,24 @@ namespace Fosec {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
+        /// guestActionBar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify, move the field declaration from the designer file to a code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel guestActionBar;
+        
+        /// <summary>
+        /// loggedInActionBar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify, move the field declaration from the designer file to a code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel loggedInActionBar;
+        
+        /// <summary>
         /// PageContent control.
         /// </summary>
         /// <remarks>
