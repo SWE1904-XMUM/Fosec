@@ -7,6 +7,7 @@
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
+    <script src="../Resources/Js/bootstrap.min.js"></script> 
     <link rel="stylesheet" href="../Resources/CSS/main.css">
 </head>
 <body>
