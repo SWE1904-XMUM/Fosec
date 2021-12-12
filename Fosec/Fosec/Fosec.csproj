@@ -71,12 +71,14 @@
     <Content Include="App_Data\Fosec_log.ldf">
       <DependentUpon>Fosec.mdf</DependentUpon>
     </Content>
+    <Content Include="Resources\CSS\bootstrap.min.css" />
     <Content Include="Resources\CSS\CreateThread.css" />
     <Content Include="Resources\CSS\Fosec.css" />
     <Content Include="Resources\CSS\Home.css" />
     <Content Include="Resources\CSS\Profile.css" />
     <Content Include="Resources\CSS\SignupAndLogin.css" />
     <Content Include="Resources\CSS\Thread.css" />
+    <Content Include="Resources\Js\bootstrap.min.js" />
     <Content Include="Web.config" />
     <Content Include="WebPage\CreateThread.aspx" />
     <Content Include="WebPage\Home.aspx" />
@@ -143,9 +145,6 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
