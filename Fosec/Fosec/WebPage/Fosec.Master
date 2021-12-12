@@ -7,15 +7,38 @@
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
-    <script src="../Resources/Js/bootstrap.min.js"></script> 
+    <script src="../Resources/Js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../Resources/CSS/bootstrap.min.css">
     <link rel="stylesheet" href="../Resources/CSS/main.css">
 </head>
 <body>
-    <form id="form1" runat="server">
-        <div>
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
+<form id="form1" runat="server">
+    <div class="row" id="fosecHeader">
+        <div class="col-2">
+            <img src="../Resources/Image/logo.png" alt="Fosec"/>
         </div>
-    </form>
+        <div class="col-4"></div>
+        <div class="col-6 row" id="userActionBar">
+            <div class="col-5">
+                <input class="form-control" type="text" placeholder="Your username"/>
+            </div>
+            <div class="col-5">
+                <input class="form-control" type="password" placeholder="Your password"/>
+            </div>
+            <div class="col-2">
+                <input class="btn" type="button" value="Login"/>
+            </div>
+            <div class="row">
+                <p class="text-right">
+                    Do not have an account?&nbsp;
+                    <%-- TODO add sign up link  --%>
+                    <span>
+                        <a href="#">Sign up</a>
+                    </span>
+                </p>
+            </div>
+        </div>
+    </div>
+</form>
 </body>
 </html>
