@@ -11,10 +11,9 @@ namespace Fosec
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            /*
-            guestActionBar.Visible = not logged in;
-            loggedInActionBar.Visible = logged in;
-            */
+            //TODO get login status
+            guestActionBar.Visible = false;
+            loggedInActionBar.Visible = true;
         }
     }
 }
