@@ -39,6 +39,7 @@
             </div>
         </div>
     </div>
+    <asp:ContentPlaceHolder ID="PageContent" runat="server"/>
 </form>
 </body>
 </html>
