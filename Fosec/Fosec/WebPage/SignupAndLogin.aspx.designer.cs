@@ -7,29 +7,39 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Fosec.WebPage
-{
-
-
-    public partial class SignupAndLogin
-    {
-
+namespace Fosec.WebPage {
+    
+    
+    public partial class SignupAndLogin {
+        
         /// <summary>
         /// loginBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
+        /// To modify, move the field declaration from the designer file to a code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button loginBtn;
-
+        
         /// <summary>
         /// signupBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
+        /// To modify, move the field declaration from the designer file to a code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button signupBtn;
+        
+        /// <summary>
+        /// Master property.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated property.
+        /// </remarks>
+        public new Fosec.Fosec Master {
+            get {
+                return ((Fosec.Fosec)(base.Master));
+            }
+        }
     }
 }

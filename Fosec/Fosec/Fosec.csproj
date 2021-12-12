@@ -73,11 +73,7 @@
     </Content>
     <Content Include="Resources\CSS\bootstrap.min.css" />
     <Content Include="Resources\CSS\CreateThread.css" />
-    <Content Include="Resources\CSS\Fosec.css" />
-    <Content Include="Resources\CSS\Home.css" />
-    <Content Include="Resources\CSS\Profile.css" />
-    <Content Include="Resources\CSS\SignupAndLogin.css" />
-    <Content Include="Resources\CSS\Thread.css" />
+    <Content Include="Resources\CSS\main.css" />
     <Content Include="Resources\Js\bootstrap.min.js" />
     <Content Include="Web.config" />
     <Content Include="WebPage\CreateThread.aspx" />
