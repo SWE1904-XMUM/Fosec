@@ -71,6 +71,12 @@
     <Content Include="App_Data\Fosec_log.ldf">
       <DependentUpon>Fosec.mdf</DependentUpon>
     </Content>
+    <Content Include="CSS\CreateThread.css" />
+    <Content Include="CSS\Fosec.css" />
+    <Content Include="CSS\Home.css" />
+    <Content Include="CSS\Profile.css" />
+    <Content Include="CSS\SignupAndLogin.css" />
+    <Content Include="CSS\Thread.css" />
     <Content Include="Web.config" />
     <Content Include="WebPage\CreateThread.aspx" />
     <Content Include="WebPage\Home.aspx" />
@@ -83,6 +89,7 @@
     <Compile Include="Database\TagDb.cs" />
     <Compile Include="Database\ThreadDb.cs" />
     <Compile Include="Database\UserDb.cs" />
+    <Compile Include="SessionManager\SessionManager.cs" />
     <Compile Include="WebPage\CreateThread.aspx.cs">
       <DependentUpon>CreateThread.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -137,9 +144,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="SessionManager\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
