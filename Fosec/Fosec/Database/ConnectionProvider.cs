@@ -8,14 +8,12 @@ namespace Fosec.Database
 {
     public class ConnectionProvider
     {
-        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Fosec.mdf;Integrated Security=True");
+        private static SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Fosec.mdf;Integrated Security=True");
 
-        public void sqlQuery(string query)
+        public static SqlConnection InitCon()
         {
             con.Open();
-            SqlCommand com = new SqlCommand(query,con);
-            com.ExecuteNonQuery();
-            con.Close();
+            return con;
         }
     }
 }

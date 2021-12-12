@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
@@ -7,11 +8,14 @@ namespace Fosec.Database
 {
     public class UserDb
     {
-        ConnectionProvider con = new ConnectionProvider();
-
-        public void insertUsers(string username, string email, string pwd)
+        public void InsertUsers(string username, string email, string pwd)
         {
-            con.sqlQuery("insert into Users values('"+username+"','"+email+"','"+pwd+"')");
+            string query = "insert into Users values (@0,@1,@2)";
+            SqlCommand cmd = new SqlCommand(query,ConnectionProvider.InitCon());
+            cmd.Parameters.AddWithValue("@0", username);
+            cmd.Parameters.AddWithValue("@1", email);
+            cmd.Parameters.AddWithValue("@2", pwd);
+            cmd.ExecuteNonQuery();
         }
     }
 }
