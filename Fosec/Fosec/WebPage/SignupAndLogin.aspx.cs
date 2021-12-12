@@ -20,7 +20,7 @@ namespace Fosec.WebPage
         {
             //Testing
             UserDb userDb = new UserDb();
-            userDb.insertUsers("test", "test@gmail.com", "32d;(huig");
+            userDb.InsertUsers("test", "test@gmail.com", "32d;(huig");
         }
     }
 }
