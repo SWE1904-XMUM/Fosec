@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Fosec.Utils;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace Fosec.Database
             SqlCommand cmd = new SqlCommand(query,ConnectionProvider.InitCon());
             cmd.Parameters.AddWithValue("@0", username);
             cmd.Parameters.AddWithValue("@1", email);
-            cmd.Parameters.AddWithValue("@2", pwd);
+            cmd.Parameters.AddWithValue("@2", HashUtil.GetHashedStringByInput(pwd));
             cmd.ExecuteNonQuery();
         }
     }

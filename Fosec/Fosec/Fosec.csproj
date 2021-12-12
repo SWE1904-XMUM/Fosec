@@ -89,6 +89,8 @@
     <Compile Include="Database\ThreadDb.cs" />
     <Compile Include="Database\UserDb.cs" />
     <Compile Include="SessionManager\SessionManager.cs" />
+    <Compile Include="Utils\HashUtil.cs" />
+    <Compile Include="Utils\StringUtil.cs" />
     <Compile Include="WebPage\CreateThread.aspx.cs">
       <DependentUpon>CreateThread.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
