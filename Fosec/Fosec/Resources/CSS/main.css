@@ -34,3 +34,9 @@ body {
 }
 
 .dropdown
+
+/*Signup & Login Page*/
+#login-col, #signup-col
+{
+    text-align:center;
+}

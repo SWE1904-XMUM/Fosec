@@ -15,12 +15,5 @@ namespace Fosec.WebPage
         {
 
         }
-
-        protected void Unnamed_Click(object sender, EventArgs e)
-        {
-            //Testing
-            UserDb userDb = new UserDb();
-            userDb.InsertUsers("test", "test@gmail.com", "32d;(huig");
-        }
     }
 }

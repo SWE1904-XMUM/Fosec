@@ -2,22 +2,25 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ContentPlaceHolderID="PageContent" runat="server">
-    <asp:Button runat="server" Text="Test" OnClick="Unnamed_Click"/>
     <div class="container">
         <div class="row">
-            <div class="col-lg-6 col-sm-12">
-                <h1>login</h1>
+            <div class="col-lg-6 col-sm-12" id="login-col">
                 <input id="loginUname" type="text" placeholder="Your username"/>
+                <br />
                 <input id="loginPwd" type="password" placeholder="Your password"/>
+                <br />
                 <asp:Button ID="loginBtn" runat="server" Text="Login"/>
             </div>
-            <div class="col-lg-6 col-sm-12">
-                <h1>signup</h1>
-                <input id="signupEmail" type="text" placeholder="Your username"/>
-                <input id="signupUname" type="text" placeholder="Your username"/>
-                <input id="signupPwd" type="password" placeholder="Your password"/>
-                <input id="signupConfirmPwd" type="password" placeholder="Your password"/>
-                <asp:Button ID="signupBtn" runat="server" Text="Login"/>
+            <div class="col-lg-6 col-sm-12" id="signup-col">
+                <input id="signupEmail" type="text" placeholder="Email"/>
+                <br />
+                <input id="signupUname" type="text" placeholder="Username"/>
+                <br />
+                <input id="signupPwd" type="password" placeholder="Password"/>
+                <br />
+                <input id="signupConfirmPwd" type="password" placeholder="Re-type password"/>
+                <br />
+                <asp:Button ID="signupBtn" runat="server" Text="Signup"/>
             </div>
         </div>
     </div>
