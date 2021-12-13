@@ -16,11 +16,11 @@
                 <br />
                 <asp:TextBox id="signupUname" type="text" placeholder="Username" runat="server"></asp:TextBox>
                 <br />
-                <asp:TextBox id="signupPwd" type="text" placeholder="Password" runat="server"></asp:TextBox>
+                <asp:TextBox id="signupPwd" type="password" placeholder="Password" runat="server"></asp:TextBox>
                 <br />
                 <asp:TextBox id="signupConfirmPwd" type="password" placeholder="Re-type password" runat="server"></asp:TextBox>
                 <br />
-                <asp:Button ID="signupBtn" runat="server" Text="Signup"/>
+                <asp:Button ID="signupBtn" runat="server" Text="Signup" OnClick="signupBtn_Click"/>
             </div>
         </div>
     </div>

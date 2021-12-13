@@ -45,6 +45,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -91,6 +92,7 @@
     <Compile Include="SessionManager\SessionManager.cs" />
     <Compile Include="Utils\HashUtil.cs" />
     <Compile Include="Utils\StringUtil.cs" />
+    <Compile Include="Utils\ValidationUtil.cs" />
     <Compile Include="WebPage\CreateThread.aspx.cs">
       <DependentUpon>CreateThread.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
