@@ -15,6 +15,24 @@ namespace Fosec.WebPage
     {
 
         /// <summary>
+        /// loginUname control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox loginUname;
+
+        /// <summary>
+        /// loginPwd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox loginPwd;
+
+        /// <summary>
         /// loginBtn control.
         /// </summary>
         /// <remarks>
@@ -22,6 +40,42 @@ namespace Fosec.WebPage
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button loginBtn;
+
+        /// <summary>
+        /// signupEmail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox signupEmail;
+
+        /// <summary>
+        /// signupUname control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox signupUname;
+
+        /// <summary>
+        /// signupPwd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox signupPwd;
+
+        /// <summary>
+        /// signupConfirmPwd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox signupConfirmPwd;
 
         /// <summary>
         /// signupBtn control.

@@ -2,12 +2,12 @@
 <asp:Content ContentPlaceHolderID="PageContent" runat="server">
     <div class="container">
         <div class="row">
-            <input id="threadTitle" type="text" placeholder="Title"/>
+            <asp:TextBox id="threadTitle" type="text" placeholder="Title" runat="server"></asp:TextBox>
             <div class="col-lg-3">
                 <!--TODO create multiple tag-->
                 <asp:Button ID="tag" runat="server" Text="Chinese" />
             </div>
-            <textarea id="content" cols="20" rows="2" placeholder="Content"></textarea>
+            <asp:TextBox id="content" TextMode="MultiLine" type="text" placeholder="Content" runat="server"></asp:TextBox>
             <asp:Button ID="submitThread" runat="server" Text="Submit" />
         </div>
     </div>

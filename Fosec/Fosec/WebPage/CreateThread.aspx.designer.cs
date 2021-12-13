@@ -15,6 +15,15 @@ namespace Fosec.WebPage
     {
 
         /// <summary>
+        /// threadTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox threadTitle;
+
+        /// <summary>
         /// tag control.
         /// </summary>
         /// <remarks>
@@ -22,6 +31,15 @@ namespace Fosec.WebPage
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button tag;
+
+        /// <summary>
+        /// content control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox content;
 
         /// <summary>
         /// submitThread control.

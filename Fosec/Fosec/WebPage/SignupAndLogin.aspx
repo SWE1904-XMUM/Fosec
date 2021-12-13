@@ -5,20 +5,20 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-sm-12" id="login-col">
-                <input id="loginUname" type="text" placeholder="Your username"/>
+                <asp:TextBox id="loginUname" type="text" placeholder="Your username" runat="server"></asp:TextBox>
                 <br />
-                <input id="loginPwd" type="password" placeholder="Your password"/>
+                <asp:TextBox id="loginPwd" type="password" placeholder="Your password" runat="server"></asp:TextBox>
                 <br />
-                <asp:Button ID="loginBtn" runat="server" Text="Login"/>
+                <asp:Button ID="loginBtn" runat="server" Text="Login" OnClick="loginBtn_Click"/>
             </div>
             <div class="col-lg-6 col-sm-12" id="signup-col">
-                <input id="signupEmail" type="text" placeholder="Email"/>
+                <asp:TextBox id="signupEmail" type="text" placeholder="Email" runat="server"></asp:TextBox>
                 <br />
-                <input id="signupUname" type="text" placeholder="Username"/>
+                <asp:TextBox id="signupUname" type="text" placeholder="Username" runat="server"></asp:TextBox>
                 <br />
-                <input id="signupPwd" type="password" placeholder="Password"/>
+                <asp:TextBox id="signupPwd" type="text" placeholder="Password" runat="server"></asp:TextBox>
                 <br />
-                <input id="signupConfirmPwd" type="password" placeholder="Re-type password"/>
+                <asp:TextBox id="signupConfirmPwd" type="password" placeholder="Re-type password" runat="server"></asp:TextBox>
                 <br />
                 <asp:Button ID="signupBtn" runat="server" Text="Signup"/>
             </div>
