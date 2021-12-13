@@ -7,9 +7,29 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Fosec.WebPage {
-    
-    
-    public partial class CreateThread {
+namespace Fosec.WebPage
+{
+
+
+    public partial class CreateThread
+    {
+
+        /// <summary>
+        /// tag control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button tag;
+
+        /// <summary>
+        /// submitThread control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button submitThread;
     }
 }
