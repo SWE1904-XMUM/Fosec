@@ -16,9 +16,19 @@ namespace Fosec.Database
         {
             if(connection.State != System.Data.ConnectionState.Open)
             {
-                connection.Open();
+                OpenDatabaseConnection();
             }
             return connection;
+        }
+
+        public static void OpenDatabaseConnection()
+        {
+            connection.Open();
+        }
+
+        public static void CloseDatabaseConnection()
+        {
+            connection.Close();
         }
     }
 }
