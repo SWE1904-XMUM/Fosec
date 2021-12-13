@@ -19,7 +19,7 @@ namespace Fosec.Database
             cmd.Parameters.AddWithValue("@1", email);
             cmd.Parameters.AddWithValue("@2", HashUtil.GetHashedStringByInput(pwd));
             cmd.ExecuteNonQuery();
-            ConnectionProvider.InitCon().Close();
+            connection.Close();
         }
     }
 }
