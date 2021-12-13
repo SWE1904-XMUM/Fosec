@@ -11,9 +11,9 @@
     </style>
     <!-- TODO thread page content -->
     <div style="margin: auto auto auto auto; width: 700px">
-    <asp:TextBox ID="TextBox1" runat="server" Height="134px" Width="565px"></asp:TextBox>
+    <asp:TextBox ID="ThreadContent" runat="server" Height="134px" Width="565px"></asp:TextBox>
     <br /><br /> 
-    <asp:TextBox ID="TextBox2" TextMode="MultiLine" type="text" placeHolder="reply here" runat="server" Height="100px" Width="581px"></asp:TextBox>
+    <asp:TextBox ID="ReplyThread" TextMode="MultiLine" type="text" placeHolder="reply here" runat="server" Height="100px" Width="581px"></asp:TextBox>
     <asp:Button ID="ReplyBtn" runat="server" Text="Reply" CssClass="mt-0" OnClick="ReplyBtn_Click" />
     </div>
 </asp:Content>
