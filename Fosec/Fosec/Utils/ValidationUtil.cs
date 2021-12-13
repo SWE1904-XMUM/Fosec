@@ -9,6 +9,8 @@ namespace Fosec.Utils
 {
     public class ValidationUtil
     {
+        public static readonly string RESULT_PASS = "pass";
+
         public string ValidatePassword(string pwd)
         {
             var hasNumber = new Regex(@"[0-9]+");
@@ -38,7 +40,7 @@ namespace Fosec.Utils
 
             else
             {
-                return "pass";
+                return RESULT_PASS;
             }    
         }
 
@@ -51,7 +53,7 @@ namespace Fosec.Utils
 
             else
             {
-                return "pass";
+                return RESULT_PASS;
             }
         }
 
@@ -66,7 +68,7 @@ namespace Fosec.Utils
 
             else
             {
-                return "pass";
+                return RESULT_PASS;
             }
         }
     }

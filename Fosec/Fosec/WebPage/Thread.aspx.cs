@@ -13,5 +13,10 @@ namespace Fosec.WebPage
         {
 
         }
+
+        protected void ReplyBtn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
