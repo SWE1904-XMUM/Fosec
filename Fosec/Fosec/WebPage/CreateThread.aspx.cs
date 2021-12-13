@@ -22,6 +22,7 @@ namespace Fosec.WebPage
             {
                 while(r.Read())
                 {
+                    // TODO -> <div class="col-lg-3">
                     Label tagLabel = new Label();
                     tagLabel.ID = "Label " + i.ToString();
                     tagLabel.Text = r["tagName"].ToString();
