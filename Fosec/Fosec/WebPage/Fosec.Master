@@ -13,57 +13,59 @@
     <link rel="stylesheet" href="../Resources/CSS/main.css">
 </head>
 <body>
-<form id="form1" runat="server">
-    <div class="row" id="fosecHeader">
-        <div class="col-2">
-            <img src="../Resources/Image/logo.png" alt="Fosec"/>
-        </div>
-        <div class="col-4"></div>
-        <div class="col-6 row" id="userActionBar">
-            <asp:Panel ID="guestActionBar" CssClass="col-12 row" runat="server">
-                <div class="col-5">
-                    <input class="form-control" type="text" placeholder="Your username"/>
-                </div>
-                <div class="col-5">
-                    <input class="form-control" type="password" placeholder="Your password"/>
-                </div>
-                <div class="col-2">
-                    <input class="btn" type="button" value="Login"/>
-                </div>
-                <div class="row">
-                    <p class="text-right">
-                        Do not have an account?&nbsp;
-                        <%-- TODO add sign up link --%>
-                        <span>
-                            <a href="#">Sign up</a>
-                        </span>
-                    </p>
-                </div>
-            </asp:Panel>
-            <asp:Panel ID="loggedInActionBar" CssClass="col-12" runat="server">
-                <div class="text-right">
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-person-fill"></i>
-                            <%-- TODO assign username  --%>
-                            <span id="loggedInUsername" runat="server">Username</span>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li>
-                                <%-- TODO link username to profile page  --%>
-                                <a class="dropdown-item" href="#">Profile</a>
-                            </li>
-                            <li>
-                                <%-- TODO logout function  --%>
-                                <a class="dropdown-item" href="#">Logout</a>
-                            </li>
-                        </ul>
+    <form id="form1" runat="server">
+        <div class="row" id="fosecHeader">
+            <div class="col-2">
+                <a href="/">
+                    <img src="../Resources/Image/logo.png" alt="Fosec" />
+                </a>
+            </div>
+            <div class="col-4"></div>
+            <div class="col-6 row" id="userActionBar">
+                <asp:Panel ID="guestActionBar" CssClass="col-12 row" runat="server">
+                    <div class="col-5">
+                        <input class="form-control" type="text" placeholder="Your username" />
                     </div>
-                </div>
-            </asp:Panel>
+                    <div class="col-5">
+                        <input class="form-control" type="password" placeholder="Your password" />
+                    </div>
+                    <div class="col-2">
+                        <input class="btn" type="button" value="Login" />
+                    </div>
+                    <div class="row">
+                        <p class="text-right">
+                            Do not have an account?&nbsp;
+                        <%-- TODO add sign up link --%>
+                            <span>
+                                <a href="#">Sign up</a>
+                            </span>
+                        </p>
+                    </div>
+                </asp:Panel>
+                <asp:Panel ID="loggedInActionBar" CssClass="col-12" runat="server">
+                    <div class="text-right">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-person-fill"></i>
+                                <%-- TODO assign username  --%>
+                                <span id="loggedInUsername" runat="server">Username</span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li>
+                                    <%-- TODO link username to profile page  --%>
+                                    <a class="dropdown-item" href="#">Profile</a>
+                                </li>
+                                <li>
+                                    <%-- TODO logout function  --%>
+                                    <a class="dropdown-item" href="#">Logout</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </asp:Panel>
+            </div>
         </div>
-    </div>
-    <asp:ContentPlaceHolder ID="PageContent" runat="server"/>
-</form>
+        <asp:ContentPlaceHolder ID="PageContent" runat="server" />
+    </form>
 </body>
 </html>
