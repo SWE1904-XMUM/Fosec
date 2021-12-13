@@ -16,23 +16,25 @@ namespace Fosec.WebPage
         {
             TagDb tagDb = new TagDb();
             SqlDataReader r = tagDb.DisplayTags();
+            int i = 0;
 
-            StringBuilder label = new StringBuilder();
-
-            // TODO 
-            //< asp:Label ID = "Label1" runat = "server" Text = "Label" ></ asp:Label >
-
-            /*label.Append("")
-
-            if(r.Read())
+            if(r.HasRows)
             {
-                tag.Text = r["tagName"].ToString();
+                while(r.Read())
+                {
+                    // TODO -> <div class="col-lg-3">
+                    Label tagLabel = new Label();
+                    tagLabel.ID = "Label " + i.ToString();
+                    tagLabel.Text = r["tagName"].ToString();
+                    tag.Controls.Add(tagLabel);
+                    i++;
+                }
             }
-            
+
             else
             {
-                ConnectionProvider.InitCon().Close();
-            }*/
+                ConnectionProvider.CloseDatabaseConnection();
+            }
         }
     }
 }

@@ -14,8 +14,7 @@ namespace Fosec.Database
         {
             string query = "select tagName from Tag";
             SqlCommand cmd = new SqlCommand(query, connection);
-            SqlDataReader r = cmd.ExecuteReader();
-            return r;
+            return cmd.ExecuteReader();
         }
     }
 }
