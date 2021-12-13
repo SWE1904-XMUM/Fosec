@@ -7,6 +7,6 @@ namespace Fosec.Database
 {
     public class ThreadDb
     {
-        ConnectionProvider con = new ConnectionProvider();
+
     }
 }
