@@ -32,9 +32,27 @@ namespace Fosec.Database
             }
         }
 
+        public int GetUserIdWithUsername(string uname)
+        {
+            string query = "select userId from Users where username = @0";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@0", uname);
+            SqlDataReader r = cmd.ExecuteReader();
+
+            if(r.HasRows)
+            {
+                return r.GetInt32(0);
+            }
+
+            else
+            {
+                return -1;
+            }
+        }
+
         public bool CheckExistingUser(string uname)
         {
-            string query = "select * from Users where username = @0";
+            string query = "select username from Users where username = @0";
             SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@0", uname);
             SqlDataReader r = cmd.ExecuteReader();
@@ -49,5 +67,10 @@ namespace Fosec.Database
                 return false;
             }
         }
+
+        /*public bool CheckUserPassword(string uname, string pwd)
+        {
+            string query = "";
+        }*/
     }
 }

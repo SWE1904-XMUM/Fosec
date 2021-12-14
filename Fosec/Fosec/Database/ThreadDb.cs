@@ -17,6 +17,4 @@ namespace Fosec.Database
             return cmd.ExecuteReader();
         }
     }
-   
-
 }
