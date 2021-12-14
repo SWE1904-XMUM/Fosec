@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Fosec.Utils;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -9,5 +10,28 @@ namespace Fosec.Database
     public class ThreadCommentDb
     {
         private static SqlConnection connection = ConnectionProvider.GetDatabaseConnection();
+
+        public bool insertThreadComment(int UserID, int threadID, String comment, String Date)
+        {
+            string query = "insert into ThreadComment values (@2,@3,@4,@5)";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            //cmd.Parameters.AddWithValue("@1", CommentID);
+            cmd.Parameters.AddWithValue("@2", UserID);
+            cmd.Parameters.AddWithValue("@3", threadID);
+            cmd.Parameters.AddWithValue("@4", comment);
+            cmd.Parameters.AddWithValue("@5", Date);
+            int insert = cmd.ExecuteNonQuery();
+            ConnectionProvider.CloseDatabaseConnection();
+            if (insert > 0)
+            {
+                return true;
+            }
+
+            else
+            {
+                return false;
+            }
+
+        }
     }
 }
