@@ -36,19 +36,28 @@ namespace Fosec.WebPage
             string pwd = validationUtil.ValidatePassword(signupPwdTxt);
             string email = validationUtil.ValidateEmail(signupEmailTxt);
 
-            // TODO -> check for existing users
             if(email.Equals("pass") && uname.Equals("pass") && pwd.Equals("pass") && signupConfirmPwdTxt.Equals(signupPwdTxt))
             {
-                bool insertUser = userDb.InsertUsers(signupUnameTxt,signupEmailTxt,signupPwdTxt);
+                bool checkExistingUser = userDb.CheckExistingUser(signupUnameTxt);
 
-                if(insertUser.Equals(true))
+                if(checkExistingUser.Equals(false))
                 {
-                    messageBox.MessageBox("Signup successfully! Please login.");
+                    bool insertUser = userDb.InsertUsers(signupUnameTxt, signupEmailTxt, signupPwdTxt);
+
+                    if (insertUser.Equals(true))
+                    {
+                        messageBox.MessageBox("Signup successfully! Please login.");
+                    }
+
+                    else
+                    {
+                        messageBox.MessageBox("Fail to signup.");
+                    }
                 }
                 
                 else
                 {
-                    messageBox.MessageBox("Fail to signup!");
+                    messageBox.MessageBox("Username already existed, please try for another.");
                 }
             }
 

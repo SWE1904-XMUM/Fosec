@@ -8,7 +8,7 @@ namespace Fosec.Database
 {
     public class ConnectionProvider
     {
-        private static SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Fosec.mdf;Integrated Security=True");
+        private static SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Fosec.mdf;Integrated Security=True; MultipleActiveResultSets=true;");
 
         private ConnectionProvider() { }
 

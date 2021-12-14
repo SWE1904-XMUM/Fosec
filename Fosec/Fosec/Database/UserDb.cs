@@ -37,12 +37,11 @@ namespace Fosec.Database
             string query = "select * from Users where username = @0";
             SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@0", uname);
-            var check = cmd.ExecuteReader();
-            ConnectionProvider.CloseDatabaseConnection();
+            SqlDataReader r = cmd.ExecuteReader();
 
-            if(check != null)
-            {
-                return true;
+            if(r.HasRows)
+            { 
+                return true; 
             }
 
             else
