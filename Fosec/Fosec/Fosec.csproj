@@ -89,6 +89,7 @@
   <ItemGroup>
     <Compile Include="Database\ConnectionProvider.cs" />
     <Compile Include="Database\TagDb.cs" />
+    <Compile Include="Database\ThreadCommentDb.cs" />
     <Compile Include="Database\ThreadDb.cs" />
     <Compile Include="Database\UserDb.cs" />
     <Compile Include="SessionManager\SessionManager.cs" />
