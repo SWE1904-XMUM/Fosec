@@ -38,6 +38,11 @@ namespace Fosec.Utils
                 return "Password should contain At least one special case characters";
             }
 
+            else if(pwd.Length < 8)
+            {
+                return "Password should contain at least 8 characters.";
+            }
+
             else
             {
                 return RESULT_PASS;

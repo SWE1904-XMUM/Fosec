@@ -91,6 +91,14 @@ namespace Fosec.WebPage
         protected void loginBtn_Click(object sender, EventArgs e)
         {
             GetLoginInputText();
+
+            bool checkExistingUser = userDb.CheckExistingUser(loginUnameTxt);
+            bool checkPassword = userDb.CheckUserPassword(loginUnameTxt, loginPwdTxt);
+
+            /*if(checkExistingUser.Equals(true))
+            {
+                if(checkPassword.Equals())
+            }*/
         }
 
         private void GetLoginInputText()
