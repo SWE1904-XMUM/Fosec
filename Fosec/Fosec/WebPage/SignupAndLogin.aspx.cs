@@ -1,4 +1,5 @@
 ﻿using Fosec.Database;
+using Fosec.SessionManager;
 using Fosec.Utils;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,8 @@ namespace Fosec.WebPage
         // Class initialization
         MessageBoxUtil messageBox = new MessageBoxUtil();
         UserDb userDb = new UserDb();
+        // TODO -> debug session manager
+        //SessionManager sessionManager = new SessionManager();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -92,12 +95,29 @@ namespace Fosec.WebPage
         {
             GetLoginInputText();
 
-            bool checkExistingUser = userDb.CheckExistingUser(loginUnameTxt);
+            // TODO -> debug CheckUserPassword db
+            /*bool checkExistingUser = userDb.CheckExistingUser(loginUnameTxt);
             bool checkPassword = userDb.CheckUserPassword(loginUnameTxt, loginPwdTxt);
 
-            /*if(checkExistingUser.Equals(true))
+            if(checkExistingUser.Equals(true))
             {
-                if(checkPassword.Equals())
+                if(checkPassword.Equals(true))
+                {
+                    Response.Redirect("Home.aspx");
+                    //sessionManger.SetLogin(true);
+                    //sessionManger.SetUsername(loginUnameTxt);
+                }
+
+                else
+                {
+                    messageBox.MessageBox("Invalid password!");
+                    loginPwd.BackColor = System.Drawing.Color.LightCoral;
+                }
+            }
+
+            else
+            {
+                messageBox.MessageBox("Not an existing user, please signup!");
             }*/
         }
 
