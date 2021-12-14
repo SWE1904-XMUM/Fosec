@@ -15,28 +15,41 @@ body {
     margin: 1rem 2rem !important;
 }
 
-#fosecHeader img {
-    width: 100%;
-    margin: 1rem 0;
-}
+    #fosecHeader img {
+        width: 100%;
+        margin: 1rem 0;
+    }
 
-#fosecHeader #userActionBar {
-    align-items: center;
-}
+    #fosecHeader #userActionBar {
+        align-items: center;
+    }
 
 .btn {
     background-color: var(--secondary-color);
     color: var(--color-white);
 }
 
+.tag-btn[selected=true] {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
 .text-right {
     text-align: right;
 }
 
-.dropdown
+#tagContainer {
+    margin: 0 3rem;
+    background-color: var(--color-white);
+    border-radius: 5rem;
+}
+
+    #tagContainer > * {
+        margin: 0.3rem;
+        display: inline-block;
+    }
 
 /*Signup & Login Page*/
-#login-col, #signup-col
-{
-    text-align:center;
+#login-col, #signup-col {
+    text-align: center;
 }
