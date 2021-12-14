@@ -29,14 +29,28 @@ body {
     color: var(--color-white);
 }
 
+.btn:hover {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    transition: all 1s;
+}
+
 .text-right {
     text-align: right;
 }
 
-.dropdown
+#tagContainer {
+    margin: 0 3rem;
+    background-color: var(--color-white);
+    border-radius: 5rem;
+}
+
+#tagContainer > * {
+    margin: 0.3rem;
+    display: inline-block;
+}
 
 /*Signup & Login Page*/
-#login-col, #signup-col
-{
-    text-align:center;
+#login-col, #signup-col {
+    text-align: center;
 }
