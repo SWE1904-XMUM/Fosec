@@ -7,9 +7,8 @@
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
-    <script src="../Resources/Js/bootstrap.bundle.min.js"></script>
-    <script src="../Resources/Js/bootstrap.min.js"></script>
     <script src="../Resources/Js/jquery-3.6.0.min.js"></script>
+    <script src="../Resources/Js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../Resources/CSS/bootstrap.min.css">
     <link rel="stylesheet" href="../Resources/CSS/main.css">
