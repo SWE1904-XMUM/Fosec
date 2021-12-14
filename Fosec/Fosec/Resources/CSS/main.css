@@ -46,6 +46,7 @@ body {
 
 #tagContainer {
     margin: 0.5rem 0rem;
+    margin-top: 1rem;
     padding: 0.5rem 1rem;
     background-color: var(--color-white);
     border-radius: 1rem;
@@ -73,8 +74,10 @@ body {
 
 /*Signup & Login Page*/
 #login-signup-container {
-    
+    justify-content:center;
+    justify-items: center;
 }
+
 
 /*Thread container & content*/
 .threadContainer {
@@ -116,7 +119,13 @@ body {
 
 .navbar {
     padding-top: 0;
-    margin-bottom: 1rem;
+    padding-bottom: 0;
     
 }
 /*end of master page css*/
+
+#background-container{
+    background-image: url(../Image/student_engagement.jpg);
+    background-size: cover;
+    height: 85vh;
+}
