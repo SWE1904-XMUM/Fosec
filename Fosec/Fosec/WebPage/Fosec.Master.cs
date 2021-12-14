@@ -15,5 +15,12 @@ namespace Fosec
             guestActionBar.Visible = false;
             loggedInActionBar.Visible = true;
         }
+
+        internal class UserSessionManager
+        {
+            public UserSessionManager()
+            {
+            }
+        }
     }
 }
