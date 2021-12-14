@@ -59,6 +59,8 @@ namespace Fosec.WebPage
                 {
                     messageBox.MessageBox("Username already existed, please try for another.");
                 }
+
+                ConnectionProvider.CloseDatabaseConnection();
             }
 
             else if(email != "pass")
