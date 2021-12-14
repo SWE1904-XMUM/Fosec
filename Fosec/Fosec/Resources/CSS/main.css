@@ -49,7 +49,40 @@ body {
         display: inline-block;
     }
 
+#pageContentContainer {
+    width: 80%;
+    margin: auto;
+}
+
 /*Signup & Login Page*/
 #login-col, #signup-col {
     text-align: center;
+}
+
+/*Thread container & content*/
+.threadContainer {
+    background-color: var(--color-white);
+    margin: 1rem;
+    padding: 1rem;
+    border: 2px solid var(--secondary-color);
+}
+
+.threadUserId {
+    width: 100%;
+    height: 100px;
+    background-color: lightgoldenrodyellow;
+}
+
+.threadTitle {
+    font-weight: bold;
+    font-size: 2rem;
+    text-decoration: underline;
+}
+
+.threadContet {
+    padding: 0.8rem;
+}
+
+.threadDate {
+    text-align: right;
 }

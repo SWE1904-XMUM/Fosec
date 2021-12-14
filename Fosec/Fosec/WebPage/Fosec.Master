@@ -67,7 +67,9 @@
                 </asp:Panel>
             </div>
         </div>
-        <asp:ContentPlaceHolder ID="PageContent" runat="server" />
+        <div id="pageContentContainer">
+            <asp:ContentPlaceHolder ID="PageContent" runat="server"/>
+        </div>
     </form>
 </body>
 </html>
