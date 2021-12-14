@@ -18,10 +18,29 @@ namespace Fosec.Database
             cmd.Parameters.AddWithValue("@0", username);
             cmd.Parameters.AddWithValue("@1", email);
             cmd.Parameters.AddWithValue("@2", HashUtil.GetHashedStringByInput(pwd));
-            int check = cmd.ExecuteNonQuery();
+            int insert = cmd.ExecuteNonQuery();
             ConnectionProvider.CloseDatabaseConnection();
 
-            if (check > 0)
+            if (insert > 0)
+            {
+                return true;
+            }
+
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool CheckExistingUser(string uname)
+        {
+            string query = "select * from Users where username = @0";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@0", uname);
+            var check = cmd.ExecuteReader();
+            ConnectionProvider.CloseDatabaseConnection();
+
+            if(check != null)
             {
                 return true;
             }
