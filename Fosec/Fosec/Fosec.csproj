@@ -45,6 +45,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.DynamicData" />
@@ -92,6 +93,7 @@
     <Compile Include="Database\UserDb.cs" />
     <Compile Include="SessionManager\SessionManager.cs" />
     <Compile Include="Utils\HashUtil.cs" />
+    <Compile Include="Utils\MessageBoxUtil.cs" />
     <Compile Include="Utils\StringUtil.cs" />
     <Compile Include="Utils\ValidationUtil.cs" />
     <Compile Include="WebPage\CreateThread.aspx.cs">

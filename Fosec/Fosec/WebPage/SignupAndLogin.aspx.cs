@@ -18,6 +18,15 @@ namespace Fosec.WebPage
         // Signup column
         string signupEmailTxt, signupUnameTxt, signupPwdTxt, signupConfirmPwdTxt;
 
+        // Class initialization
+        MessageBoxUtil messageBox = new MessageBoxUtil();
+        UserDb userDb = new UserDb();
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+        }
+
         protected void signupBtn_Click(object sender, EventArgs e)
         {
             GetSignupInputText();
@@ -27,40 +36,45 @@ namespace Fosec.WebPage
             string pwd = validationUtil.ValidatePassword(signupPwdTxt);
             string email = validationUtil.ValidateEmail(signupEmailTxt);
 
+            // TODO -> check for existing users
             if(email.Equals("pass") && uname.Equals("pass") && pwd.Equals("pass") && signupConfirmPwdTxt.Equals(signupPwdTxt))
             {
-                //valid -> store into db
+                bool insertUser = userDb.InsertUsers(signupUnameTxt,signupEmailTxt,signupPwdTxt);
+
+                if(insertUser.Equals(true))
+                {
+                    messageBox.MessageBox("Signup successfully! Please login.");
+                }
+                
+                else
+                {
+                    messageBox.MessageBox("Fail to signup!");
+                }
             }
 
-            // TODO -> display right error message
             else if(email != "pass")
             {
-                //display error message for email
-                Response.Write("invalid email");
+                messageBox.MessageBox(email);
+                signupEmail.BackColor = System.Drawing.Color.LightCoral;
             }
 
             else if(uname != "pass")
             {
-                //display error message for uname
-                Response.Write("invalid uname");
+                messageBox.MessageBox(uname);
+                signupUname.BackColor = System.Drawing.Color.LightCoral;
             }
 
             else if(pwd != "pass")
             {
-                //display error message for pwd
-                Response.Write("invalid pwd");
+                messageBox.MessageBox(pwd);
+                signupPwd.BackColor = System.Drawing.Color.LightCoral;
             }
 
             else if(!signupConfirmPwdTxt.Equals(signupPwdTxt))
             {
-                //display error message for confirm pwd
-                Response.Write("not same pwd");
+                messageBox.MessageBox("Please enter same password!");
+                signupConfirmPwd.BackColor = System.Drawing.Color.LightCoral;
             }
-        }
-
-        protected void Page_Load(object sender, EventArgs e)
-        {
-
         }
 
         protected void loginBtn_Click(object sender, EventArgs e)

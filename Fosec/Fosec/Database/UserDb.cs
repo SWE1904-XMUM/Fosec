@@ -11,15 +11,25 @@ namespace Fosec.Database
     {
         private static SqlConnection connection = ConnectionProvider.GetDatabaseConnection();
 
-        public static void InsertUsers(string username, string email, string pwd)
+        public bool InsertUsers(string username, string email, string pwd)
         {
             string query = "insert into Users values (@0,@1,@2)";
             SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@0", username);
             cmd.Parameters.AddWithValue("@1", email);
             cmd.Parameters.AddWithValue("@2", HashUtil.GetHashedStringByInput(pwd));
-            cmd.ExecuteNonQuery();
+            int check = cmd.ExecuteNonQuery();
             ConnectionProvider.CloseDatabaseConnection();
+
+            if (check > 0)
+            {
+                return true;
+            }
+
+            else
+            {
+                return false;
+            }
         }
     }
 }
