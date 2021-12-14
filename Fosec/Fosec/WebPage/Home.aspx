@@ -22,7 +22,7 @@
         <asp:Label Text="All" ID="selectedTagName" runat="server"></asp:Label>
 
         <!-- TODO threads -->
-        <div id="homeThreadContainer">
+        <div id="profileThreadContainer">
             <asp:Repeater ID="threadRepeater" runat="server" DataSourceID="ThreadDataSource">
                 <ItemTemplate>
                     <itemtemplate>
