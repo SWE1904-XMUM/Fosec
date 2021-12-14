@@ -68,9 +68,32 @@ namespace Fosec.Database
             }
         }
 
-        /*public bool CheckUserPassword(string uname, string pwd)
+        public bool CheckUserPassword(string uname, string pwd)
         {
-            string query = "";
-        }*/
+            string query = "select pwd from Users where username = @0";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@0", uname);
+            SqlDataReader r = cmd.ExecuteReader();
+
+            if(r.HasRows)
+            {
+                bool compare = HashUtil.CompareHash(r.GetString(0),pwd);
+
+                if(compare.Equals(true))
+                {
+                    return true;
+                }
+
+                else
+                {
+                    return false;
+                }
+            }
+
+            else
+            {
+                return false;
+            }
+        }
     }
 }
