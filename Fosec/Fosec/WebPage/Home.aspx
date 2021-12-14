@@ -11,6 +11,12 @@
         <asp:SqlDataSource ID="TagDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Tag]"></asp:SqlDataSource>
     </div>
 
+    <div class="row">
+        <asp:HyperLink CssClass="text-right" NavigateUrl="/WebPage/CreateThread.aspx" runat="server">
+            <asp:Label CssClass="btn" Text="Create New Thread" runat="server" />
+        </asp:HyperLink>
+    </div>
+
     <!-- TODO selected tag -->
     <asp:Label Text="All" ID="selectedTagName" runat="server"></asp:Label>
 

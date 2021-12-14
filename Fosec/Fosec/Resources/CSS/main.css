@@ -1,5 +1,6 @@
 ﻿:root {
     --color-white: #fff;
+    --color-black: #000;
     --primary-color: #C8EDEF;
     --secondary-color: #05767B;
     --background-color: #FAFAFA;
@@ -29,6 +30,11 @@ body {
     color: var(--color-white);
 }
 
+.btn:hover {
+    background-color: var(--primary-color);
+    color: var(--color-black);
+}
+
 .tag-btn[selected=true] {
     background-color: var(--primary-color);
     color: var(--secondary-color);
@@ -41,13 +47,23 @@ body {
 #tagContainer {
     margin: 0 3rem;
     background-color: var(--color-white);
-    border-radius: 5rem;
+    border-radius: 2rem;
 }
 
     #tagContainer > * {
         margin: 0.3rem;
         display: inline-block;
     }
+
+    #tagContainer > .btn {
+        background-color: var(--primary-color);
+        color: var(--color-black);
+    }
+
+        #tagContainer > .btn:hover {
+            background-color: var(--secondary-color);
+            color: var(--color-white);
+        }
 
 #pageContentContainer {
     width: 80%;
