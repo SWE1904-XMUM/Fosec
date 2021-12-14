@@ -45,9 +45,10 @@ body {
 }
 
 #tagContainer {
-    margin: 0 3rem;
+    margin: 0.5rem 0rem;
+    padding: 0.5rem 1rem;
     background-color: var(--color-white);
-    border-radius: 2rem;
+    border-radius: 1rem;
 }
 
     #tagContainer > * {
@@ -71,8 +72,8 @@ body {
 }
 
 /*Signup & Login Page*/
-#login-col, #signup-col {
-    text-align: center;
+#login-signup-container {
+    
 }
 
 /*Thread container & content*/
@@ -102,3 +103,20 @@ body {
 .threadDate {
     text-align: right;
 }
+
+/*start of master page css*/
+#logo{
+    height: 120px;
+}
+
+.navbar > .container-fluid {
+    background-color: var(--color-white);
+    box-shadow: 0 2.5px 2.5px rgba(0,0,0,0.2);
+}
+
+.navbar {
+    padding-top: 0;
+    margin-bottom: 1rem;
+    
+}
+/*end of master page css*/
