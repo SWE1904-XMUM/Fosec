@@ -2,26 +2,36 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ContentPlaceHolderID="PageContent" runat="server">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-sm-12" id="login-col">
-                <asp:TextBox id="loginUname" type="text" placeholder="Your username" runat="server"></asp:TextBox>
-                <br />
-                <asp:TextBox id="loginPwd" type="password" placeholder="Your password" runat="server"></asp:TextBox>
-                <br />
-                <asp:Button ID="loginBtn" runat="server" Text="Login" OnClick="loginBtn_Click"/>
+    <div class="row">
+        <div class="col-lg-6 col-sm-12" id="background-container">
+        </div>
+        <div class="col-lg-6 col-sm-12" id="login-signup-container">
+            <div class="mb-2 w-75">
+                <label for="loginUname" class="form-label">Username</label>
+                <asp:TextBox ID="loginUname" CssClass="form-control" type="text" placeholder="Your username" runat="server"></asp:TextBox>
             </div>
-            <div class="col-lg-6 col-sm-12" id="signup-col">
-                <asp:TextBox id="signupEmail" type="text" placeholder="Email" runat="server"></asp:TextBox>
-                <br />
-                <asp:TextBox id="signupUname" type="text" placeholder="Username" runat="server"></asp:TextBox>
-                <br />
-                <asp:TextBox id="signupPwd" type="password" placeholder="Password" runat="server"></asp:TextBox>
-                <br />
-                <asp:TextBox id="signupConfirmPwd" type="password" placeholder="Re-type password" runat="server"></asp:TextBox>
-                <br />
-                <asp:Button ID="signupBtn" runat="server" Text="Signup" OnClick="signupBtn_Click"/>
+            <div class="mb-3 w-75">
+                <label for="loginPwd" class="form-label">Password</label>
+                <asp:TextBox ID="loginPwd" CssClass="form-control" type="password" placeholder="Your password" runat="server"></asp:TextBox>
             </div>
+            <asp:Button ID="loginBtn" CssClass="btn btn-primary" runat="server" Text="Login" OnClick="loginBtn_Click" />
+
+            <div class="mb-2 w-75">
+                <asp:TextBox ID="signupEmail" CssClass="form-control" type="text" placeholder="Email" runat="server"></asp:TextBox>
+            </div>
+            <div class="mb-2 w-75">
+                <label for="signupUname" class="form-label">Username</label>
+                <asp:TextBox ID="signupUname" CssClass="form-control" type="text" placeholder="Username" runat="server"></asp:TextBox>
+            </div>
+            <div class="mb-2 w-75">
+                <label for="signupPwd" class="form-label">Password</label>
+                <asp:TextBox ID="signupPwd" CssClass="form-control" type="password" placeholder="Password" runat="server"></asp:TextBox>
+            </div>
+            <div class="mb-3 w-75">
+                <label for="signupConfirmPwd" class="form-label">Confirm Password</label>
+                <asp:TextBox ID="signupConfirmPwd" CssClass="form-control" type="password" placeholder="Re-enter password" runat="server"></asp:TextBox>
+            </div>
+            <asp:Button CssClass="btn btn-primary" ID="signupBtn" runat="server" Text="Signup" OnClick="signupBtn_Click" />
         </div>
     </div>
 </asp:Content>
