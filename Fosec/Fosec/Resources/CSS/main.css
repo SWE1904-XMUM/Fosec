@@ -16,6 +16,21 @@ hr {
     background-color: transparent;
 }
 
+a:hover {
+    cursor: pointer;
+}
+
+.form-control:focus,
+.form-control:focus-visible,
+.form-select:focus,
+.form-select:focus-visible,
+.btn:focus,
+.btn:focus-visible {
+    border: 1px solid var(--secondary-color) !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
 #fosecHeader {
     background-color: var(--color-white);
     padding: 0.5rem 3rem;
