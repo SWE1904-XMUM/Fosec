@@ -20,6 +20,9 @@ namespace Fosec.WebPage
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            //get threadid from link
+            string threadid = HttpContext.Current.Request.QueryString["threadid"];
+
             /*    ThreadDb threadDb = new ThreadDb();
                 SqlDataReader th = threadDb.DisplayThreadContent(); 
 

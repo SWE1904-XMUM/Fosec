@@ -30,7 +30,7 @@
                     <itemtemplate>
                         <div class="threadContainer row">
                             <div class="userInformation col-3">
-                                <asp:Label CssClass="threadUserId row" runat="server" Text='<%# "Userid" + Eval("userId") %>' />
+                                <asp:Label CssClass="threadUserId row" runat="server" Text='<%# "Userid: " + Eval("userId") %>' />
                             </div>
                             <div class="threadInformation col-9">
                                 <a class="threadInformation link-text-view" href='<%# @"/Webpage/Thread.aspx?threadid=" + Eval("threadId") %>'>
