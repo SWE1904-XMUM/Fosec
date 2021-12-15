@@ -96,7 +96,7 @@ namespace Fosec.WebPage
             GetLoginInputText();
 
             // TODO -> debug CheckUserPassword db
-            /*bool checkExistingUser = userDb.CheckExistingUser(loginUnameTxt);
+            bool checkExistingUser = userDb.CheckExistingUser(loginUnameTxt);
             bool checkPassword = userDb.CheckUserPassword(loginUnameTxt, loginPwdTxt);
 
             if(checkExistingUser.Equals(true))
@@ -118,7 +118,7 @@ namespace Fosec.WebPage
             else
             {
                 messageBox.MessageBox("Not an existing user, please signup!");
-            }*/
+            }
         }
 
         private void GetLoginInputText()

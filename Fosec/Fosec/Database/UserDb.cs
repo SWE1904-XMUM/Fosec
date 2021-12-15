@@ -13,7 +13,7 @@ namespace Fosec.Database
 
         public bool InsertUsers(string username, string email, string pwd)
         {
-            string query = "insert into Users values (@0,@1,@2)";
+            string query = "insert into Users (username, email, pwd) values (@0,@1,@2)";
             SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@0", username);
             cmd.Parameters.AddWithValue("@1", email);
@@ -77,7 +77,7 @@ namespace Fosec.Database
 
             if(r.HasRows)
             {
-                bool compare = HashUtil.CompareHash(r.GetString(0),pwd);
+                bool compare = HashUtil.CompareHash(r.GetOrdinal("pwd").ToString(), pwd);
 
                 if(compare.Equals(true))
                 {
