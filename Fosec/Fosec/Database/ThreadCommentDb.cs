@@ -13,7 +13,7 @@ namespace Fosec.Database
 
         public bool insertThreadComment(int UserID, int threadID, String comment)
         {
-            string query = "insert into ThreadComment values (@2,@3,@4,commentDate)"; //no idea how to insert without adding a date manually
+            string query = "insert into ThreadComment (userID,threadID,comment) values (@2,@3,@4)"; //no idea how to insert without adding a date manually
             SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@2", UserID);
             cmd.Parameters.AddWithValue("@3", threadID);
