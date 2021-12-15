@@ -30,7 +30,7 @@ namespace Fosec.WebPage
 
         }
 
-        protected void signupBtn_Click(object sender, EventArgs e)
+        protected void SignupBtn_Click(object sender, EventArgs e)
         {
             GetSignupInputText();
 
@@ -91,7 +91,7 @@ namespace Fosec.WebPage
             }
         }
 
-        protected void loginBtn_Click(object sender, EventArgs e)
+        protected void LoginBtn_Click(object sender, EventArgs e)
         {
             GetLoginInputText();
 

@@ -24,7 +24,7 @@
                             <label for="loginPwd" class="form-label">Password</label>
                             <asp:TextBox ID="loginPwd" CssClass="form-control" type="password" placeholder="Your password" runat="server"></asp:TextBox>
                         </div>
-                        <asp:Button ID="loginBtn" CssClass="btn btn-primary mb-3" runat="server" Text="Login" OnClick="loginBtn_Click" />
+                        <asp:Button ID="loginBtn" CssClass="btn btn-primary mb-3" runat="server" Text="Login" OnClick="LoginBtn_Click" />
                      </div>
                      <div class="tab-pane fade" id="pills-signup" role="tabpanel" aria-labelledby="pills-signup-tab">
                         <div class="mb-2">
@@ -43,7 +43,7 @@
                             <label for="signupConfirmPwd" class="form-label">Confirm Password</label>
                             <asp:TextBox ID="signupConfirmPwd" CssClass="form-control" type="password" placeholder="Re-enter password" runat="server"></asp:TextBox>
                         </div>
-                        <asp:Button CssClass="btn btn-primary mb-3" ID="signupBtn" runat="server" Text="Sign Up" OnClick="signupBtn_Click" />
+                        <asp:Button CssClass="btn btn-primary mb-3" ID="signupBtn" runat="server" Text="Sign Up" OnClick="SignupBtn_Click" />
                         </div>
                     </div>
             </div>
