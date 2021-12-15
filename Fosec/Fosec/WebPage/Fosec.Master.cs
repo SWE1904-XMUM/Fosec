@@ -42,7 +42,7 @@ namespace Fosec
             {
                 if (checkPassword.Equals(true))
                 {
-                    // TODO -> link to Home page
+                    // TODO -> display right content for users
                     //Response.Redirect("Home.aspx");
                     SessionManager.SetLogin(true);
                     SessionManager.SetUsername(unameTxt);
