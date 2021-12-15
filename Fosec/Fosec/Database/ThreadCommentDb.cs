@@ -11,15 +11,14 @@ namespace Fosec.Database
     {
         private static SqlConnection connection = ConnectionProvider.GetDatabaseConnection();
 
-        public bool insertThreadComment(int UserID, int threadID, String comment, String Date)
+        public bool insertThreadComment(int UserID, int threadID, String comment)
         {
-            string query = "insert into ThreadComment values (@2,@3,@4,@5)";
+            string query = "insert into ThreadComment (userID,threadID,comment) values (@2,@3,@4)"; //no idea how to insert without adding a date manually
             SqlCommand cmd = new SqlCommand(query, connection);
-            //cmd.Parameters.AddWithValue("@1", CommentID);
             cmd.Parameters.AddWithValue("@2", UserID);
             cmd.Parameters.AddWithValue("@3", threadID);
             cmd.Parameters.AddWithValue("@4", comment);
-            cmd.Parameters.AddWithValue("@5", Date);
+           // cmd.Parameters.AddWithValue("@5", Date);
             int insert = cmd.ExecuteNonQuery();
             ConnectionProvider.CloseDatabaseConnection();
             if (insert > 0)

@@ -1,5 +1,5 @@
 ﻿using Fosec.Database;
-using Fosec.SessionManager;
+using Fosec.Session;
 using Fosec.Utils;
 using System;
 using System.Collections.Generic;
@@ -22,8 +22,7 @@ namespace Fosec.WebPage
         // Class initialization
         MessageBoxUtil messageBox = new MessageBoxUtil();
         UserDb userDb = new UserDb();
-        // TODO -> debug session manager
-        //SessionManager sessionManager = new SessionManager();
+        SessionManager sessionManager = new SessionManager();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -95,8 +94,7 @@ namespace Fosec.WebPage
         {
             GetLoginInputText();
 
-            // TODO -> debug CheckUserPassword db
-            /*bool checkExistingUser = userDb.CheckExistingUser(loginUnameTxt);
+            bool checkExistingUser = userDb.CheckExistingUser(loginUnameTxt);
             bool checkPassword = userDb.CheckUserPassword(loginUnameTxt, loginPwdTxt);
 
             if(checkExistingUser.Equals(true))
@@ -104,8 +102,8 @@ namespace Fosec.WebPage
                 if(checkPassword.Equals(true))
                 {
                     Response.Redirect("Home.aspx");
-                    //sessionManger.SetLogin(true);
-                    //sessionManger.SetUsername(loginUnameTxt);
+                    sessionManager.SetLogin(true);
+                    sessionManager.SetUsername(signupUnameTxt);
                 }
 
                 else
@@ -118,7 +116,7 @@ namespace Fosec.WebPage
             else
             {
                 messageBox.MessageBox("Not an existing user, please signup!");
-            }*/
+            }
         }
 
         private void GetLoginInputText()

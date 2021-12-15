@@ -4,16 +4,20 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Fosec.SessionManager;
+using Fosec.Session;
 
 namespace Fosec.WebPage
 {
     public partial class Profile : System.Web.UI.Page
     {
+        // Class initialization
+        SessionManager sessionManager = new SessionManager();
+
+        string uname;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            //TODO get session username from SessionManager
-            Session["uname"] = "testuser";
+            uname = sessionManager.GetUsername();
         }
     }
 }

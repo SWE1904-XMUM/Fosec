@@ -14,6 +14,7 @@ namespace Fosec.WebPage
     public partial class Thread : System.Web.UI.Page
     {
         ThreadCommentDb threadComment = new ThreadCommentDb();
+        String reply;
         protected void Page_Load(object sender, EventArgs e)
         {
             /*    ThreadDb threadDb = new ThreadDb();
@@ -33,7 +34,10 @@ namespace Fosec.WebPage
 
         protected void ReplyBtn_Click(object sender, EventArgs e)
         {
-            bool insertComment = threadComment.insertThreadComment( 4, 1, "testing", "12/5/2021");
+            getThreadReply();
+            
+            
+            bool insertComment = threadComment.insertThreadComment( 4, 1, reply );
             if (insertComment.Equals(true))
             {
                 Response.Write("<script>alert('Data inserted successfully')</script>");
@@ -43,6 +47,10 @@ namespace Fosec.WebPage
             {
                 Response.Write("<script>alert('Data insert fail')</script>");
             }
+        }
+        private void getThreadReply()
+        {
+            reply = ReplyThread.Text;
         }
     }
 }
