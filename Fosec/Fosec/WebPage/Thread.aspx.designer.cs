@@ -15,13 +15,22 @@ namespace Fosec.WebPage
     {
 
         /// <summary>
-        /// ThreadContent control.
+        /// ThreadData control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ThreadContent;
+        protected global::System.Web.UI.WebControls.SqlDataSource ThreadData;
+
+        /// <summary>
+        /// threadRepeater control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater threadRepeater;
 
         /// <summary>
         /// ReplyThread control.

@@ -23,13 +23,13 @@
                 <div class="navbar-right row" id="userActionBar">
                 <asp:Panel ID="guestActionBar" CssClass="col-12 row" runat="server">
                     <div class="col-5">
-                        <input class="form-control" type="text" placeholder="Your username" />
+                        <asp:TextBox ID="uname" CssClass="form-control" type="text" placeholder="Your username" runat="server"></asp:TextBox>
                     </div>
                     <div class="col-5">
-                        <input class="form-control" type="password" placeholder="Your password" />
+                        <asp:TextBox ID="pwd" CssClass="form-control" type="password" placeholder="Your password" runat="server"></asp:TextBox>
                     </div>
                     <div class="col-2">
-                        <input class="btn" type="button" value="Login" />
+                        <asp:Button CssClass="btn" ID="login" runat="server" Text="Login" OnClick="login_Click"/>
                     </div>
                     <div class="row">
                         <p class="text-right">
