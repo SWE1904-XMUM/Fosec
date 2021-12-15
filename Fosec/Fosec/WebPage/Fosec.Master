@@ -16,11 +16,11 @@
 <body>
     <form id="form1" runat="server">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
+            <div class="container-fluid px-5">
                 <a class="navbar-brand" href="#">
                     <img id="logo" src="../Resources/Image/logo.png" alt="Fosec" />
                 </a>
-                <div class="navbar-right col-6 row" id="userActionBar">
+                <div class="navbar-right row" id="userActionBar">
                 <asp:Panel ID="guestActionBar" CssClass="col-12 row" runat="server">
                     <div class="col-5">
                         <input class="form-control" type="text" placeholder="Your username" />

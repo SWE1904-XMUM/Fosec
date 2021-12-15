@@ -12,8 +12,9 @@ namespace Fosec
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            SessionManager.SetUsername("testuser");
             string username = SessionManager.GetUsername();
-
+            //TODO get login status
             guestActionBar.Visible = (username == "");
             loggedInActionBar.Visible = (username != "");
             
