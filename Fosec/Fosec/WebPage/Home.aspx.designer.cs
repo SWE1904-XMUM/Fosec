@@ -51,12 +51,21 @@ namespace Fosec.WebPage
         protected global::System.Web.UI.WebControls.Repeater threadRepeater;
 
         /// <summary>
-        /// ThreadDataSource control.
+        /// AllThreadDataSource control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource ThreadDataSource;
+        protected global::System.Web.UI.WebControls.SqlDataSource AllThreadDataSource;
+
+        /// <summary>
+        /// FilteredThreadDataSource control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource FilteredThreadDataSource;
     }
 }

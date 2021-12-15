@@ -18,7 +18,17 @@ namespace Fosec.WebPage
 
         protected void TagButtonClick(object sender, EventArgs e)
         {
-            selectedTagName.Text = ((Button)sender).CommandArgument;
+            string newTag = ((Button)sender).CommandArgument;
+            if(newTag != selectedTagName.Text)
+            {
+                selectedTagName.Text = newTag;
+                threadRepeater.DataSourceID = "FilteredThreadDataSource";
+            }
+            else
+            {
+                selectedTagName.Text = "All";
+                threadRepeater.DataSourceID = "AllThreadDataSource";
+            }
         }
     }
 }
