@@ -32,7 +32,7 @@ namespace Fosec.Database
             }
         }
 
-        public int GetUserIdWithUsername(string uname)
+        public int GetUserIdByUsername(string uname)
         {
             string query = "select userId from Users where username = @0";
             SqlCommand cmd = new SqlCommand(query, connection);
