@@ -9,6 +9,7 @@ namespace Fosec.Session
     {
         private static readonly string LOGIN = "login";
         private static readonly string UNAME = "UNAME";
+        private static readonly string TAG = "TAG";
 
         public static void SetLogin(bool login)
         {
@@ -26,6 +27,21 @@ namespace Fosec.Session
             {
                 return HttpContext.Current.Session["uname"].ToString();
             }
+            return "";
+        }
+
+        public static void SetTag(string tagName)
+        {
+            HttpContext.Current.Session[TAG] = tagName;
+        }
+
+        public static string GetTag()
+        {
+            if(HttpContext.Current.Session[TAG] != null)
+            {
+                return HttpContext.Current.Session[TAG].ToString();
+            }
+
             return "";
         }
     }
