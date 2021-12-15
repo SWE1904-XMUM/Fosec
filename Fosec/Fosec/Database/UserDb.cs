@@ -77,7 +77,8 @@ namespace Fosec.Database
 
             if(r.HasRows)
             {
-                bool compare = HashUtil.CompareHash(r.Read().ToString(),pwd);
+                r.Read();
+                bool compare = HashUtil.CompareHash(r.GetString(0),pwd);
 
                 if(compare.Equals(true))
                 {

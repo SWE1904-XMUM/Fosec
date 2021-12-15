@@ -94,7 +94,6 @@ namespace Fosec.WebPage
         {
             GetLoginInputText();
 
-            // TODO -> debug CheckUserPassword db
             bool checkExistingUser = userDb.CheckExistingUser(loginUnameTxt);
             bool checkPassword = userDb.CheckUserPassword(loginUnameTxt, loginPwdTxt);
 
