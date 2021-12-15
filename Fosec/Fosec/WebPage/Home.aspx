@@ -4,9 +4,10 @@
     <!-- TODO home page content -->
     <div class="container">
         <div id="tagContainer">
+            <asp:Button class="btn tag-btn" runat="server" Text='All' OnClick="TagButtonClick"/>
             <asp:Repeater ID="tagRepeater" runat="server" DataSourceID="TagDataSource">
                 <ItemTemplate>
-                    <asp:Button class="btn tag-btn" runat="server" Text='<%# Eval("tagname") %>' OnClick="TagButtonClick" CommandArgument='<%# Eval("tagname") %>' />
+                    <asp:Button class="btn tag-btn" runat="server" Text='<%# Eval("tagname") %>' OnClick="TagButtonClick" />
                 </ItemTemplate>
             </asp:Repeater>
         </div>
