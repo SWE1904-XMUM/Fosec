@@ -25,7 +25,6 @@ namespace Fosec.WebPage
         protected void DisplayTagsFromDb()
         {   
             SqlDataReader r = tagDb.DisplayTags();
-            int i = 0;
 
             if (r.HasRows)
             {
@@ -38,7 +37,6 @@ namespace Fosec.WebPage
                     tagBtn.Text = tagName;
                     tagBtn.Click += new EventHandler(tag_Click);
                     tag.Controls.Add(tagBtn);
-                    i++;
                 }
             }
 
