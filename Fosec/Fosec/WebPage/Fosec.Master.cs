@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Fosec.Session;
 
 namespace Fosec
 {
@@ -12,15 +13,8 @@ namespace Fosec
         protected void Page_Load(object sender, EventArgs e)
         {
             //TODO get login status
-            guestActionBar.Visible = false;
-            loggedInActionBar.Visible = true;
-        }
-
-        internal class UserSessionManager
-        {
-            public UserSessionManager()
-            {
-            }
+            guestActionBar.Visible = (SessionManager.GetUsername() == "");
+            loggedInActionBar.Visible = (SessionManager.GetUsername() != "");
         }
     }
 }
