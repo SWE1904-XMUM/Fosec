@@ -15,17 +15,8 @@
         <div class="row">
             <asp:HyperLink CssClass="text-right" NavigateUrl="/WebPage/CreateThread.aspx" runat="server">
             <asp:Label CssClass="btn" Text="Create New Thread" runat="server" />
-            </asp:HyperLink>
-        </div>
-
-        <!-- TODO selected tag -->
-        <div class="sectionTitle row p-2">
-            <asp:Label Text="All" ID="selectedTagName" class="text-center" runat="server"></asp:Label>
-        </div>
-
-
-        <!-- TODO threads -->
-        <div id="homeThreadContainer">
+            </asp:HyperLink></div><!-- TODO selected tag --><div class="sectionTitle row p-2">
+            <asp:Label Text="All" ID="selectedTagName" class="text-center" runat="server"></asp:Label></div><!-- TODO threads --><div id="homeThreadContainer">
             <asp:Repeater ID="threadRepeater" runat="server" DataSourceID="AllThreadDataSource">
                 <ItemTemplate>
                     <itemtemplate>
@@ -55,9 +46,8 @@
 
             <%--Data Sources--%>
             <asp:SqlDataSource ID="TagDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Tag]"></asp:SqlDataSource>
-            <asp:SqlDataSource ID="AllThreadDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT Threads.threadId as threadId, Threads.userId as userId, Threads.title as title, Threads.[content] as content, Threads.threadDate as date, Tag.tagName as tagName FROM Threads LEFT OUTER JOIN Tag ON Threads.tagNo = Tag.tagId"></asp:SqlDataSource>
-            <asp:SqlDataSource ID="FilteredThreadDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT Threads.threadId as threadId, Threads.userId as userId, Threads.title as title, Threads.[content] as content, Threads.threadDate as date, Tag.tagName as tagName FROM Threads LEFT OUTER JOIN Tag ON Threads.tagNo = Tag.tagId WHERE (Tag.tagName = @tagName)">
-                <SelectParameters>
+            <asp:SqlDataSource ID="AllThreadDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT Threads.threadId, Threads.userId, Threads.title, Threads.[content], Threads.threadDate AS date, Tag.tagName FROM Threads LEFT OUTER JOIN Tag ON Threads.tagNo = Tag.tagId ORDER BY date DESC"></asp:SqlDataSource>
+            <asp:SqlDataSource ID="FilteredThreadDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT Threads.threadId, Threads.userId, Threads.title, Threads.[content], Threads.threadDate AS date, Tag.tagName FROM Threads LEFT OUTER JOIN Tag ON Threads.tagNo = Tag.tagId WHERE (Tag.tagName = @tagName) ORDER BY date DESC"><SelectParameters>
                     <asp:ControlParameter ControlID="selectedTagName" DefaultValue="" Name="tagName" PropertyName="Text" Type="Object" />
                 </SelectParameters>
             </asp:SqlDataSource>
