@@ -135,18 +135,18 @@ body {
 #background-container{
     background-image: url(../Image/student_engagement.jpg);
     background-size: cover;
-    height: 85vh;
+    height: 83vh;
 }
 
 .thread-label{
     font-weight: bold;
     margin-bottom:0;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 
 }
 
 .thread-description{
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     margin-bottom:0.2rem;
 }
 
@@ -157,4 +157,28 @@ body {
     padding: 1.0rem 1.5rem;
     border-radius: 0.5rem;
     box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 3px 6px rgba(0,0,0,0.06), 0 3px 8px rgba(0,0,0,0.09);
+}
+
+#login-or-signup{
+    display:flex;
+    justify-content:center;
+}
+.form-nav {
+    width: 40%;
+    text-align:center;
+    margin:1rem 1rem;
+}
+
+.nav-pills .nav-link.active {
+    background-color: var(--secondary-color);
+}
+
+.nav-pills .nav-link:hover {
+    background-color: var(--primary-color);
+    color: var(--color-black);
+}
+
+.nav-pills .form-nav-link {
+    color: var(--secondary-color);
+    transition: ease-in-out 0.1s;
 }

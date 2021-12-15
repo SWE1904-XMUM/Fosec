@@ -1,4 +1,5 @@
 ﻿using Fosec.Database;
+using Fosec.Utils;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -14,27 +15,28 @@ namespace Fosec.WebPage
     public partial class CreateThread : System.Web.UI.Page
     {
         TagDb tagDb = new TagDb();
+        MessageBoxUtil messageBox = new MessageBoxUtil();
 
         protected void Page_Load(object sender, EventArgs e)
         {
             DisplayTagsFromDb();
         }
 
-        private void DisplayTagsFromDb()
+        protected void DisplayTagsFromDb()
         {   
             SqlDataReader r = tagDb.DisplayTags();
-            int i = 0;
 
             if (r.HasRows)
             {
                 while (r.Read())
                 {
-                    Button tagLabel = new Button();
-                    tagLabel.CssClass = "btn tag-btn";
-                    tagLabel.ID = "tag" + i;
-                    tagLabel.Text = r["tagName"].ToString();
-                    tag.Controls.Add(tagLabel);
-                    i++;
+                    Button tagBtn = new Button();
+                    string tagName = r["tagName"].ToString();
+                    tagBtn.CommandArgument = tagName;
+                    tagBtn.CssClass = "btn tag-btn";
+                    tagBtn.Text = tagName;
+                    tagBtn.Click += new EventHandler(tag_Click);
+                    tag.Controls.Add(tagBtn);
                 }
             }
 
@@ -42,6 +44,12 @@ namespace Fosec.WebPage
             {
                 ConnectionProvider.CloseDatabaseConnection();
             }
+        }
+
+        private void tag_Click(object sender, EventArgs e)
+        {
+            messageBox.MessageBox("button clicked " + ((Button)sender).CommandArgument);
+            //TODO -> connect with db
         }
     }
 }
