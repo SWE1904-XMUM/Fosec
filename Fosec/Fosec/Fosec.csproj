@@ -76,8 +76,8 @@
     <Content Include="Resources\CSS\bootstrap.min.css" />
     <Content Include="Resources\CSS\main.css" />
     <Content Include="Resources\Image\logo.png" />
+    <Content Include="Resources\Image\student_engagement.jpg" />
     <Content Include="Resources\Js\bootstrap.bundle.min.js" />
-    <Content Include="Resources\Js\bootstrap.min.js" />
     <Content Include="Resources\Js\jquery-3.6.0.min.js" />
     <Content Include="Web.config" />
     <Content Include="WebPage\CreateThread.aspx" />
@@ -144,6 +144,8 @@
   <ItemGroup>
     <Content Include="WebPage\Fosec.Master" />
     <None Include="packages.config" />
+    <Content Include="Resources\CSS\bootstrap.min.css.map" />
+    <Content Include="Resources\Js\bootstrap.bundle.min.js.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

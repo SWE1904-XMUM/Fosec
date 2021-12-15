@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Fosec.SessionManager;
 
 namespace Fosec.WebPage
 {
@@ -11,7 +12,8 @@ namespace Fosec.WebPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            //TODO get session username from SessionManager
+            Session["uname"] = "testuser";
         }
     }
 }
