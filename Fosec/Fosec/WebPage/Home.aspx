@@ -29,18 +29,21 @@
                 <ItemTemplate>
                     <itemtemplate>
                         <div class="threadContainer row">
-                            <div class="col-3">
-                                <asp:Label CssClass="threadId row" runat="server" Text='<%# Eval("threadId") %>' />
-                                <asp:Label CssClass="threadUserId row" runat="server" Text='<%# Eval("userId") %>' />
+                            <div class="userInformation col-3">
+                                <asp:Label CssClass="threadUserId row" runat="server" Text='<%# "Userid" + Eval("userId") %>' />
                             </div>
-                            <div class="col-9">
-                                <asp:Label CssClass="threadTitle row" runat="server" Text='<%# Eval("title") %>' />
-                                <asp:Label CssClass="threadContent row" runat="server" Text='<%# Eval("content") %>' />
-                                <div class="row">
-                                    <div class="tagName col-8">
-                                        <asp:Label CssClass="btn tag-btn" runat="server" Text='<%# Eval("tagName") %>' />
+                            <div class="threadInformation col-9">
+                                <a class="threadInformation link-text-view" href='<%# @"/Webpage/Thread.aspx?threadid=" + Eval("threadId") %>'>
+                                    <asp:Label CssClass="threadTitle row" runat="server" Text='<%# Eval("title") %>' />
+                                    <asp:Label CssClass="threadContent row" runat="server" Text='<%# Eval("content") %>' />
+                                </a>
+                                <div>
+                                    <div class="row">
+                                        <div class="tagName col-8">
+                                            <asp:Label CssClass="btn no-hover" runat="server" Text='<%# Eval("tagName") %>' />
+                                        </div>
+                                        <asp:Label CssClass="threadDate col-4" runat="server" Text='<%# Eval("date") %>' />
                                     </div>
-                                    <asp:Label CssClass="threadDate col-4" runat="server" Text='<%# Eval("date") %>' />
                                 </div>
                             </div>
                             <br />
