@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WebPage/Fosec.Master" AutoEventWireup="true" CodeBehind="Profile.aspx.cs" Inherits="Fosec.WebPage.Profile" %>
 
-<%@ Import Namespace="Fosec.SessionManager" %>
+<%@ Import Namespace="Fosec.Session" %>
 <asp:Content ContentPlaceHolderID="PageContent" runat="server">
     <!-- TODO profile page content -->
     <div id="container" class="row">
