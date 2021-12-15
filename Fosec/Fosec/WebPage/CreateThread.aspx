@@ -7,7 +7,9 @@
                 <p class="thread-description">Be specific and imagine you're asking a question to another person</p>
                 <asp:TextBox CssClass="form-control" id="threadTitle" type="text" placeholder="Title" runat="server"></asp:TextBox>
             </div>
-            <asp:PlaceHolder ID="tag" runat="server"></asp:PlaceHolder>
+            <div id="tagContainer">
+                <asp:PlaceHolder ID="tag" runat="server"></asp:PlaceHolder>
+            </div>
             <div class="mb-2">
                 <label for="content" class="form-label thread-label">Content</label>
                 <p class="thread-description">Please include all the informations of your question</p>
