@@ -22,8 +22,8 @@
         <asp:Label Text="All" ID="selectedTagName" runat="server"></asp:Label>
 
         <!-- TODO threads -->
-        <div id="profileThreadContainer">
-            <asp:Repeater ID="threadRepeater" runat="server" DataSourceID="ThreadDataSource">
+        <div id="homeThreadContainer">
+            <asp:Repeater ID="threadRepeater" runat="server" DataSourceID="AllThreadDataSource">
                 <ItemTemplate>
                     <itemtemplate>
                         <div class="threadContainer row">
@@ -46,7 +46,9 @@
                     </itemtemplate>
                 </ItemTemplate>
             </asp:Repeater>
-            <asp:SqlDataSource ID="ThreadDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT Threads.threadId as threadId, Threads.userId as userId, Threads.title as title, Threads.[content] as content, Threads.threadDate as date, Tag.tagName as tagName FROM Threads LEFT OUTER JOIN Tag ON Threads.tagNo = Tag.tagId WHERE (Tag.tagName = @tagName)">
+            <asp:SqlDataSource ID="AllThreadDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT Threads.threadId as threadId, Threads.userId as userId, Threads.title as title, Threads.[content] as content, Threads.threadDate as date, Tag.tagName as tagName FROM Threads LEFT OUTER JOIN Tag ON Threads.tagNo = Tag.tagId">
+            </asp:SqlDataSource>
+            <asp:SqlDataSource ID="FilteredThreadDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT Threads.threadId as threadId, Threads.userId as userId, Threads.title as title, Threads.[content] as content, Threads.threadDate as date, Tag.tagName as tagName FROM Threads LEFT OUTER JOIN Tag ON Threads.tagNo = Tag.tagId WHERE (Tag.tagName = @tagName)">
                 <SelectParameters>
                     <asp:ControlParameter ControlID="selectedTagName" DefaultValue="" Name="tagName" PropertyName="Text" Type="Object" />
                 </SelectParameters>
