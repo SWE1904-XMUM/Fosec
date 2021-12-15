@@ -10,7 +10,7 @@ namespace Fosec.Database
     {
         private static SqlConnection connection = ConnectionProvider.GetDatabaseConnection();
 
-        public bool InsertThread(int userId,string title, int tagNo, string content)
+        public bool InsertThread(int userId, string title, int tagNo, string content)
         {
             string query = "insert into Threads (userId, title, tagNo, content) values (@0,@1,@2,@3)";
             SqlCommand cmd = new SqlCommand(query, connection);

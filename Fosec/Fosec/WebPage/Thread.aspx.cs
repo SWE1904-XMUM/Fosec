@@ -1,4 +1,5 @@
 ﻿using Fosec.Database;
+using Fosec.Utils;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -15,6 +16,8 @@ namespace Fosec.WebPage
     {
         ThreadCommentDb threadComment = new ThreadCommentDb();
         String reply;
+        MessageBoxUtil messageBox = new MessageBoxUtil();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             /*    ThreadDb threadDb = new ThreadDb();
@@ -40,14 +43,16 @@ namespace Fosec.WebPage
             bool insertComment = threadComment.insertThreadComment( 4, 1, reply );
             if (insertComment.Equals(true))
             {
-                Response.Write("<script>alert('Data inserted successfully')</script>");
+                // Code is provided in MessageBoxUtil class, just need to call
+                messageBox.MessageBox("Data inserted successfully");
             }
 
             else
             {
-                Response.Write("<script>alert('Data insert fail')</script>");
+                messageBox.MessageBox("Data insert fail");
             }
         }
+
         private void getThreadReply()
         {
             reply = ReplyThread.Text;
