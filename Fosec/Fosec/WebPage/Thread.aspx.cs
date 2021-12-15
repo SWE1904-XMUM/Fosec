@@ -23,27 +23,14 @@ namespace Fosec.WebPage
             //get threadid from link
             string threadid = HttpContext.Current.Request.QueryString["threadid"];
 
-            /*    ThreadDb threadDb = new ThreadDb();
-                SqlDataReader th = threadDb.DisplayThreadContent(); 
-
-                if (th.HasRows)
-                {
-                    TextBox text = new TextBox();
-                    text.Text = th["content"].ToString();
-                    ThreadContent.Controls.Add(text);
-                }
-                else
-                {
-                    ConnectionProvider.CloseDatabaseConnection();
-                } */
         }
 
         protected void ReplyBtn_Click(object sender, EventArgs e)
         {
             getThreadReply();
-            
-            
-            bool insertComment = threadComment.insertThreadComment( 4, 1, reply );
+            string TID = HttpContext.Current.Request.QueryString["threadid"];
+
+            bool insertComment = threadComment.insertThreadComment( 4,TID, reply );
             if (insertComment.Equals(true))
             {
                 // Code is provided in MessageBoxUtil class, just need to call
