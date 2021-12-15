@@ -35,10 +35,8 @@ namespace Fosec.WebPage
                     string tagName = r["tagName"].ToString();
                     tagBtn.CommandArgument = tagName;
                     tagBtn.CssClass = "btn tag-btn";
-                    tagBtn.ID = "tag" + i;
                     tagBtn.Text = tagName;
-                    // TODO -> change function type
-                    //tagBtn.Click += new EventHandler(tag_Click);
+                    tagBtn.Click += new EventHandler(tag_Click);
                     tag.Controls.Add(tagBtn);
                     i++;
                 }
@@ -50,9 +48,10 @@ namespace Fosec.WebPage
             }
         }
 
-        private void tag_Click(object sender, CommandEventArgs e)
+        private void tag_Click(object sender, EventArgs e)
         {
-            messageBox.MessageBox("button clicked " + e.CommandName);
+            messageBox.MessageBox("button clicked " + ((Button)sender).CommandArgument);
+            //TODO -> connect with db
         }
     }
 }
