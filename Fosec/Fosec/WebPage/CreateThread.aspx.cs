@@ -1,6 +1,7 @@
 ﻿using Fosec.Database;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -12,19 +13,25 @@ namespace Fosec.WebPage
 {
     public partial class CreateThread : System.Web.UI.Page
     {
+        TagDb tagDb = new TagDb();
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            TagDb tagDb = new TagDb();
+            DisplayTagsFromDb();
+        }
+
+        private void DisplayTagsFromDb()
+        {   
             SqlDataReader r = tagDb.DisplayTags();
             int i = 0;
 
-            if(r.HasRows)
+            if (r.HasRows)
             {
-                while(r.Read())
+                while (r.Read())
                 {
-                    // TODO -> <div class="col-lg-3">
-                    Label tagLabel = new Label();
-                    tagLabel.ID = "Label " + i.ToString();
+                    Button tagLabel = new Button();
+                    tagLabel.CssClass = "btn tag-btn";
+                    tagLabel.ID = "tag" + i;
                     tagLabel.Text = r["tagName"].ToString();
                     tag.Controls.Add(tagLabel);
                     i++;
