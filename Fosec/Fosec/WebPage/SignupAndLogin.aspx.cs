@@ -23,12 +23,14 @@ namespace Fosec.WebPage
         MessageBoxUtil messageBox = new MessageBoxUtil();
         UserDb userDb = new UserDb();
 
+        // TODO -> solve connection close error occured when directly login after signup
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
 
-        protected void signupBtn_Click(object sender, EventArgs e)
+        protected void SignupBtn_Click(object sender, EventArgs e)
         {
             GetSignupInputText();
 
@@ -89,7 +91,7 @@ namespace Fosec.WebPage
             }
         }
 
-        protected void loginBtn_Click(object sender, EventArgs e)
+        protected void LoginBtn_Click(object sender, EventArgs e)
         {
             GetLoginInputText();
 

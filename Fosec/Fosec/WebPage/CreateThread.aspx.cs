@@ -1,4 +1,5 @@
 ﻿using Fosec.Database;
+using Fosec.Session;
 using Fosec.Utils;
 using System;
 using System.Collections.Generic;
@@ -14,8 +15,14 @@ namespace Fosec.WebPage
 {
     public partial class CreateThread : System.Web.UI.Page
     {
+        // Thread page txt
+        string titleTxt, contentTxt, tagTxt;
+
+        // Class initialization
         TagDb tagDb = new TagDb();
         MessageBoxUtil messageBox = new MessageBoxUtil();
+        ThreadDb threadDb = new ThreadDb();
+        UserDb userDb = new UserDb();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -25,7 +32,6 @@ namespace Fosec.WebPage
         protected void DisplayTagsFromDb()
         {   
             SqlDataReader r = tagDb.DisplayTags();
-            int i = 0;
 
             if (r.HasRows)
             {
@@ -38,7 +44,6 @@ namespace Fosec.WebPage
                     tagBtn.Text = tagName;
                     tagBtn.Click += new EventHandler(tag_Click);
                     tag.Controls.Add(tagBtn);
-                    i++;
                 }
             }
 
@@ -48,10 +53,54 @@ namespace Fosec.WebPage
             }
         }
 
+        // TODO -> debug tagTxt
         private void tag_Click(object sender, EventArgs e)
         {
-            messageBox.MessageBox("button clicked " + ((Button)sender).CommandArgument);
-            //TODO -> connect with db
+            tagTxt = ((Button)sender).CommandArgument;
+            SessionManager.SetTag(tagTxt);
+        }
+
+        protected void submitThread_Click(object sender, EventArgs e)
+        {
+            GetThreadText();
+
+            if(!titleTxt.Equals("") && ! contentTxt.Equals(""))
+            {
+                string uname = SessionManager.GetUsername();
+                int userId = userDb.GetUserIdByUsername(uname);
+                int tagNo = tagDb.GetTagIdByTagName(SessionManager.GetTag());
+
+                if(!userId.Equals(-1) && !tagNo.Equals(-1))
+                {
+                    bool insertThread = threadDb.InsertThread(userId, titleTxt, tagNo, contentTxt);
+
+                    if(insertThread.Equals(true))
+                    {
+                        messageBox.MessageBox("Submitted successfully.");
+                    }
+
+                    else
+                    {
+                        messageBox.MessageBox("Fail to submit thread, please try again.");
+                    }
+                }
+
+                else
+                {
+                    messageBox.MessageBox("No userId or tagNo found.");
+                }
+            }
+
+            else
+            {
+                messageBox.MessageBox("Please fill in all field.");
+            }
+        }
+
+        private void GetThreadText()
+        {
+            titleTxt = threadTitle.Text;
+            contentTxt = content.Text;
         }
     }
 }
