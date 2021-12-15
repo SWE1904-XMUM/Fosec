@@ -14,7 +14,7 @@
 
         <div class="row">
             <asp:HyperLink CssClass="text-right" NavigateUrl="/WebPage/CreateThread.aspx" runat="server">
-            <asp:Label CssClass="btn" Text="Create New Thread" runat="server" />
+            <asp:Label CssClass="btn m-3" Text="Create New Thread" runat="server" />
             </asp:HyperLink></div><!-- TODO selected tag --><div class="sectionTitle row p-2">
             <asp:Label Text="All" ID="selectedTagName" class="text-center" runat="server"></asp:Label></div><!-- TODO threads --><div id="homeThreadContainer">
             <asp:Repeater ID="threadRepeater" runat="server" DataSourceID="AllThreadDataSource">
@@ -29,6 +29,7 @@
                                     <asp:Label CssClass="threadTitle row" runat="server" Text='<%# Eval("title") %>' />
                                     <asp:Label CssClass="threadContent row" runat="server" Text='<%# Eval("content") %>' />
                                 </a>
+                                <hr />
                                 <div>
                                     <div class="row">
                                         <div class="tagName col-8">
