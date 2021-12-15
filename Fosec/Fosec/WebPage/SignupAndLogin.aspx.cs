@@ -22,7 +22,6 @@ namespace Fosec.WebPage
         // Class initialization
         MessageBoxUtil messageBox = new MessageBoxUtil();
         UserDb userDb = new UserDb();
-        SessionManager sessionManager = new SessionManager();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -102,8 +101,8 @@ namespace Fosec.WebPage
                 if(checkPassword.Equals(true))
                 {
                     Response.Redirect("Home.aspx");
-                    sessionManager.SetLogin(true);
-                    sessionManager.SetUsername(signupUnameTxt);
+                    SessionManager.SetLogin(true);
+                    SessionManager.SetUsername(signupUnameTxt);
                 }
 
                 else
