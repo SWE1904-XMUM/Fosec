@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Fosec.SessionManager
+namespace Fosec.Session
 {
-    public class SessionManager
+    public static class SessionManager
     {
         public static void SetLogin(bool login)
         {

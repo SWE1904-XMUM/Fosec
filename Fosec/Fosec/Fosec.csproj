@@ -92,7 +92,7 @@
     <Compile Include="Database\ThreadCommentDb.cs" />
     <Compile Include="Database\ThreadDb.cs" />
     <Compile Include="Database\UserDb.cs" />
-    <Compile Include="SessionManager\SessionManager.cs" />
+    <Compile Include="Session\SessionManager.cs" />
     <Compile Include="Utils\HashUtil.cs" />
     <Compile Include="Utils\MessageBoxUtil.cs" />
     <Compile Include="Utils\StringUtil.cs" />

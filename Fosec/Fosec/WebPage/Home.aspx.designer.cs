@@ -24,15 +24,6 @@ namespace Fosec.WebPage
         protected global::System.Web.UI.WebControls.Repeater tagRepeater;
 
         /// <summary>
-        /// TagDataSource control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource TagDataSource;
-
-        /// <summary>
         /// selectedTagName control.
         /// </summary>
         /// <remarks>
@@ -51,12 +42,30 @@ namespace Fosec.WebPage
         protected global::System.Web.UI.WebControls.Repeater threadRepeater;
 
         /// <summary>
-        /// ThreadDataSource control.
+        /// TagDataSource control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource ThreadDataSource;
+        protected global::System.Web.UI.WebControls.SqlDataSource TagDataSource;
+
+        /// <summary>
+        /// AllThreadDataSource control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource AllThreadDataSource;
+
+        /// <summary>
+        /// FilteredThreadDataSource control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource FilteredThreadDataSource;
     }
 }

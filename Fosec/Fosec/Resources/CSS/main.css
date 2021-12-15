@@ -72,6 +72,13 @@ body {
     margin: auto;
 }
 
+.sectionTitle {
+    width: 100%;
+    background: var(--secondary-color);
+    color: var(--color-white);
+    font-size: 2rem;
+}
+
 /*Signup & Login Page*/
 #login-signup-container {
     display: flex;
@@ -91,7 +98,7 @@ body {
 .threadUserId {
     width: 100%;
     height: 100px;
-    background-color: lightgoldenrodyellow;
+    background-color: lightgoldenrodyellow; /*TODO change colour*/
 }
 
 .threadTitle {
