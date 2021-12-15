@@ -83,9 +83,11 @@ body {
 #login-signup-container {
     display: flex;
     justify-content: center;
+    align-items: center;
 }
-.form-container{
+.form-container {
     width: 75%;
+    
 }
 /*Thread container & content*/
 .threadContainer {
@@ -159,9 +161,9 @@ body {
     box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 3px 6px rgba(0,0,0,0.06), 0 3px 8px rgba(0,0,0,0.09);
 }
 
-#login-or-signup{
-    display:flex;
-    justify-content:center;
+#login-or-signup {
+    display: flex;
+    justify-content: center;
 }
 .form-nav {
     width: 40%;
