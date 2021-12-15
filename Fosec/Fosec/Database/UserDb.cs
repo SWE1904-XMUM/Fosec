@@ -58,7 +58,7 @@ namespace Fosec.Database
             SqlDataReader r = cmd.ExecuteReader();
 
             if(r.HasRows)
-            { 
+            {
                 return true; 
             }
 
@@ -77,7 +77,7 @@ namespace Fosec.Database
 
             if(r.HasRows)
             {
-                bool compare = HashUtil.CompareHash(r.GetOrdinal("pwd").ToString(), pwd);
+                bool compare = HashUtil.CompareHash(r.Read().ToString(),pwd);
 
                 if(compare.Equals(true))
                 {
