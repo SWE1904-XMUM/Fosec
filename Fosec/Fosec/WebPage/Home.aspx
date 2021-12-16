@@ -3,7 +3,7 @@
 <asp:Content ContentPlaceHolderID="PageContent" runat="server">
     <!-- TODO home page content -->
     <div class="container">
-        <div id="tagContainer">
+        <div id="tagContainer" class="box-shadow">
             <asp:Button class="btn tag-btn" runat="server" Text='All' OnClick="TagButtonClick"/>
             <asp:Repeater ID="tagRepeater" runat="server" DataSourceID="TagDataSource">
                 <ItemTemplate>
@@ -13,9 +13,11 @@
         </div>
 
         <div class="row">
-            <asp:HyperLink CssClass="text-right" NavigateUrl="/WebPage/CreateThread.aspx" runat="server">
-            <asp:Label CssClass="btn m-3" Text="Create New Thread" runat="server" />
-            </asp:HyperLink></div><!-- TODO selected tag --><div class="sectionTitle row p-2">
+            <div class="align-right-container">
+                <asp:HyperLink CssClass="text-right btn" Text="Create New Thread" NavigateUrl="/WebPage/CreateThread.aspx" runat="server"></asp:HyperLink>
+            </div>
+            
+            </div><!-- TODO selected tag --><div class="sectionTitle row p-2">
             <asp:Label Text="All" ID="selectedTagName" class="text-center" runat="server"></asp:Label></div><!-- TODO threads --><div id="homeThreadContainer">
             <asp:Repeater ID="threadRepeater" runat="server" DataSourceID="AllThreadDataSource">
                 <ItemTemplate>
