@@ -47,6 +47,10 @@ namespace Fosec.WebPage
                     messageBox.MessageBox("Data insert fail");
                 }
             }
+            else
+            {
+                messageBox.MessageBox("Please write a reply in the text box before replying to the thread");
+            }
         }
 
         private void getThreadReply()
