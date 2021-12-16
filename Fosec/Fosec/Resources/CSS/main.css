@@ -15,6 +15,7 @@ hr {
     border-top: 1px solid var(--secondary-color);
     opacity: 1;
     background-color: transparent;
+    margin: 0.5rem 0rem;
 }
 
 a:hover {
@@ -105,9 +106,10 @@ a:hover {
 
 .sectionTitle {
     width: 100%;
-    background: var(--secondary-color);
-    color: var(--color-white);
+    /*background: var(--secondary-color);*/
+    color: var(--color-black);
     font-size: 2rem;
+    font-weight: bold;
 }
 
 /*Signup & Login Page*/
@@ -122,16 +124,18 @@ a:hover {
 }
 /*Thread container & content*/
 .threadContainer {
-    background-color: var(--color-white);
-    margin: 1rem;
+    background-color: var(--primary-color);
+    margin: 1rem 0.5rem;
     padding: 1rem;
     box-shadow: var(--box-shadow);
+    border-radius: 0.5rem;
+    position: relative;
+   
 }
 
 .threadTitle {
     font-weight: bold;
     font-size: 2rem;
-    text-decoration: underline;
 }
 
 .threadContet {
@@ -210,9 +214,75 @@ a:hover {
 }
 
 .userProfileImage {
-    width: 100% !important;
+    width: 75% !important;
 }
+
+.image-holder {
+    display: flex;
+    justify-content: center;
+}
+
+.userInformation {
+    text-align: center;
+    font-weight: bold;
+}
+
 
 .box-shadow {
     box-shadow: var(--box-shadow);
+}
+
+.thread-container {
+    background-color: var(--color-white);
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
+}
+
+.tag-in-thread {
+    font-size: 0.7rem;
+}
+
+.stick-to-bottom {
+    position: absolute;
+    bottom: 1rem;
+}
+
+#profile-container {
+    margin: 1rem 0;
+    padding: 1rem;
+
+}
+
+.profile {
+    font-size: 1.2rem;
+    line-height: 2.5rem;
+
+}
+
+.profile-container {
+    margin-bottom: 2rem;
+    padding: 0;
+    background-color: var(--color-white);
+    border-radius: 0.5rem;
+    box-shadow: var(--box-shadow);
+}
+
+.title-container {
+    background-color: var(--secondary-color);
+    border-radius: 0.5rem 0.5rem 0 0;
+    color: white;
+    padding: 0.5rem 1rem;
+}
+
+.profile-info-container {
+    padding: 1rem;
+}
+
+.fixed-column-width {
+    column-width: 200px;
+    font-weight: bold;
+}
+
+#userInformationContainer {
+    text-align: center;
 }

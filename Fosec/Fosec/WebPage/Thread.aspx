@@ -29,7 +29,7 @@
                                 <asp:Label CssClass="threadUserId row" runat="server" Text='<%# "Userid: " + Eval("userId") %>' />
                             </div>
                             <div class="threadInformation col-9">
-                                <a class="threadInformation link-text-view ">
+                                <a class="threadInformation link-text-view">
                                     <asp:Label CssClass="threadTitle row" runat="server" Text='<%# Eval("title") %>' />
                                     <asp:Label CssClass="threadContent row" runat="server" Text='<%# Eval("content") %>' />
                                 </a>
