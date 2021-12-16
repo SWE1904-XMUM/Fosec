@@ -68,7 +68,9 @@ namespace Fosec.WebPage
             {
                 string uname = SessionManager.GetUsername();
                 int userId = userDb.GetUserIdByUsername(uname);
-                int tagNo = tagDb.GetTagIdByTagName(SessionManager.GetTag());
+
+                string tagName = SessionManager.GetTag();
+                int tagNo = tagDb.GetTagIdByTagName(tagName);
 
                 if(!userId.Equals(-1) && !tagNo.Equals(-1))
                 {
