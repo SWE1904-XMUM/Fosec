@@ -53,10 +53,10 @@ namespace Fosec.WebPage
             }
         }
 
-        // TODO -> debug tagTxt
         private void tag_Click(object sender, EventArgs e)
         {
             tagTxt = ((Button)sender).CommandArgument;
+            ((Button)sender).Attributes.Add("style", "background-color: #05767B");
             SessionManager.SetTag(tagTxt);
         }
 
