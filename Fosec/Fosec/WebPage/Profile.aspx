@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WebPage/Fosec.Master" AutoEventWireup="true" CodeBehind="Profile.aspx.cs" Inherits="Fosec.WebPage.Profile" %>
+
 <%@ Import Namespace="Fosec.Utils" %>
 
 <asp:Content ContentPlaceHolderID="PageContent" runat="server">
@@ -11,10 +12,11 @@
                         <div class="image-holder mb-3">
                             <asp:Image CssClass="userProfileImage" runat="server" ImageUrl='<%#ImageUtil.GetBase64PathByByteArray(Eval("profileImage"))%>' />
                         </div>
-                        <h4><asp:Label runat="server"><%#Eval("username") %></asp:Label></h4>
+                        <h4>
+                            <asp:Label runat="server"><%#Eval("username") %></asp:Label></h4>
                     </ItemTemplate>
                 </asp:ListView>
-                
+
                 <!-- TODO improve ui -->
             </div>
 
@@ -29,24 +31,27 @@
                                 <table class="profile">
                                     <tr>
                                         <td class="fixed-column-width">Username: </td>
-                                        <td><asp:Label runat="server"><%#Eval("username") %></asp:Label></td>
+                                        <td>
+                                            <asp:Label runat="server"><%#Eval("username") %></asp:Label></td>
                                     </tr>
                                     <tr>
                                         <td class="fixed-column-width">Email: </td>
-                                        <td><asp:Label runat="server"><%#Eval("email") %></asp:Label></td>
+                                        <td>
+                                            <asp:Label runat="server"><%#Eval("email") %></asp:Label></td>
                                     </tr>
-                                  </table>
-                                    
+                                </table>
+
                             </ItemTemplate>
                         </asp:ListView>
                         <table class="profile">
                             <tr>
                                 <td class="fixed-column-width">Profile Picture: </td>
-                                <td><asp:FileUpload ID="uploadProfileImage" runat="server"/></td>
+                                <td>
+                                    <asp:FileUpload ID="uploadProfileImage" runat="server" /></td>
                             </tr>
                         </table>
                         <asp:Button Text="Submit" ID="submitProfileBtn" CssClass="btn" runat="server" OnClick="SubmitProfileImage" />
-                        
+
                     </div>
                 </div>
                 <div class="profile-container">
@@ -58,21 +63,18 @@
                             <ItemTemplate>
                                 <itemtemplate>
                                     <div class="threadContainer row">
-                                        <%--<div class="col-3">
-                                            <asp:Label CssClass="threadId row" runat="server" Text='<%# Eval("threadId") %>' />
-                                        </div>--%>
-                                        <%--<div class="col-9">--%>
+                                        <a class="link-text-view px-4 py-2" href='<%# @"/WebPage/Thread.aspx?threadid=" + Eval("threadId") %>'>
                                             <asp:Label CssClass="threadTitle row" runat="server" Text='<%# Eval("title") %>' />
                                             <asp:Label CssClass="threadContent row" runat="server" Text='<%# Eval("content") %>' />
-                                            <div class="row">
-                                                <div class="tagName col-8">
-                                                    <asp:Label CssClass="btn tag-btn" runat="server" Text='<%# Eval("tagName") %>' />
-                                                </div>
-                                                <asp:Label CssClass="threadDate col-4" runat="server" Text='<%# Eval("date") %>' />
+                                        </a>
+                                        <div class="row">
+                                            <div class="tagName col-8">
+                                                <asp:Label CssClass="btn tag-btn" runat="server" Text='<%# Eval("tagName") %>' />
                                             </div>
+                                            <asp:Label CssClass="threadDate col-4" runat="server" Text='<%# Eval("date") %>' />
                                         </div>
-                                        <br />
-                                   <%-- </div>--%>
+                                    </div>
+                                    <br />
                                 </itemtemplate>
                             </ItemTemplate>
                         </asp:Repeater>
