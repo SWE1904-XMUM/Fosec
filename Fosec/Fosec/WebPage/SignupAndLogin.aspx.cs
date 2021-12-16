@@ -14,7 +14,7 @@ namespace Fosec.WebPage
     public partial class SignupAndLogin : System.Web.UI.Page
     {
         // Login column
-        string loginUnameTxt,loginPwdTxt;
+        string loginUnameTxt, loginPwdTxt;
 
         // Signup column
         string signupEmailTxt, signupUnameTxt, signupPwdTxt, signupConfirmPwdTxt;
@@ -27,7 +27,33 @@ namespace Fosec.WebPage
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            pillsSignUpTab.ServerClick += ActivateSignup;
+            pillsLoginTab.ServerClick += ActivateLogin;
+            string action = HttpContext.Current.Request["action"];
+            if (action == "signup")
+            {
+                ActivateSignup(sender, e);
+            }
+            else
+            {
+                ActivateLogin(sender, e);
+            }
+        }
 
+        protected void ActivateLogin(object sender, EventArgs e)
+        {
+            pillsLoginTab.Attributes["class"] = pillsLoginTab.Attributes["class"] + " active";
+            pillsSignUpTab.Attributes["class"] = pillsSignUpTab.Attributes["class"].Replace("active", "").Trim();
+            pillsLogin.Visible = true;
+            pillsSignup.Visible = false;
+        }
+
+        protected void ActivateSignup(object sender, EventArgs e)
+        {
+            pillsSignUpTab.Attributes["class"] = pillsLoginTab.Attributes["class"] + " active";
+            pillsLoginTab.Attributes["class"] = pillsSignUpTab.Attributes["class"].Replace("active", "").Trim();
+            pillsSignup.Visible = true;
+            pillsLogin.Visible = false;
         }
 
         protected void SignupBtn_Click(object sender, EventArgs e)
@@ -39,11 +65,11 @@ namespace Fosec.WebPage
             string pwd = validationUtil.ValidatePassword(signupPwdTxt);
             string email = validationUtil.ValidateEmail(signupEmailTxt);
 
-            if(email.Equals("pass") && uname.Equals("pass") && pwd.Equals("pass") && signupConfirmPwdTxt.Equals(signupPwdTxt))
+            if (email.Equals("pass") && uname.Equals("pass") && pwd.Equals("pass") && signupConfirmPwdTxt.Equals(signupPwdTxt))
             {
                 bool checkExistingUser = userDb.CheckExistingUser(signupUnameTxt);
 
-                if(checkExistingUser.Equals(false))
+                if (checkExistingUser.Equals(false))
                 {
                     bool insertUser = userDb.InsertUsers(signupUnameTxt, signupEmailTxt, signupPwdTxt);
 
@@ -57,7 +83,7 @@ namespace Fosec.WebPage
                         messageBox.MessageBox("Fail to signup.");
                     }
                 }
-                
+
                 else
                 {
                     messageBox.MessageBox("Username already existed, please try for another.");
@@ -66,25 +92,25 @@ namespace Fosec.WebPage
                 ConnectionProvider.CloseDatabaseConnection();
             }
 
-            else if(email != "pass")
+            else if (email != "pass")
             {
                 messageBox.MessageBox(email);
                 signupEmail.BackColor = System.Drawing.Color.LightCoral;
             }
 
-            else if(uname != "pass")
+            else if (uname != "pass")
             {
                 messageBox.MessageBox(uname);
                 signupUname.BackColor = System.Drawing.Color.LightCoral;
             }
 
-            else if(pwd != "pass")
+            else if (pwd != "pass")
             {
                 messageBox.MessageBox(pwd);
                 signupPwd.BackColor = System.Drawing.Color.LightCoral;
             }
 
-            else if(!signupConfirmPwdTxt.Equals(signupPwdTxt))
+            else if (!signupConfirmPwdTxt.Equals(signupPwdTxt))
             {
                 messageBox.MessageBox("Please enter same password!");
                 signupConfirmPwd.BackColor = System.Drawing.Color.LightCoral;
@@ -98,9 +124,9 @@ namespace Fosec.WebPage
             bool checkExistingUser = userDb.CheckExistingUser(loginUnameTxt);
             bool checkPassword = userDb.CheckUserPassword(loginUnameTxt, loginPwdTxt);
 
-            if(checkExistingUser.Equals(true))
+            if (checkExistingUser.Equals(true))
             {
-                if(checkPassword.Equals(true))
+                if (checkPassword.Equals(true))
                 {
                     Response.Redirect("Home.aspx");
                     SessionManager.SetLogin(true);

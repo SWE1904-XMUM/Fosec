@@ -15,6 +15,33 @@ namespace Fosec.WebPage
     {
 
         /// <summary>
+        /// pillsLoginTab control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor pillsLoginTab;
+
+        /// <summary>
+        /// pillsSignUpTab control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor pillsSignUpTab;
+
+        /// <summary>
+        /// pillsLogin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl pillsLogin;
+
+        /// <summary>
         /// loginUname control.
         /// </summary>
         /// <remarks>
@@ -40,6 +67,15 @@ namespace Fosec.WebPage
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button loginBtn;
+
+        /// <summary>
+        /// pillsSignup control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl pillsSignup;
 
         /// <summary>
         /// signupEmail control.
