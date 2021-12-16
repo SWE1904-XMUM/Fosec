@@ -19,6 +19,11 @@
                 <asp:QueryStringParameter QueryStringField="threadid" Name="threadId" />
             </SelectParameters>
         </asp:SqlDataSource>
+        <asp:SqlDataSource ID="ThreadComment" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [ThreadComment] WHERE(ThreadComment.threadId=@threadId)">
+            <SelectParameters>
+                <asp:QueryStringParameter QueryStringField="threadid" Name="threadId" />
+            </SelectParameters>
+        </asp:SqlDataSource>
         <br />
         <div id="homeThreadContainer">
             <asp:Repeater ID="threadRepeater" runat="server" DataSourceID="AllThreadDataSource">
@@ -48,9 +53,37 @@
                     </itemtemplate>
                 </ItemTemplate>
             </asp:Repeater>
+            </div>
+        <div id="homeThreadContainer">
+            <asp:Repeater ID="Repeater1" runat="server" DataSourceID="ThreadComment">
+                <ItemTemplate>
+                    <itemtemplate>
+                        <div class="threadContainer row">
+                            <div class="userInformation col-3">
+                                <asp:Label CssClass="commentUserId row" runat="server" Text='<%# "Userid: " + Eval("userId") %>' />
+                                 <asp:Label CssClass="commentId row" runat="server" Text='<%# "Commentid: " + Eval("commentId") %>' />
+
+                            </div>
+                            <div class="threadInformation col-9">
+                                <a class="threadInformation link-text-view ">
+                                    <asp:Label CssClass="threadComment row" runat="server" Text='<%# Eval("comment") %>' />
+                                </a>
+                                <hr />
+                                <div>
+                                    <div class="row">
+                                        <asp:Label CssClass="commentDate col-4" runat="server" Text='<%# Eval("commentDate") %>' />
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                        </div>
+                    </itemtemplate>
+                </ItemTemplate>
+            </asp:Repeater>
+            </div>
             <!--get threadComments here -->
             <asp:TextBox ID="ReplyThread" TextMode="MultiLine" type="text" placeHolder="reply here" runat="server" Height="100px" Width="880px"></asp:TextBox>
             <asp:Button ID="ReplyBtn" runat="server" Text="Reply" CssClass="mt-0" OnClick="ReplyBtn_Click" />
-        </div>
+        
     </div>
 </asp:Content>

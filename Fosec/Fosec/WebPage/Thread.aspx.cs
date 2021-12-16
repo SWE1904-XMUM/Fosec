@@ -8,6 +8,7 @@ using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Fosec.Session;
 
 
 namespace Fosec.WebPage
@@ -15,6 +16,7 @@ namespace Fosec.WebPage
     public partial class Thread : System.Web.UI.Page
     {
         ThreadCommentDb threadComment = new ThreadCommentDb();
+        UserDb userDb = new UserDb();
         String reply;
         MessageBoxUtil messageBox = new MessageBoxUtil();
 
@@ -28,18 +30,26 @@ namespace Fosec.WebPage
         protected void ReplyBtn_Click(object sender, EventArgs e)
         {
             getThreadReply();
-            string TID = HttpContext.Current.Request.QueryString["threadid"];
-
-            bool insertComment = threadComment.InsertThreadComment( 4,TID, reply );
-            if (insertComment.Equals(true))
+            if (!reply.Equals(""))
             {
-                // Code is provided in MessageBoxUtil class, just need to call
-                messageBox.MessageBox("Data inserted successfully");
-            }
+                string uname = SessionManager.GetUsername();
+                int userId = userDb.GetUserIdByUsername(uname);
+                string TID = HttpContext.Current.Request.QueryString["threadid"];
+                bool insertComment = threadComment.InsertThreadComment(userId, TID, reply);
+                if (insertComment.Equals(true))
+                {
+                    // Code is provided in MessageBoxUtil class, just need to call
+                    messageBox.MessageBox("Data inserted successfully");
+                }
 
+                else
+                {
+                    messageBox.MessageBox("Data insert fail");
+                }
+            }
             else
             {
-                messageBox.MessageBox("Data insert fail");
+                messageBox.MessageBox("Please write a reply in the text box before replying to the thread");
             }
         }
 
