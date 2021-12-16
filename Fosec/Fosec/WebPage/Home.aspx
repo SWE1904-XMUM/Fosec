@@ -40,7 +40,7 @@
                                         <asp:Label CssClass="threadTitle row" runat="server" Text='<%# Eval("title") %>' />
                                         <asp:Label CssClass="threadContent row" runat="server" Text='<%# Eval("content") %>' />
                                     </a>
-
+                                    <!-- TODO Debug: overlap with long content -->
                                     <div class="stick-to-bottom col-8">
                                         <hr />
                                         <div class="row">
