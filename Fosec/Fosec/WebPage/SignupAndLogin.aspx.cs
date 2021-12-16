@@ -22,13 +22,12 @@ namespace Fosec.WebPage
         // Class initialization
         UserDb userDb = new UserDb();
 
-        // TODO -> solve connection close error occured when directly login after signup
-
         protected void Page_Load(object sender, EventArgs e)
         {
             pillsSignUpTab.ServerClick += ActivateSignup;
             pillsLoginTab.ServerClick += ActivateLogin;
             string action = HttpContext.Current.Request["action"];
+
             if (action == "signup")
             {
                 ActivateSignup(sender, e);
@@ -87,8 +86,6 @@ namespace Fosec.WebPage
                 {
                     MessageBoxUtil.DisplayMessage("Username already existed, please try for another.");
                 }
-
-                ConnectionProvider.CloseDatabaseConnection();
             }
 
             else if (email != "pass")

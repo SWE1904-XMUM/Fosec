@@ -19,7 +19,6 @@ namespace Fosec.Database
             cmd.Parameters.AddWithValue("@1", email);
             cmd.Parameters.AddWithValue("@2", HashUtil.GetHashedStringByInput(pwd));
             int insert = cmd.ExecuteNonQuery();
-            ConnectionProvider.CloseDatabaseConnection();
 
             if (insert > 0)
             {
