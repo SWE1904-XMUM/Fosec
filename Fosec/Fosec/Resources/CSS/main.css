@@ -10,6 +10,27 @@ body {
     background-color: var(--background-color);
 }
 
+hr {
+    border-top: 1px solid var(--secondary-color);
+    opacity: 1;
+    background-color: transparent;
+}
+
+a:hover {
+    cursor: pointer;
+}
+
+.form-control:focus,
+.form-control:focus-visible,
+.form-select:focus,
+.form-select:focus-visible,
+.btn:focus,
+.btn:focus-visible {
+    border: 1px solid var(--secondary-color) !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
 #fosecHeader {
     background-color: var(--color-white);
     padding: 0.5rem 3rem;
@@ -25,15 +46,16 @@ body {
         align-items: center;
     }
 
-.btn {
+.btn,
+.btn.no-hover:hover {
     background-color: var(--secondary-color);
     color: var(--color-white);
 }
 
-.btn:hover {
-    background-color: var(--primary-color);
-    color: var(--color-black);
-}
+    .btn:hover:not(.no-hover) {
+        background-color: var(--primary-color);
+        color: var(--color-black);
+    }
 
 .tag-btn[selected=true] {
     background-color: var(--primary-color);
@@ -42,6 +64,12 @@ body {
 
 .text-right {
     text-align: right;
+}
+
+.link-text-view,
+.link-text-view:hover {
+    text-decoration: none; /*remove underline at links*/
+    color: var(--color-black);
 }
 
 #tagContainer {
@@ -83,8 +111,10 @@ body {
 #login-signup-container {
     display: flex;
     justify-content: center;
+    align-items: center;
 }
-.form-container{
+
+.form-container {
     width: 75%;
 }
 /*Thread container & content*/
@@ -116,7 +146,7 @@ body {
 }
 
 /*start of master page css*/
-#logo{
+#logo {
     height: 120px;
 }
 
@@ -128,26 +158,24 @@ body {
 .navbar {
     padding-top: 0;
     padding-bottom: 0;
-    
 }
 /*end of master page css*/
 
-#background-container{
+#background-container {
     background-image: url(../Image/student_engagement.jpg);
     background-size: cover;
     height: 83vh;
 }
 
-.thread-label{
+.thread-label {
     font-weight: bold;
-    margin-bottom:0;
+    margin-bottom: 0;
     font-size: 1.1rem;
-
 }
 
-.thread-description{
+.thread-description {
     font-size: 0.8rem;
-    margin-bottom:0.2rem;
+    margin-bottom: 0.2rem;
 }
 
 #thread-container {
@@ -159,14 +187,15 @@ body {
     box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 3px 6px rgba(0,0,0,0.06), 0 3px 8px rgba(0,0,0,0.09);
 }
 
-#login-or-signup{
-    display:flex;
-    justify-content:center;
+#login-or-signup {
+    display: flex;
+    justify-content: center;
 }
+
 .form-nav {
     width: 40%;
-    text-align:center;
-    margin:1rem 1rem;
+    text-align: center;
+    margin: 1rem 1rem;
 }
 
 .nav-pills .nav-link.active {

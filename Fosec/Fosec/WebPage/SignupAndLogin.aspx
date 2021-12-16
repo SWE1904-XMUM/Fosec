@@ -10,12 +10,12 @@
             <div class="form-container">
                 <div class="mb-3" id="login-or-signup">
                     <ul class="nav nav-pills col-8 ml-auto mr-auto" id="pills-tab" role="tablist">
-                        <li class="nav-item form-nav" role="presentation"><a class="nav-link form-nav-link active" id="pills-login-tab" data-bs-toggle="pill" data-bs-target="#pills-login" role="tab" aria-controls="pills-login" aria-selected="true">Log In</a></li>
-                        <li class="nav-item form-nav" role="presentation"><a class="nav-link form-nav-link" id="pills-signup-tab" data-bs-toggle="pill" data-bs-target="#pills-signup" role="tab" aria-controls="pills-signup" aria-selected="false">Sign Up</a></li>
+                        <li class="nav-item form-nav" role="presentation"><a class="nav-link form-nav-link active" id="pills-signup-tab" data-bs-toggle="pill" data-bs-target="#pills-signup" role="tab" aria-controls="pills-signup" aria-selected="false">Sign Up</a></li>
+                        <li class="nav-item form-nav" role="presentation"><a class="nav-link form-nav-link" id="pills-login-tab" data-bs-toggle="pill" data-bs-target="#pills-login" role="tab" aria-controls="pills-login" aria-selected="true">Log In</a></li>
                     </ul>
                 </div>
                 <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="pills-login-tab">
+                    <div class="tab-pane fade" id="pills-login" role="tabpanel" aria-labelledby="pills-login-tab">
                         <div class="mt-3 mb-2">
                             <label for="loginUname" class="form-label">Username</label>
                             <asp:TextBox ID="loginUname" CssClass="form-control" type="text" placeholder="Your username" runat="server"></asp:TextBox>
@@ -26,7 +26,7 @@
                         </div>
                         <asp:Button ID="loginBtn" CssClass="btn btn-primary mb-3" runat="server" Text="Login" OnClick="LoginBtn_Click" />
                      </div>
-                     <div class="tab-pane fade" id="pills-signup" role="tabpanel" aria-labelledby="pills-signup-tab">
+                     <div class="tab-pane fade show active" id="pills-signup" role="tabpanel" aria-labelledby="pills-signup-tab">
                         <div class="mb-2">
                             <label for="signupEmail" class="form-label">Email</label>
                             <asp:TextBox ID="signupEmail" CssClass="form-control" type="text" placeholder="Email" runat="server"></asp:TextBox>
