@@ -15,32 +15,32 @@
         <div id="mainThreadContainer">
             <asp:Repeater ID="threadRepeater" runat="server" DataSourceID="ThreadData">
                 <ItemTemplate>
-                    <itemtemplate>
-                        <div class="threadContainer row">
-                            <a class="userInformation link-text-view col-3" href='<%# @"/WebPage/Profile.aspx?userid=" + Eval("userid") %>'>
+                    <div class="threadContainer row">
+                        <a class="userInformation link-text-view col-3" href='<%# @"/WebPage/Profile.aspx?userid=" + Eval("userid") %>'>
+                            <div class="image-holder mb-3">
                                 <asp:Image CssClass="userProfileImage" runat="server" ImageUrl='<%#ImageUtil.GetBase64PathByByteArray(Eval("profileImage"))%>' />
-                                <asp:Label CssClass="row" runat="server" Text='<%# Eval("username") %>' />
-                            </a>
-                            <div class="threadInformation col-9">
-                                <div class="threadInformation link-text-view">
-                                    <asp:Label CssClass="threadTitle row" runat="server" Text='<%# Eval("title") %>' />
-                                    <asp:Label CssClass="threadContent row" runat="server" Text='<%# Eval("content") %>' />
-                                </div>
+                            </div>
+                            <asp:Label runat="server" Text='<%# Eval("username") %>' />
+                        </a>
+                        <div class="threadInformation col-9 d-flex flex-column justify-content-between">
+                            <div class="threadInformation link-text-view">
+                                <asp:Label CssClass="threadTitle row" runat="server" Text='<%# Eval("title") %>' />
+                                <asp:Label CssClass="threadContent row" runat="server" Text='<%# Eval("content") %>' />
+                            </div>
+                            <div>
                                 <hr />
-                                <div>
-                                    <div class="row">
-                                        <div class="tagName col-8">
-                                            <asp:Label CssClass="btn no-hover" runat="server" Text='<%# Eval("tagName") %>' />
-                                        </div>
-                                        <asp:Label CssClass="threadDate col-4" runat="server" Text='<%# Eval("date") %>' />
+                                <div class="row">
+                                    <div class="tagName col-8">
+                                        <asp:Label CssClass="btn no-hover tag-in-thread" runat="server" Text='<%# Eval("tagName") %>' />
                                     </div>
+                                    <asp:Label CssClass="threadDate col-4" runat="server" Text='<%# Eval("date") %>' />
                                 </div>
                             </div>
-                            <br />
                         </div>
-                    </itemtemplate>
+                    </div>
                 </ItemTemplate>
             </asp:Repeater>
+
 
             <!--get threadComments here -->
             <div class="row">
@@ -48,24 +48,29 @@
                 <div class="col-11">
                     <asp:Repeater ID="threadCommentRepeater" runat="server" DataSourceID="ThreadCommentData">
                         <ItemTemplate>
-                            <itemtemplate>
-                                <div class="threadContainer row">
-                                    <a class="userInformation link-text-view col-3" href='<%# @"/WebPage/Profile.aspx?userid=" + Eval("userid") %>'>
+                            <div class="threadContainer row">
+                                <a class="userInformation link-text-view col-3" href='<%# @"/WebPage/Profile.aspx?userid=" + Eval("userid") %>'>
+                                    <div class="image-holder mb-3">
                                         <asp:Image CssClass="userProfileImage" runat="server" ImageUrl='<%#ImageUtil.GetBase64PathByByteArray(Eval("profileImage"))%>' />
-                                        <asp:Label CssClass="row" runat="server" Text='<%# Eval("username") %>' />
-                                    </a>
-                                    <div class="threadInformation col-9">
-                                        <asp:Label class="threadInformation link-text-view threadContent row" runat="server" Text='<%# Eval("comment") %>'></asp:Label>
+                                    </div>
+                                    <asp:Label runat="server" Text='<%# Eval("username") %>' />
+                                </a>
+                                <div class="threadInformation col-9 d-flex flex-column justify-content-between">
+                                    <div class="threadInformation link-text-view">
+                                        <asp:Label CssClass="threadContent row" runat="server" Text='<%# Eval("comment") %>' />
+                                    </div>
+                                    <div>
                                         <hr />
                                         <div class="row">
-                                            <asp:Label CssClass="threadDate text-right" runat="server" Text='<%# Eval("commentdate") %>' />
+                                            <div class="col-8"> </div>
+                                            <asp:Label CssClass="threadDate col-4" runat="server" Text='<%# Eval("commentdate") %>' />
                                         </div>
                                     </div>
-                                    <br />
                                 </div>
-                            </itemtemplate>
+                            </div>
                         </ItemTemplate>
                     </asp:Repeater>
+
 
                 </div>
             </div>
