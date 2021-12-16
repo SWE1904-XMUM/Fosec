@@ -26,6 +26,7 @@ namespace Fosec.Database
 
             if (r.HasRows)
             {
+                r.Read();
                 return r.GetInt32(0);
             }
 

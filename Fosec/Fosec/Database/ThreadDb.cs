@@ -32,6 +32,47 @@ namespace Fosec.Database
             }
         }
 
+        public bool EditThread(int threadId, string title, int tagNo, string content)
+        {
+            string query = "update Threads set title = @0 ,tagNo = @1, content = @2 where threadId = @3";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@0", title);
+            cmd.Parameters.AddWithValue("@1", tagNo);
+            cmd.Parameters.AddWithValue("@2", content);
+            cmd.Parameters.AddWithValue("@3", threadId);
+            int update = cmd.ExecuteNonQuery();
+            ConnectionProvider.CloseDatabaseConnection();
+
+            if (update > 0)
+            {
+                return true;
+            }
+
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool DeleteThread(int threadId)
+        {
+            string query = "delete Threads where threadId = @0";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@0", threadId);
+            int delete = cmd.ExecuteNonQuery();
+            ConnectionProvider.CloseDatabaseConnection();
+
+            if (delete > 0)
+            {
+                return true;
+            }
+
+            else
+            {
+                return false;
+            }
+        }
+
         public SqlDataReader DisplayThreadContent()
         {
             string query = "select content from Threads";

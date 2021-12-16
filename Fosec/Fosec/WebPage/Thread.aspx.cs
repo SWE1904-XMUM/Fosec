@@ -30,7 +30,7 @@ namespace Fosec.WebPage
             getThreadReply();
             string TID = HttpContext.Current.Request.QueryString["threadid"];
 
-            bool insertComment = threadComment.insertThreadComment( 4,TID, reply );
+            bool insertComment = threadComment.InsertThreadComment( 4,TID, reply );
             if (insertComment.Equals(true))
             {
                 // Code is provided in MessageBoxUtil class, just need to call
