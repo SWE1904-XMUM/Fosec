@@ -56,8 +56,20 @@ namespace Fosec.WebPage
         private void tag_Click(object sender, EventArgs e)
         {
             tagTxt = ((Button)sender).CommandArgument;
-            ((Button)sender).Attributes.Add("style", "background-color: #05767B");
             SessionManager.SetTag(tagTxt);
+
+            foreach (Button button in tag.Controls.OfType<Button>())
+            {
+                if (button.Text != SessionManager.GetTag())
+                {
+                    button.Attributes.Add("style", "background-color: #C8EDEF");
+                }
+
+                else
+                {
+                    button.Attributes.Add("style", "background-color: #05767B");
+                }
+            }
         }
 
         protected void submitThread_Click(object sender, EventArgs e)
