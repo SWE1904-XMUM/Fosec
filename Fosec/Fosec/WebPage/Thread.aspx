@@ -9,8 +9,8 @@
     </style>
 
     <!-- TODO thread page content -->
-    <div style="margin: auto auto auto auto; width: 1000px">
-        <div id="homeThreadContainer">
+    <div class="container" style="margin: auto auto auto auto; width: 1000px">
+        <div id="mainThreadContainer">
             <asp:Repeater ID="threadRepeater" runat="server" DataSourceID="ThreadData">
                 <ItemTemplate>
                     <itemtemplate>
@@ -38,17 +38,32 @@
                     </itemtemplate>
                 </ItemTemplate>
             </asp:Repeater>
+
+            <!--get threadComments here -->
+            <asp:Repeater ID="threadCommentRepeater" runat="server" DataSourceID="ThreadComment">
+                <ItemTemplate>
+                    <itemtemplate>
+                        <div class="threadContainer row">
+                            <div class="userInformation col-3">
+                                <asp:Label CssClass="threadUserId row" runat="server" Text='<%# "Userid: " + Eval("userId") %>' />
+                            </div>
+                            <div class="threadInformation col-9">
+                                <a class="threadInformation link-text-view ">
+                                    <asp:Label CssClass="threadContent row" runat="server" Text='<%# Eval("comment") %>' />
+                                </a>
+                                <hr />
+                                <div>
+                                    <div class="row">
+                                        <asp:Label CssClass="threadDate col-4" runat="server" Text='<%# Eval("commentdate") %>' />
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                        </div>
+                    </itemtemplate>
+                </ItemTemplate>
+            </asp:Repeater>
         </div>
-        <!--get threadComments here -->
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="commentId" DataSourceID="ThreadComment">
-            <Columns>
-                <asp:BoundField DataField="commentId" HeaderText="commentId" InsertVisible="False" ReadOnly="True" SortExpression="commentId" />
-                <asp:BoundField DataField="userId" HeaderText="userId" SortExpression="userId" />
-                <asp:BoundField DataField="threadId" HeaderText="threadId" SortExpression="threadId" />
-                <asp:BoundField DataField="comment" HeaderText="comment" SortExpression="comment" />
-                <asp:BoundField DataField="commentDate" HeaderText="commentDate" SortExpression="commentDate" />
-            </Columns>
-        </asp:GridView>
 
         <!-- Insert comment -->
         <asp:TextBox ID="ReplyThread" TextMode="MultiLine" type="text" placeHolder="reply here" runat="server" Height="100px" Width="880px"></asp:TextBox>
@@ -61,10 +76,9 @@
             <asp:QueryStringParameter QueryStringField="threadid" Name="threadId" />
         </SelectParameters>
     </asp:SqlDataSource>
-    <asp:SqlDataSource ID="ThreadComment" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [ThreadComment] WHERE (ThreadComment.threadId=@threadId)">
+    <asp:SqlDataSource ID="ThreadComment" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT ThreadComment.userId as userid, Users.username as username, Users.profileimage as profileimage, ThreadComment.comment as comment, ThreadComment.commentDate as commentdate FROM ThreadComment LEFT OUTER JOIN Users ON ThreadComment.userId = Users.userId WHERE (ThreadComment.threadId = @threadId)">
         <SelectParameters>
             <asp:QueryStringParameter QueryStringField="threadid" Name="threadId" />
         </SelectParameters>
     </asp:SqlDataSource>
-
 </asp:Content>
