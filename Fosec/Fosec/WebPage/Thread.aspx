@@ -3,6 +3,7 @@
 <%@ Import Namespace="Fosec.Utils" %>
 
 <asp:Content ContentPlaceHolderID="PageContent" runat="server">
+    <!-- TODO remove internal style -->
     <style>
         div {
             justify-content: center;
@@ -11,6 +12,7 @@
     </style>
 
     <!-- TODO thread page content -->
+    <!-- TODO remove internal style -->
     <div class="container" style="margin: auto auto auto auto; width: 1000px">
         <div id="mainThreadContainer">
             <asp:Repeater ID="threadRepeater" runat="server" DataSourceID="ThreadData">
@@ -41,7 +43,6 @@
                 </ItemTemplate>
             </asp:Repeater>
 
-
             <!--get threadComments here -->
             <div class="row">
                 <div class="col-1"></div>
@@ -62,7 +63,7 @@
                                     <div>
                                         <hr />
                                         <div class="row">
-                                            <div class="col-8"> </div>
+                                            <div class="col-8"></div>
                                             <asp:Label CssClass="threadDate col-4" runat="server" Text='<%# Eval("commentdate") %>' />
                                         </div>
                                     </div>
@@ -70,13 +71,12 @@
                             </div>
                         </ItemTemplate>
                     </asp:Repeater>
-
-
                 </div>
             </div>
         </div>
 
         <!-- Insert comment -->
+        <!-- TODO remove internal style -->
         <asp:TextBox ID="ReplyThread" TextMode="MultiLine" type="text" placeHolder="reply here" runat="server" Height="100px" Width="880px"></asp:TextBox>
         <asp:Button ID="ReplyBtn" runat="server" Text="Reply" CssClass="mt-0" OnClick="ReplyBtn_Click" />
     </div>

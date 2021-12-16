@@ -24,6 +24,7 @@ namespace Fosec.WebPage
             //get threadid from link
             string threadid = HttpContext.Current.Request.QueryString["threadid"];
 
+            //TODO disable reply if not logged in
         }
 
         protected void ReplyBtn_Click(object sender, EventArgs e)
