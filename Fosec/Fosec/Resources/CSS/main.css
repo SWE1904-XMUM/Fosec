@@ -211,3 +211,7 @@ a:hover {
     color: var(--secondary-color);
     transition: ease-in-out 0.1s;
 }
+
+.userProfileImage {
+    width: 100% !important;
+}
