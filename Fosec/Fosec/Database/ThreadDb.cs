@@ -32,6 +32,11 @@ namespace Fosec.Database
             }
         }
 
+        /*public bool EditThread()
+        {
+
+        }*/
+
         public SqlDataReader DisplayThreadContent()
         {
             string query = "select content from Threads";

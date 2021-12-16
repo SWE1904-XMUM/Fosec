@@ -11,7 +11,7 @@ namespace Fosec.Database
     {
         private static SqlConnection connection = ConnectionProvider.GetDatabaseConnection();
 
-        public bool insertThreadComment(int UserID, String threadID, String comment)
+        public bool InsertThreadComment(int UserID, String threadID, String comment)
         {
             string query = "insert into ThreadComment (userID,threadID,comment) values (@2,@3,@4)";
             SqlCommand cmd = new SqlCommand(query, connection);
