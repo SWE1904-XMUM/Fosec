@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WebPage/Fosec.Master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="Fosec.WebPage.Home" %>
+<%@ Import Namespace="Fosec.Utils" %>
 
 <asp:Content ContentPlaceHolderID="PageContent" runat="server">
     <!-- TODO home page content -->
@@ -29,7 +30,7 @@
                     <itemtemplate>
                         <div class="threadContainer row">
                             <a class="userInformation link-text-view col-3" href='<%# @"/WebPage/Profile.aspx?userid=" + Eval("userid") %>'>
-                                <asp:Image CssClass="userProfileImage" runat="server" ImageUrl='<%# Eval("profileImage").GetType() != typeof(System.DBNull) ? @"data:image/png;base64," + Convert.ToBase64String((byte[]) Eval("profileImage")) : @"/Resources/Image/defaultProfileImage.png"%>' />
+                                <asp:Image CssClass="userProfileImage" runat="server" ImageUrl='<%#ImageUtil.GetBase64PathByByteArray(Eval("profileImage"))%>' />
                                 <asp:Label CssClass="row" runat="server" Text='<%# Eval("username") %>' />
                             </a>
                             <div class="threadInformation col-9">

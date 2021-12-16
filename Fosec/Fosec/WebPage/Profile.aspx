@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WebPage/Fosec.Master" AutoEventWireup="true" CodeBehind="Profile.aspx.cs" Inherits="Fosec.WebPage.Profile" %>
+<%@ Import Namespace="Fosec.Utils" %>
 
 <asp:Content ContentPlaceHolderID="PageContent" runat="server">
     <!-- TODO profile page content -->
@@ -6,7 +7,7 @@
         <div id="userInformationContainer" class="col-3 p-2">
             <asp:ListView ID="ListView1" runat="server" DataSourceID="UserProfileData">
                 <ItemTemplate>
-                    <asp:Image CssClass="userProfileImage" runat="server" ImageUrl='<%# Eval("profileImage").GetType() != typeof(System.DBNull) ? @"data:image/png;base64," + Convert.ToBase64String((byte[]) Eval("profileImage")) : @"/Resources/Image/defaultProfileImage.png"%>' />
+                    <asp:Image CssClass="userProfileImage" runat="server" ImageUrl='<%#ImageUtil.GetBase64PathByByteArray(Eval("profileImage"))%>' />
                     <asp:Label runat="server"><%#Eval("username") %></asp:Label>
                     <asp:Label runat="server"><%#Eval("email") %></asp:Label>
                 </ItemTemplate>
