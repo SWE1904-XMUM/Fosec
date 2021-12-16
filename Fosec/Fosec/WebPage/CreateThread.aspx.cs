@@ -53,11 +53,23 @@ namespace Fosec.WebPage
             }
         }
 
-        // TODO -> debug tagTxt
         private void tag_Click(object sender, EventArgs e)
         {
             tagTxt = ((Button)sender).CommandArgument;
             SessionManager.SetTag(tagTxt);
+
+            foreach (Button button in tag.Controls.OfType<Button>())
+            {
+                if (button.Text != SessionManager.GetTag())
+                {
+                    button.Attributes.Add("style", "background-color: #C8EDEF");
+                }
+
+                else
+                {
+                    button.Attributes.Add("style", "background-color: #05767B");
+                }
+            }
         }
 
         protected void submitThread_Click(object sender, EventArgs e)
@@ -68,7 +80,9 @@ namespace Fosec.WebPage
             {
                 string uname = SessionManager.GetUsername();
                 int userId = userDb.GetUserIdByUsername(uname);
-                int tagNo = tagDb.GetTagIdByTagName(SessionManager.GetTag());
+
+                string tagName = SessionManager.GetTag();
+                int tagNo = tagDb.GetTagIdByTagName(tagName);
 
                 if(!userId.Equals(-1) && !tagNo.Equals(-1))
                 {

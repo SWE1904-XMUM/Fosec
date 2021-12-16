@@ -35,7 +35,7 @@
                         <p class="text-right">
                             Do not have an account?&nbsp;
                             <span>
-                                <a href="/WebPage/SignupAndLogin.aspx">Sign up</a>
+                                <a href="/WebPage/SignupAndLogin.aspx?action=signup">Sign up</a>
                             </span>
                         </p>
                     </div>

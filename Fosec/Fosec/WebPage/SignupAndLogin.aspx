@@ -10,8 +10,8 @@
             <div class="form-container">
                 <div class="mb-3" id="login-or-signup">
                     <ul class="nav nav-pills col-8 ml-auto mr-auto" id="pills-tab" role="tablist">
-                        <li class="nav-item form-nav" role="presentation"><a class="nav-link form-nav-link" id="pillsSignUpTab" runat="server">Sign Up</a></li>
                         <li class="nav-item form-nav" role="presentation"><a class="nav-link form-nav-link" id="pillsLoginTab" runat="server">Log In</a></li>
+                        <li class="nav-item form-nav" role="presentation"><a class="nav-link form-nav-link" id="pillsSignUpTab" runat="server">Sign Up</a></li>
                     </ul>
                 </div>
                 <div class="tab-content" id="pills-tabContent">
