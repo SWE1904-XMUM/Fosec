@@ -17,42 +17,17 @@ namespace Fosec.WebPage
     {
         // Thread page txt
         string titleTxt, contentTxt, tagTxt;
+        string threadId = HttpContext.Current.Request.QueryString["threadid"];
 
         // Class initialization
         TagDb tagDb = new TagDb();
-        MessageBoxUtil messageBox = new MessageBoxUtil();
         ThreadDb threadDb = new ThreadDb();
         UserDb userDb = new UserDb();
 
-        //HttpContext.Current.Request.QueryString["threadid"];
-
+        // Server control's functions
         protected void Page_Load(object sender, EventArgs e)
         {
             DisplayTagsFromDb();
-        }
-
-        protected void DisplayTagsFromDb()
-        {   
-            SqlDataReader r = tagDb.DisplayTags();
-
-            if (r.HasRows)
-            {
-                while (r.Read())
-                {
-                    Button tagBtn = new Button();
-                    string tagName = r["tagName"].ToString();
-                    tagBtn.CommandArgument = tagName;
-                    tagBtn.CssClass = "btn tag-btn";
-                    tagBtn.Text = tagName;
-                    tagBtn.Click += new EventHandler(tag_Click);
-                    tag.Controls.Add(tagBtn);
-                }
-            }
-
-            else
-            {
-                ConnectionProvider.CloseDatabaseConnection();
-            }
         }
 
         private void tag_Click(object sender, EventArgs e)
@@ -76,9 +51,48 @@ namespace Fosec.WebPage
 
         protected void submitThread_Click(object sender, EventArgs e)
         {
+            if(Request.QueryString.Keys.Count > 0)
+            {
+                DisplayThreadContent();
+                UpdateThreadContent(); 
+            }
+
+            else
+            {
+                InsertNewThread();
+            }
+        }
+
+        // Other functions
+        private void DisplayTagsFromDb()
+        {
+            SqlDataReader r = tagDb.DisplayTags();
+
+            if (r.HasRows)
+            {
+                while (r.Read())
+                {
+                    Button tagBtn = new Button();
+                    string tagName = r["tagName"].ToString();
+                    tagBtn.CommandArgument = tagName;
+                    tagBtn.CssClass = "btn tag-btn";
+                    tagBtn.Text = tagName;
+                    tagBtn.Click += new EventHandler(tag_Click);
+                    tag.Controls.Add(tagBtn);
+                }
+            }
+
+            else
+            {
+                MessageBoxUtil.DisplayMessage("No tag found.");
+            }
+        }
+
+        private void InsertNewThread()
+        {
             GetThreadText();
 
-            if(!titleTxt.Equals("") && !contentTxt.Equals(""))
+            if (!titleTxt.Equals("") && !contentTxt.Equals(""))
             {
                 string uname = SessionManager.GetUsername();
                 int userId = userDb.GetUserIdByUsername(uname);
@@ -86,30 +100,93 @@ namespace Fosec.WebPage
                 string tagName = SessionManager.GetTag();
                 int tagNo = tagDb.GetTagIdByTagName(tagName);
 
-                if(!userId.Equals(-1) && !tagNo.Equals(-1))
+                if (!userId.Equals(-1) && !tagNo.Equals(-1))
                 {
                     bool insertThread = threadDb.InsertThread(userId, titleTxt, tagNo, contentTxt);
 
-                    if(insertThread.Equals(true))
+                    if (insertThread.Equals(true))
                     {
-                        messageBox.MessageBox("Submitted successfully.");
+                        MessageBoxUtil.DisplayMessage("Submitted successfully.");
                     }
 
                     else
                     {
-                        messageBox.MessageBox("Fail to submit thread, please try again.");
+                        MessageBoxUtil.DisplayMessage("Fail to submit thread, please try again.");
                     }
                 }
 
                 else
                 {
-                    messageBox.MessageBox("No userId or tagNo found.");
+                    MessageBoxUtil.DisplayMessage("No userId or tagNo found.");
                 }
             }
 
             else
             {
-                messageBox.MessageBox("Please fill in all field.");
+                MessageBoxUtil.DisplayMessage("Please fill in all field.");
+            }
+        }
+
+        private void DisplayThreadContent()
+        {
+            SqlDataReader r = threadDb.GetThreadContent(int.Parse(threadId));
+
+            if (r.HasRows)
+            {
+                r.Read();
+
+                threadTitle.Text = r["title"].ToString();
+                content.Text = r["content"].ToString();
+                string tagNoFromDb = r["tagNo"].ToString();
+
+                if (!tagNoFromDb.Equals("-1"))
+                {
+                    string tagNameFromDb = tagDb.GetTagNameByTagId(int.Parse(tagNoFromDb));
+
+                    if(!tagNameFromDb.Equals("nothing"))
+                    {
+                        foreach (Button button in tag.Controls.OfType<Button>())
+                        {
+                            if (button.Text.Equals(tagNameFromDb))
+                            {
+                                button.Attributes.Add("style", "background-color: #05767B");
+                            }
+                        }
+                    }
+                }
+            }
+
+            else
+            {
+                MessageBoxUtil.DisplayMessage("No content found.");
+            }
+        }
+
+        private void UpdateThreadContent()
+        {
+            GetThreadText();
+
+            string tagName = SessionManager.GetTag();
+            int tagNo = tagDb.GetTagIdByTagName(tagName);
+
+            if(tagNo != -1)
+            {
+                bool editThread = threadDb.EditThread(int.Parse(threadId), titleTxt, tagNo, contentTxt);
+
+                if(editThread.Equals(true))
+                {
+                    MessageBoxUtil.DisplayMessage("Updated successfully.");
+                }
+
+                else
+                {
+                    MessageBoxUtil.DisplayMessage("Fail to update, please try again.");
+                }
+            }
+
+            else
+            {
+                MessageBoxUtil.DisplayMessage("No tagNo found.");
             }
         }
 

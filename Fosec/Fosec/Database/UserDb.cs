@@ -19,7 +19,6 @@ namespace Fosec.Database
             cmd.Parameters.AddWithValue("@1", email);
             cmd.Parameters.AddWithValue("@2", HashUtil.GetHashedStringByInput(pwd));
             int insert = cmd.ExecuteNonQuery();
-            ConnectionProvider.CloseDatabaseConnection();
 
             if (insert > 0)
             {
@@ -100,7 +99,7 @@ namespace Fosec.Database
 
         public static bool UpdateUserProfileImage(int userid, byte[] profileImage)
         {
-            string query = "update users set profileimage=@0 where userid=@1";
+            string query = "update users set profileImage = @0 where userId = @1";
             SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@0", profileImage);
             cmd.Parameters.AddWithValue("@1", userid);

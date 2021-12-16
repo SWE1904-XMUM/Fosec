@@ -15,7 +15,6 @@ namespace Fosec
         string unameTxt, pwdTxt;
 
         // Class initialization
-        MessageBoxUtil messageBox = new MessageBoxUtil();
         UserDb userDb = new UserDb();
 
         protected void Page_Load(object sender, EventArgs e)
@@ -50,14 +49,14 @@ namespace Fosec
 
                 else
                 {
-                    messageBox.MessageBox("Invalid password!");
+                    MessageBoxUtil.DisplayMessage("Invalid password!");
                     pwd.BackColor = System.Drawing.Color.LightCoral;
                 }
             }
 
             else
             {
-                messageBox.MessageBox("Not an existing user, please signup!");
+                MessageBoxUtil.DisplayMessage("Not an existing user, please signup!");
             }
         }
 
