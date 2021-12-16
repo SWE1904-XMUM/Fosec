@@ -35,5 +35,24 @@ namespace Fosec.Database
                 return -1;
             }
         }
+
+        public string GetTagNameByTagId(int tagId)
+        {
+            string query = "select tagName from Tag where tagId = @0";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@0", tagId);
+            SqlDataReader r = cmd.ExecuteReader();
+
+            if (r.HasRows)
+            {
+                r.Read();
+                return r.GetString(0);
+            }
+
+            else
+            {
+                return "nothing";
+            }
+        }
     }
 }

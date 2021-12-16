@@ -17,56 +17,17 @@ namespace Fosec.WebPage
     {
         // Thread page txt
         string titleTxt, contentTxt, tagTxt;
+        string threadId = HttpContext.Current.Request.QueryString["threadid"];
 
         // Class initialization
         TagDb tagDb = new TagDb();
         ThreadDb threadDb = new ThreadDb();
         UserDb userDb = new UserDb();
 
+        // Server control's functions
         protected void Page_Load(object sender, EventArgs e)
         {
-            switch(GetPreviousPageName())
-            {
-                case "Home.aspx":
-                    DisplayTagsFromDb();
-                    break;
-
-                case "Thread.aspx":
-                    //TODO
-                    break;
-
-                case "nothing":
-                    MessageBoxUtil.DisplayMessage("No previous page.");
-                    break;
-
-                default:
-                    MessageBoxUtil.DisplayMessage("Error!");
-                    break;
-            }
-        }
-
-        private void DisplayTagsFromDb()
-        {   
-            SqlDataReader r = tagDb.DisplayTags();
-
-            if (r.HasRows)
-            {
-                while (r.Read())
-                {
-                    Button tagBtn = new Button();
-                    string tagName = r["tagName"].ToString();
-                    tagBtn.CommandArgument = tagName;
-                    tagBtn.CssClass = "btn tag-btn";
-                    tagBtn.Text = tagName;
-                    tagBtn.Click += new EventHandler(tag_Click);
-                    tag.Controls.Add(tagBtn);
-                }
-            }
-
-            else
-            {
-                ConnectionProvider.CloseDatabaseConnection();
-            }
+            DisplayTagsFromDb();
         }
 
         private void tag_Click(object sender, EventArgs e)
@@ -90,37 +51,48 @@ namespace Fosec.WebPage
 
         protected void submitThread_Click(object sender, EventArgs e)
         {
-            GetThreadText();
-
-            if(GetPreviousPageName().Equals("Home.aspx"))
+            // TODO -> debug threadId
+            if(!threadId.Equals(""))
             {
-                InsertNewThread();
-            }
-
-            else if (GetPreviousPageName().Equals("Thread.aspx"))
-            {
-                string threadId = HttpContext.Current.Request.QueryString["threadid"];
-                //threadTitle = ;
-                //content = threadDb.GetThreadContent();
-            }
-        }
-
-        private string GetPreviousPageName()
-        {
-            if (Request.UrlReferrer != null)
-            {
-                return System.IO.Path.GetFileName(Request.UrlReferrer.AbsolutePath);
-                //System.Diagnostics.Debug.WriteLine(previousPage);
+                DisplayThreadContent();
+                UpdateThreadContent(); 
             }
 
             else
             {
-                return "nothing";
+                InsertNewThread();
+            }
+        }
+
+        // Other functions
+        private void DisplayTagsFromDb()
+        {
+            SqlDataReader r = tagDb.DisplayTags();
+
+            if (r.HasRows)
+            {
+                while (r.Read())
+                {
+                    Button tagBtn = new Button();
+                    string tagName = r["tagName"].ToString();
+                    tagBtn.CommandArgument = tagName;
+                    tagBtn.CssClass = "btn tag-btn";
+                    tagBtn.Text = tagName;
+                    tagBtn.Click += new EventHandler(tag_Click);
+                    tag.Controls.Add(tagBtn);
+                }
+            }
+
+            else
+            {
+                ConnectionProvider.CloseDatabaseConnection();
             }
         }
 
         private void InsertNewThread()
         {
+            GetThreadText();
+
             if (!titleTxt.Equals("") && !contentTxt.Equals(""))
             {
                 string uname = SessionManager.GetUsername();
@@ -156,9 +128,47 @@ namespace Fosec.WebPage
             }
         }
 
+        private void DisplayThreadContent()
+        {
+            SqlDataReader r = threadDb.GetThreadContent(int.Parse(threadId));
+
+            if (r.HasRows)
+            {
+                r.Read();
+
+                threadTitle.Text = r["title"].ToString();
+                content.Text = r["content"].ToString();
+                string tagNoFromDb = r["tagNo"].ToString();
+                string tagNameFromDb;
+
+                if (!tagNoFromDb.Equals("-1"))
+                {
+                    tagNameFromDb = tagDb.GetTagNameByTagId(int.Parse(tagNoFromDb));
+
+                    if(!tagNameFromDb.Equals("nothing"))
+                    {
+                        foreach (Button button in tag.Controls.OfType<Button>())
+                        {
+                            if (button.Text.Equals(tagNameFromDb))
+                            {
+                                button.Attributes.Add("style", "background-color: #05767B");
+                            }
+                        }
+                    }
+                }
+            }
+
+            else
+            {
+                ConnectionProvider.CloseDatabaseConnection();
+            }
+        }
+
         private void UpdateThreadContent()
         {
-
+            GetThreadText();
+            //TODO -> get tagNo
+            //threadDb.EditThread(threadId,titleTxt,tagNo,contentTxt);
         }
 
         private void GetThreadText()
