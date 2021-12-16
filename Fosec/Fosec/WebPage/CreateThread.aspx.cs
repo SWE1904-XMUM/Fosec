@@ -51,8 +51,7 @@ namespace Fosec.WebPage
 
         protected void submitThread_Click(object sender, EventArgs e)
         {
-            // TODO -> debug threadId
-            if(!threadId.Equals(""))
+            if(Request.QueryString.Keys.Count > 0)
             {
                 DisplayThreadContent();
                 UpdateThreadContent(); 
