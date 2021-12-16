@@ -149,6 +149,12 @@ a:hover {
 .threadDate {
     text-align: right;
 }
+.threadDel {
+    text-align: right;
+}
+.threadEdit {
+    text-align: right;
+}
 
 /*start of master page css*/
 #logo {
