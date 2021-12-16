@@ -24,6 +24,8 @@ namespace Fosec.WebPage
         ThreadDb threadDb = new ThreadDb();
         UserDb userDb = new UserDb();
 
+        //HttpContext.Current.Request.QueryString["threadid"];
+
         protected void Page_Load(object sender, EventArgs e)
         {
             DisplayTagsFromDb();
@@ -76,7 +78,7 @@ namespace Fosec.WebPage
         {
             GetThreadText();
 
-            if(!titleTxt.Equals("") && ! contentTxt.Equals(""))
+            if(!titleTxt.Equals("") && !contentTxt.Equals(""))
             {
                 string uname = SessionManager.GetUsername();
                 int userId = userDb.GetUserIdByUsername(uname);

@@ -1,16 +1,22 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WebPage/Fosec.Master" AutoEventWireup="true" CodeBehind="Profile.aspx.cs" Inherits="Fosec.WebPage.Profile" %>
+<%@ Import Namespace="Fosec.Utils" %>
 
-<%@ Import Namespace="Fosec.Session" %>
 <asp:Content ContentPlaceHolderID="PageContent" runat="server">
     <!-- TODO profile page content -->
     <div id="container" class="row">
         <div id="userInformationContainer" class="col-3 p-2">
             <asp:ListView ID="ListView1" runat="server" DataSourceID="UserProfileData">
                 <ItemTemplate>
-                    <p><%#Eval("username") %></p>
-                    <p><%#Eval("email") %></p>
+                    <asp:Image CssClass="userProfileImage" runat="server" ImageUrl='<%#ImageUtil.GetBase64PathByByteArray(Eval("profileImage"))%>' />
+                    <asp:Label runat="server"><%#Eval("username") %></asp:Label>
+                    <asp:Label runat="server"><%#Eval("email") %></asp:Label>
                 </ItemTemplate>
             </asp:ListView>
+            <!-- TODO improve ui -->
+            <hr />
+            <p>Upload Profile Image</p>
+            <asp:FileUpload ID="uploadProfileImage" runat="server" />
+            <asp:Button Text="Submit" ID="submitProfileBtn" runat="server" OnClick="SubmitProfileImage" />
         </div>
 
         <div id="homeThreadContainer" class="col-9 p-1">
@@ -40,7 +46,7 @@
     </div>
 
     <!-- Datasources -->
-    <asp:SqlDataSource ID="UserProfileData" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [username], [email] FROM [Users] WHERE ([username] = @username)">
+    <asp:SqlDataSource ID="UserProfileData" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [username], [email], [profileImage] FROM [Users] WHERE ([username] = @username)">
         <SelectParameters>
             <asp:SessionParameter Name="username" SessionField="uname" Type="String" />
         </SelectParameters>

@@ -97,5 +97,19 @@ namespace Fosec.Database
                 return false;
             }
         }
+
+        public static bool UpdateUserProfileImage(int userid, byte[] profileImage)
+        {
+            string query = "update users set profileimage=@0 where userid=@1";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@0", profileImage);
+            cmd.Parameters.AddWithValue("@1", userid);
+
+            if(cmd.ExecuteNonQuery() > 0)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }
