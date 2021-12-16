@@ -51,8 +51,7 @@ namespace Fosec.WebPage
 
         protected void submitThread_Click(object sender, EventArgs e)
         {
-            // TODO -> debug threadId
-            if(!threadId.Equals(""))
+            if(Request.QueryString.Keys.Count > 0)
             {
                 DisplayThreadContent();
                 UpdateThreadContent(); 
@@ -139,11 +138,10 @@ namespace Fosec.WebPage
                 threadTitle.Text = r["title"].ToString();
                 content.Text = r["content"].ToString();
                 string tagNoFromDb = r["tagNo"].ToString();
-                string tagNameFromDb;
 
                 if (!tagNoFromDb.Equals("-1"))
                 {
-                    tagNameFromDb = tagDb.GetTagNameByTagId(int.Parse(tagNoFromDb));
+                    string tagNameFromDb = tagDb.GetTagNameByTagId(int.Parse(tagNoFromDb));
 
                     if(!tagNameFromDb.Equals("nothing"))
                     {
@@ -167,8 +165,29 @@ namespace Fosec.WebPage
         private void UpdateThreadContent()
         {
             GetThreadText();
-            //TODO -> get tagNo
-            //threadDb.EditThread(threadId,titleTxt,tagNo,contentTxt);
+
+            string tagName = SessionManager.GetTag();
+            int tagNo = tagDb.GetTagIdByTagName(tagName);
+
+            if(tagNo != -1)
+            {
+                bool editThread = threadDb.EditThread(int.Parse(threadId), titleTxt, tagNo, contentTxt);
+
+                if(editThread.Equals(true))
+                {
+                    MessageBoxUtil.DisplayMessage("Updated successfully.");
+                }
+
+                else
+                {
+                    MessageBoxUtil.DisplayMessage("Fail to update, please try again.");
+                }
+            }
+
+            else
+            {
+                MessageBoxUtil.DisplayMessage("No tagNo found.");
+            }
         }
 
         private void GetThreadText()
