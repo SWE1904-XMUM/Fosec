@@ -27,10 +27,12 @@ namespace Fosec.WebPage
                 BinaryReader br = new BinaryReader(uploadProfileImage.PostedFile.InputStream);
                 byte[] uploadedImage = br.ReadBytes(uploadProfileImage.PostedFile.ContentLength);
                 bool result = UserDb.UpdateUserProfileImage(1, uploadedImage);
+                
                 if (result == true)
                 {
                     new MessageBoxUtil().MessageBox("Profile Image has been updated");
                 }
+
                 else
                 {
                     new MessageBoxUtil().MessageBox("Error in uploading profile image, please try again");

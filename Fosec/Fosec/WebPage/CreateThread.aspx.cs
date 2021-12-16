@@ -17,6 +17,7 @@ namespace Fosec.WebPage
     {
         // Thread page txt
         string titleTxt, contentTxt, tagTxt;
+        string threadId = HttpContext.Current.Request.QueryString["threadid"];
 
         // Class initialization
         TagDb tagDb = new TagDb();
@@ -24,14 +25,33 @@ namespace Fosec.WebPage
         ThreadDb threadDb = new ThreadDb();
         UserDb userDb = new UserDb();
 
-        //HttpContext.Current.Request.QueryString["threadid"];
-
         protected void Page_Load(object sender, EventArgs e)
         {
             DisplayTagsFromDb();
+
+            string prevPage = GetPreviousPageName();
+
+            switch(prevPage)
+            {
+                case "Home.aspx":
+                    //TODO
+                    break;
+
+                case "Thread.aspx":
+                    //TODO
+                    break;
+
+                case "nothing":
+                    messageBox.MessageBox("No previous page.");
+                    break;
+
+                default:
+                    messageBox.MessageBox("Error!");
+                    break;
+            }
         }
 
-        protected void DisplayTagsFromDb()
+        private void DisplayTagsFromDb()
         {   
             SqlDataReader r = tagDb.DisplayTags();
 
@@ -110,6 +130,21 @@ namespace Fosec.WebPage
             else
             {
                 messageBox.MessageBox("Please fill in all field.");
+            }
+        }
+
+        private string GetPreviousPageName()
+        {
+            if (Request.UrlReferrer != null)
+            {
+                string previousPage = System.IO.Path.GetFileName(Request.UrlReferrer.AbsolutePath);
+                return previousPage;
+                //System.Diagnostics.Debug.WriteLine(previousPage);
+            }
+
+            else
+            {
+                return "nothing";
             }
         }
 
