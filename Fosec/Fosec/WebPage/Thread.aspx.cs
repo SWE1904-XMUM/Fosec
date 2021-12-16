@@ -29,13 +29,15 @@ namespace Fosec.WebPage
 
         protected void ReplyBtn_Click(object sender, EventArgs e)
         {
-            getThreadReply();
+            GetThreadReply();
+
             if (!reply.Equals(""))
             {
                 string uname = SessionManager.GetUsername();
                 int userId = userDb.GetUserIdByUsername(uname);
                 string TID = HttpContext.Current.Request.QueryString["threadid"];
                 bool insertComment = threadComment.InsertThreadComment(userId, TID, reply);
+
                 if (insertComment.Equals(true))
                 {
                     // Code is provided in MessageBoxUtil class, just need to call
@@ -53,7 +55,7 @@ namespace Fosec.WebPage
             }
         }
 
-        private void getThreadReply()
+        private void GetThreadReply()
         {
             reply = ReplyThread.Text;
         }

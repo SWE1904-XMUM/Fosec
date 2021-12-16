@@ -17,7 +17,6 @@ namespace Fosec.WebPage
     {
         // Thread page txt
         string titleTxt, contentTxt, tagTxt;
-        string threadId = HttpContext.Current.Request.QueryString["threadid"];
 
         // Class initialization
         TagDb tagDb = new TagDb();
@@ -27,14 +26,10 @@ namespace Fosec.WebPage
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            DisplayTagsFromDb();
-
-            string prevPage = GetPreviousPageName();
-
-            switch(prevPage)
+            switch(GetPreviousPageName())
             {
                 case "Home.aspx":
-                    //TODO
+                    DisplayTagsFromDb();
                     break;
 
                 case "Thread.aspx":
@@ -98,7 +93,36 @@ namespace Fosec.WebPage
         {
             GetThreadText();
 
-            if(!titleTxt.Equals("") && !contentTxt.Equals(""))
+            if(GetPreviousPageName().Equals("Home.aspx"))
+            {
+                InsertNewThread();
+            }
+
+            else if (GetPreviousPageName().Equals("Thread.aspx"))
+            {
+                string threadId = HttpContext.Current.Request.QueryString["threadid"];
+                //threadTitle = ;
+                //content = threadDb.GetThreadContent();
+            }
+        }
+
+        private string GetPreviousPageName()
+        {
+            if (Request.UrlReferrer != null)
+            {
+                return System.IO.Path.GetFileName(Request.UrlReferrer.AbsolutePath);
+                //System.Diagnostics.Debug.WriteLine(previousPage);
+            }
+
+            else
+            {
+                return "nothing";
+            }
+        }
+
+        private void InsertNewThread()
+        {
+            if (!titleTxt.Equals("") && !contentTxt.Equals(""))
             {
                 string uname = SessionManager.GetUsername();
                 int userId = userDb.GetUserIdByUsername(uname);
@@ -106,11 +130,11 @@ namespace Fosec.WebPage
                 string tagName = SessionManager.GetTag();
                 int tagNo = tagDb.GetTagIdByTagName(tagName);
 
-                if(!userId.Equals(-1) && !tagNo.Equals(-1))
+                if (!userId.Equals(-1) && !tagNo.Equals(-1))
                 {
                     bool insertThread = threadDb.InsertThread(userId, titleTxt, tagNo, contentTxt);
 
-                    if(insertThread.Equals(true))
+                    if (insertThread.Equals(true))
                     {
                         messageBox.MessageBox("Submitted successfully.");
                     }
@@ -133,19 +157,9 @@ namespace Fosec.WebPage
             }
         }
 
-        private string GetPreviousPageName()
+        private void UpdateThreadContent()
         {
-            if (Request.UrlReferrer != null)
-            {
-                string previousPage = System.IO.Path.GetFileName(Request.UrlReferrer.AbsolutePath);
-                return previousPage;
-                //System.Diagnostics.Debug.WriteLine(previousPage);
-            }
 
-            else
-            {
-                return "nothing";
-            }
         }
 
         private void GetThreadText()

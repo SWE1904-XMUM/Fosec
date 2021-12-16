@@ -73,7 +73,7 @@ namespace Fosec.Database
             }
         }
 
-        public SqlDataReader DisplayThreadContent()
+        public SqlDataReader GetThreadContent()
         {
             string query = "select content from Threads";
             SqlCommand cmd = new SqlCommand(query, connection);
