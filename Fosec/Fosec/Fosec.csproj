@@ -75,6 +75,7 @@
     </Content>
     <Content Include="Resources\CSS\bootstrap.min.css" />
     <Content Include="Resources\CSS\main.css" />
+    <Content Include="Resources\Image\defaultProfileImage.png" />
     <Content Include="Resources\Image\logo.png" />
     <Content Include="Resources\Image\student_engagement.jpg" />
     <Content Include="Resources\Js\bootstrap.bundle.min.js" />
@@ -94,6 +95,7 @@
     <Compile Include="Database\UserDb.cs" />
     <Compile Include="Session\SessionManager.cs" />
     <Compile Include="Utils\HashUtil.cs" />
+    <Compile Include="Utils\ImageUtil.cs" />
     <Compile Include="Utils\MessageBoxUtil.cs" />
     <Compile Include="Utils\StringUtil.cs" />
     <Compile Include="Utils\ValidationUtil.cs" />
