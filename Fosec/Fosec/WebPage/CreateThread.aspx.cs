@@ -37,11 +37,11 @@ namespace Fosec.WebPage
                     break;
 
                 case "nothing":
-                    messageBox.MessageBox("No previous page.");
+                    MessageBoxUtil.DisplayMessage("No previous page.");
                     break;
 
                 default:
-                    messageBox.MessageBox("Error!");
+                    MessageBoxUtil.DisplayMessage("Error!");
                     break;
             }
         }
@@ -136,24 +136,24 @@ namespace Fosec.WebPage
 
                     if (insertThread.Equals(true))
                     {
-                        messageBox.MessageBox("Submitted successfully.");
+                        MessageBoxUtil.DisplayMessage("Submitted successfully.");
                     }
 
                     else
                     {
-                        messageBox.MessageBox("Fail to submit thread, please try again.");
+                        MessageBoxUtil.DisplayMessage("Fail to submit thread, please try again.");
                     }
                 }
 
                 else
                 {
-                    messageBox.MessageBox("No userId or tagNo found.");
+                    MessageBoxUtil.DisplayMessage("No userId or tagNo found.");
                 }
             }
 
             else
             {
-                messageBox.MessageBox("Please fill in all field.");
+                MessageBoxUtil.DisplayMessage("Please fill in all field.");
             }
         }
 
