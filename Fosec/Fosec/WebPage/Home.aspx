@@ -4,7 +4,7 @@
     <!-- TODO home page content -->
     <div class="container">
         <div id="tagContainer" class="box-shadow">
-            <asp:Button class="btn tag-btn" runat="server" Text='All' OnClick="TagButtonClick"/>
+            <asp:Button class="btn tag-btn" runat="server" Text='All' OnClick="TagButtonClick" />
             <asp:Repeater ID="tagRepeater" runat="server" DataSourceID="TagDataSource">
                 <ItemTemplate>
                     <asp:Button class="btn tag-btn" runat="server" Text='<%# Eval("tagname") %>' OnClick="TagButtonClick" />
@@ -16,16 +16,22 @@
             <div class="align-right-container">
                 <asp:HyperLink CssClass="text-right btn" Text="Create New Thread" NavigateUrl="/WebPage/CreateThread.aspx" runat="server"></asp:HyperLink>
             </div>
-            
-            </div><!-- TODO selected tag --><div class="sectionTitle row p-2">
-            <asp:Label Text="All" ID="selectedTagName" class="text-center" runat="server"></asp:Label></div><!-- TODO threads --><div id="homeThreadContainer">
+
+        </div>
+        <!-- TODO selected tag -->
+        <div class="sectionTitle row p-2">
+            <asp:Label Text="All" ID="selectedTagName" class="text-center" runat="server"></asp:Label>
+        </div>
+        <!-- TODO threads -->
+        <div id="homeThreadContainer">
             <asp:Repeater ID="threadRepeater" runat="server" DataSourceID="AllThreadDataSource">
                 <ItemTemplate>
                     <itemtemplate>
                         <div class="threadContainer row">
-                            <div class="userInformation col-3">
-                                <asp:Label CssClass="threadUserId row" runat="server" Text='<%# "Userid: " + Eval("userId") %>' />
-                            </div>
+                            <a class="userInformation link-text-view col-3" href='<%# @"/WebPage/Profile.aspx?userid=" + Eval("userid") %>'>
+                                <asp:Image CssClass="userProfileImage" runat="server" ImageUrl='<%# Eval("profileImage").GetType() != typeof(System.DBNull) ? @"data:image/png;base64," + Convert.ToBase64String((byte[]) Eval("profileImage")) : @"/Resources/Image/defaultProfileImage.png"%>' />
+                                <asp:Label CssClass="row" runat="server" Text='<%# Eval("username") %>' />
+                            </a>
                             <div class="threadInformation col-9">
                                 <a class="threadInformation link-text-view" href='<%# @"/Webpage/Thread.aspx?threadid=" + Eval("threadId") %>'>
                                     <asp:Label CssClass="threadTitle row" runat="server" Text='<%# Eval("title") %>' />
@@ -49,8 +55,14 @@
 
             <%--Data Sources--%>
             <asp:SqlDataSource ID="TagDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Tag]"></asp:SqlDataSource>
-            <asp:SqlDataSource ID="AllThreadDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT Threads.threadId, Threads.userId, Threads.title, Threads.[content], Threads.threadDate AS date, Tag.tagName FROM Threads LEFT OUTER JOIN Tag ON Threads.tagNo = Tag.tagId ORDER BY date DESC"></asp:SqlDataSource>
-            <asp:SqlDataSource ID="FilteredThreadDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT Threads.threadId, Threads.userId, Threads.title, Threads.[content], Threads.threadDate AS date, Tag.tagName FROM Threads LEFT OUTER JOIN Tag ON Threads.tagNo = Tag.tagId WHERE (Tag.tagName = @tagName) ORDER BY date DESC"><SelectParameters>
+            <asp:SqlDataSource ID="AllThreadDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT Threads.threadId as threadid, Threads.userId as userid, Threads.title as title, Threads.[content] as content, Threads.threadDate AS date, Tag.tagName as tagname, Users.profileImage as profileimage, Users.username as username
+FROM Threads LEFT OUTER JOIN Tag ON Threads.tagNo = Tag.tagId left outer join users on users.userid=threads.userid
+ORDER BY date DESC"></asp:SqlDataSource>
+            <asp:SqlDataSource ID="FilteredThreadDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT Threads.threadId as threadid, Threads.userId as userid, Threads.title as title, Threads.[content] as content, Threads.threadDate AS date, Tag.tagName as tagname, Users.profileImage as profileimage, Users.username as username
+FROM Threads LEFT OUTER JOIN Tag ON Threads.tagNo = Tag.tagId left outer join users on users.userid=threads.userid
+WHERE (Tag.tagName = @tagName)
+ORDER BY date DESC">
+                <SelectParameters>
                     <asp:ControlParameter ControlID="selectedTagName" DefaultValue="" Name="tagName" PropertyName="Text" Type="Object" />
                 </SelectParameters>
             </asp:SqlDataSource>
