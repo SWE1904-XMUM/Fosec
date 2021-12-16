@@ -23,7 +23,6 @@ namespace Fosec.WebPage
         TagDb tagDb = new TagDb();
         ThreadDb threadDb = new ThreadDb();
         UserDb userDb = new UserDb();
-        MessageBoxUtil messageBox = new MessageBoxUtil();
 
         // Server control's functions
         protected void Page_Load(object sender, EventArgs e)
@@ -108,24 +107,24 @@ namespace Fosec.WebPage
 
                     if (insertThread.Equals(true))
                     {
-                        messageBox.MessageBox("Submitted successfully.");
+                        MessageBoxUtil.DisplayMessage("Submitted successfully.");
                     }
 
                     else
                     {
-                        messageBox.MessageBox("Fail to submit thread, please try again.");
+                        MessageBoxUtil.DisplayMessage("Fail to submit thread, please try again.");
                     }
                 }
 
                 else
                 {
-                    messageBox.MessageBox("No userId or tagNo found.");
+                    MessageBoxUtil.DisplayMessage("No userId or tagNo found.");
                 }
             }
 
             else
             {
-                messageBox.MessageBox("Please fill in all field.");
+                MessageBoxUtil.DisplayMessage("Please fill in all field.");
             }
         }
 

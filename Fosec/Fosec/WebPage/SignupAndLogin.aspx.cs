@@ -75,18 +75,18 @@ namespace Fosec.WebPage
 
                     if (insertUser.Equals(true))
                     {
-                        messageBox.MessageBox("Signup successfully! Please login.");
+                        MessageBoxUtil.DisplayMessage("Signup successfully! Please login.");
                     }
 
                     else
                     {
-                        messageBox.MessageBox("Fail to signup.");
+                        MessageBoxUtil.DisplayMessage("Fail to signup.");
                     }
                 }
 
                 else
                 {
-                    messageBox.MessageBox("Username already existed, please try for another.");
+                    MessageBoxUtil.DisplayMessage("Username already existed, please try for another.");
                 }
 
                 ConnectionProvider.CloseDatabaseConnection();
@@ -94,25 +94,25 @@ namespace Fosec.WebPage
 
             else if (email != "pass")
             {
-                messageBox.MessageBox(email);
+                MessageBoxUtil.DisplayMessage(email);
                 signupEmail.BackColor = System.Drawing.Color.LightCoral;
             }
 
             else if (uname != "pass")
             {
-                messageBox.MessageBox(uname);
+                MessageBoxUtil.DisplayMessage(uname);
                 signupUname.BackColor = System.Drawing.Color.LightCoral;
             }
 
             else if (pwd != "pass")
             {
-                messageBox.MessageBox(pwd);
+                MessageBoxUtil.DisplayMessage(pwd);
                 signupPwd.BackColor = System.Drawing.Color.LightCoral;
             }
 
             else if (!signupConfirmPwdTxt.Equals(signupPwdTxt))
             {
-                messageBox.MessageBox("Please enter same password!");
+                MessageBoxUtil.DisplayMessage("Please enter same password!");
                 signupConfirmPwd.BackColor = System.Drawing.Color.LightCoral;
             }
         }
@@ -135,14 +135,14 @@ namespace Fosec.WebPage
 
                 else
                 {
-                    messageBox.MessageBox("Invalid password!");
+                    MessageBoxUtil.DisplayMessage("Invalid password!");
                     loginPwd.BackColor = System.Drawing.Color.LightCoral;
                 }
             }
 
             else
             {
-                messageBox.MessageBox("Not an existing user, please signup!");
+                MessageBoxUtil.DisplayMessage("Not an existing user, please signup!");
             }
         }
 

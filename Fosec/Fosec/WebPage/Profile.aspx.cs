@@ -30,12 +30,12 @@ namespace Fosec.WebPage
                 
                 if (result == true)
                 {
-                    new MessageBoxUtil().MessageBox("Profile Image has been updated");
+                    MessageBoxUtil.DisplayMessage("Profile Image has been updated");
                 }
 
                 else
                 {
-                    new MessageBoxUtil().MessageBox("Error in uploading profile image, please try again");
+                    MessageBoxUtil.DisplayMessage("Error in uploading profile image, please try again");
                 }
             }
         }

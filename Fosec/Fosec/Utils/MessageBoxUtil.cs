@@ -5,9 +5,9 @@ using System.Web;
 
 namespace Fosec.Utils
 {
-    public class MessageBoxUtil
+    public static class MessageBoxUtil
     {
-        public void MessageBox(string message)
+        public static void DisplayMessage(string message)
         {
             HttpContext.Current.Response.Write("<script>alert('" + message + "')</script>");
         }
