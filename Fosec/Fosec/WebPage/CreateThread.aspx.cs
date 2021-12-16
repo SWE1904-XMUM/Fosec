@@ -84,7 +84,7 @@ namespace Fosec.WebPage
 
             else
             {
-                ConnectionProvider.CloseDatabaseConnection();
+                MessageBoxUtil.DisplayMessage("No tag found.");
             }
         }
 
@@ -158,7 +158,7 @@ namespace Fosec.WebPage
 
             else
             {
-                ConnectionProvider.CloseDatabaseConnection();
+                MessageBoxUtil.DisplayMessage("No content found.");
             }
         }
 

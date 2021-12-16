@@ -19,7 +19,6 @@ namespace Fosec.Database
             cmd.Parameters.AddWithValue("@2", tagNo);
             cmd.Parameters.AddWithValue("@3", content);
             int insert = cmd.ExecuteNonQuery();
-            ConnectionProvider.CloseDatabaseConnection();
 
             if (insert > 0)
             {
@@ -41,7 +40,6 @@ namespace Fosec.Database
             cmd.Parameters.AddWithValue("@2", content);
             cmd.Parameters.AddWithValue("@3", threadId);
             int update = cmd.ExecuteNonQuery();
-            ConnectionProvider.CloseDatabaseConnection();
 
             if (update > 0)
             {
@@ -60,7 +58,6 @@ namespace Fosec.Database
             SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@0", threadId);
             int delete = cmd.ExecuteNonQuery();
-            ConnectionProvider.CloseDatabaseConnection();
 
             if (delete > 0)
             {
