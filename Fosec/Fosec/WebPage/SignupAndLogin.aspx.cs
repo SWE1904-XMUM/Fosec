@@ -30,13 +30,13 @@ namespace Fosec.WebPage
             pillsSignUpTab.ServerClick += ActivateSignup;
             pillsLoginTab.ServerClick += ActivateLogin;
             string action = HttpContext.Current.Request["action"];
-            if (action == "login")
+            if (action == "signup")
             {
-                ActivateLogin(sender, e);
+                ActivateSignup(sender, e);
             }
             else
             {
-                ActivateSignup(sender, e);
+                ActivateLogin(sender, e);
             }
         }
 
