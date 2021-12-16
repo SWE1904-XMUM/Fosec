@@ -35,13 +35,13 @@
                                     </div>
                                     <asp:Label runat="server" Text='<%# Eval("username") %>' />
                                 </a>
-                                <div class="threadInformation col-9">
+                                <div class="threadInformation col-9 d-flex flex-column justify-content-between">
                                     <a class="threadInformation link-text-view" href='<%# @"/Webpage/Thread.aspx?threadid=" + Eval("threadId") %>'>
                                         <asp:Label CssClass="threadTitle row" runat="server" Text='<%# Eval("title") %>' />
                                         <asp:Label CssClass="threadContent row" runat="server" Text='<%# Eval("content") %>' />
                                     </a>
                                     <!-- TODO Debug: overlap with long content -->
-                                    <div class="stick-to-bottom col-8">
+                                    <div>
                                         <hr />
                                         <div class="row">
 
