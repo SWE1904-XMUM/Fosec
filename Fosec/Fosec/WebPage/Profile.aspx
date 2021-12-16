@@ -35,14 +35,18 @@
                                         <td class="fixed-column-width">Email: </td>
                                         <td><asp:Label runat="server"><%#Eval("email") %></asp:Label></td>
                                     </tr>
-                                    <tr>
-                                        <td class="fixed-column-width">Profile Picture: </td>
-                                        <td><asp:FileUpload ID="uploadProfileImage" runat="server"/></td>
-                                    </tr>
-                                </table>
-                                <asp:Button Text="Submit" ID="submitProfileBtn" CssClass="btn" runat="server" OnClick="SubmitProfileImage" />
+                                  </table>
+                                    
                             </ItemTemplate>
                         </asp:ListView>
+                        <table class="profile">
+                            <tr>
+                                <td class="fixed-column-width">Profile Picture: </td>
+                                <td><asp:FileUpload ID="uploadProfileImage" runat="server"/></td>
+                            </tr>
+                        </table>
+                        <asp:Button Text="Submit" ID="submitProfileBtn" CssClass="btn" runat="server" OnClick="SubmitProfileImage" />
+                        
                     </div>
                 </div>
                 <div class="profile-container">
