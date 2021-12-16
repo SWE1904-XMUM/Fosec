@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WebPage/Fosec.Master" AutoEventWireup="true" CodeBehind="Thread.aspx.cs" Inherits="Fosec.WebPage.Thread" %>
 
+<%@ Import Namespace="Fosec.Utils" %>
+
 <asp:Content ContentPlaceHolderID="PageContent" runat="server">
     <style>
         div {
@@ -15,14 +17,15 @@
                 <ItemTemplate>
                     <itemtemplate>
                         <div class="threadContainer row">
-                            <div class="userInformation col-3">
-                                <asp:Label CssClass="threadUserId row" runat="server" Text='<%# "Userid: " + Eval("userId") %>' />
-                            </div>
+                            <a class="userInformation link-text-view col-3" href='<%# @"/WebPage/Profile.aspx?userid=" + Eval("userid") %>'>
+                                <asp:Image CssClass="userProfileImage" runat="server" ImageUrl='<%#ImageUtil.GetBase64PathByByteArray(Eval("profileImage"))%>' />
+                                <asp:Label CssClass="row" runat="server" Text='<%# Eval("username") %>' />
+                            </a>
                             <div class="threadInformation col-9">
-                                <a class="threadInformation link-text-view ">
+                                <div class="threadInformation link-text-view">
                                     <asp:Label CssClass="threadTitle row" runat="server" Text='<%# Eval("title") %>' />
                                     <asp:Label CssClass="threadContent row" runat="server" Text='<%# Eval("content") %>' />
-                                </a>
+                                </div>
                                 <hr />
                                 <div>
                                     <div class="row">
@@ -40,29 +43,32 @@
             </asp:Repeater>
 
             <!--get threadComments here -->
-            <asp:Repeater ID="threadCommentRepeater" runat="server" DataSourceID="ThreadComment">
-                <ItemTemplate>
-                    <itemtemplate>
-                        <div class="threadContainer row">
-                            <div class="userInformation col-3">
-                                <asp:Label CssClass="threadUserId row" runat="server" Text='<%# "Userid: " + Eval("userId") %>' />
-                            </div>
-                            <div class="threadInformation col-9">
-                                <a class="threadInformation link-text-view ">
-                                    <asp:Label CssClass="threadContent row" runat="server" Text='<%# Eval("comment") %>' />
-                                </a>
-                                <hr />
-                                <div>
-                                    <div class="row">
-                                        <asp:Label CssClass="threadDate col-4" runat="server" Text='<%# Eval("commentdate") %>' />
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-11">
+                    <asp:Repeater ID="threadCommentRepeater" runat="server" DataSourceID="ThreadCommentData">
+                        <ItemTemplate>
+                            <itemtemplate>
+                                <div class="threadContainer row">
+                                    <a class="userInformation link-text-view col-3" href='<%# @"/WebPage/Profile.aspx?userid=" + Eval("userid") %>'>
+                                        <asp:Image CssClass="userProfileImage" runat="server" ImageUrl='<%#ImageUtil.GetBase64PathByByteArray(Eval("profileImage"))%>' />
+                                        <asp:Label CssClass="row" runat="server" Text='<%# Eval("username") %>' />
+                                    </a>
+                                    <div class="threadInformation col-9">
+                                        <asp:Label class="threadInformation link-text-view threadContent row" runat="server" Text='<%# Eval("comment") %>'></asp:Label>
+                                        <hr />
+                                        <div class="row">
+                                            <asp:Label CssClass="threadDate text-right" runat="server" Text='<%# Eval("commentdate") %>' />
+                                        </div>
                                     </div>
+                                    <br />
                                 </div>
-                            </div>
-                            <br />
-                        </div>
-                    </itemtemplate>
-                </ItemTemplate>
-            </asp:Repeater>
+                            </itemtemplate>
+                        </ItemTemplate>
+                    </asp:Repeater>
+
+                </div>
+            </div>
         </div>
 
         <!-- Insert comment -->
@@ -76,7 +82,7 @@
             <asp:QueryStringParameter QueryStringField="threadid" Name="threadId" />
         </SelectParameters>
     </asp:SqlDataSource>
-    <asp:SqlDataSource ID="ThreadComment" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT ThreadComment.userId as userid, Users.username as username, Users.profileimage as profileimage, ThreadComment.comment as comment, ThreadComment.commentDate as commentdate FROM ThreadComment LEFT OUTER JOIN Users ON ThreadComment.userId = Users.userId WHERE (ThreadComment.threadId = @threadId)">
+    <asp:SqlDataSource ID="ThreadCommentData" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT ThreadComment.userId as userid, Users.username as username, Users.profileimage as profileimage, ThreadComment.comment as comment, ThreadComment.commentDate as commentdate FROM ThreadComment LEFT OUTER JOIN Users ON ThreadComment.userId = Users.userId WHERE (ThreadComment.threadId = @threadId)">
         <SelectParameters>
             <asp:QueryStringParameter QueryStringField="threadid" Name="threadId" />
         </SelectParameters>
