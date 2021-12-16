@@ -15,7 +15,6 @@ namespace Fosec
         string unameTxt, pwdTxt;
 
         // Class initialization
-        MessageBoxUtil messageBox = new MessageBoxUtil();
         UserDb userDb = new UserDb();
 
         protected void Page_Load(object sender, EventArgs e)

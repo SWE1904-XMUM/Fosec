@@ -18,7 +18,6 @@ namespace Fosec.WebPage
         ThreadCommentDb threadComment = new ThreadCommentDb();
         UserDb userDb = new UserDb();
         String reply;
-        MessageBoxUtil messageBox = new MessageBoxUtil();
 
         protected void Page_Load(object sender, EventArgs e)
         {

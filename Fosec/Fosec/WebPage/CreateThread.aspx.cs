@@ -20,7 +20,6 @@ namespace Fosec.WebPage
 
         // Class initialization
         TagDb tagDb = new TagDb();
-        MessageBoxUtil messageBox = new MessageBoxUtil();
         ThreadDb threadDb = new ThreadDb();
         UserDb userDb = new UserDb();
 
