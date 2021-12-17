@@ -296,3 +296,12 @@ a:hover {
 #userInformationContainer {
     text-align: center;
 }
+
+.reply-button-container{
+    display: flex;
+    align-items: end;
+}
+
+#view-thread-container{
+    width:1000px;
+}
