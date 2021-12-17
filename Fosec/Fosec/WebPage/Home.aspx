@@ -3,7 +3,6 @@
 <%@ Import Namespace="Fosec.Utils" %>
 
 <asp:Content ContentPlaceHolderID="PageContent" runat="server">
-    <!-- TODO home page content -->
     <div class="container">
         <div id="tagContainer" class="box-shadow">
             <asp:Button class="btn tag-btn" runat="server" Text='All' OnClick="TagButtonClick" />

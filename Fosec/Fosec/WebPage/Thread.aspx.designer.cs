@@ -7,65 +7,75 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Fosec.WebPage
-{
-
-
-    public partial class Thread
-    {
-
+namespace Fosec.WebPage {
+    
+    
+    public partial class Thread {
+        
         /// <summary>
         /// threadRepeater control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
+        /// To modify, move the field declaration from the designer file to a code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater threadRepeater;
-
+        
         /// <summary>
         /// threadCommentRepeater control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
+        /// To modify, move the field declaration from the designer file to a code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater threadCommentRepeater;
-
+        
         /// <summary>
         /// ReplyThread control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
+        /// To modify, move the field declaration from the designer file to a code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox ReplyThread;
-
+        
         /// <summary>
         /// ReplyBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
+        /// To modify, move the field declaration from the designer file to a code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button ReplyBtn;
-
+        
         /// <summary>
         /// ThreadData control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
+        /// To modify, move the field declaration from the designer file to a code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource ThreadData;
-
+        
         /// <summary>
         /// ThreadCommentData control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
+        /// To modify, move the field declaration from the designer file to a code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource ThreadCommentData;
+        
+        /// <summary>
+        /// Master property.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated property.
+        /// </remarks>
+        public new Fosec.Fosec Master {
+            get {
+                return ((Fosec.Fosec)(base.Master));
+            }
+        }
     }
 }

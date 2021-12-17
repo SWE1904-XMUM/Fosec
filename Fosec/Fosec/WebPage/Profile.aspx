@@ -3,7 +3,6 @@
 <%@ Import Namespace="Fosec.Utils" %>
 
 <asp:Content ContentPlaceHolderID="PageContent" runat="server">
-    <!-- TODO profile page content -->
     <div class="container">
         <div class="row" id="profile-container">
             <div id="userInformationContainer" class="col-3 p-2">
