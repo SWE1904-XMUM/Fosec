@@ -55,7 +55,7 @@
                                 </table>
                             </ItemTemplate>
                         </asp:ListView>
-                        <!-- TODO separate edit function -->
+
                         <div class="profile m-2">
                             <div class="m-1">
                                 <asp:Button ID="openEditProfileImageContainerBtn" CssClass="btn" runat="server" Text="Change Profile Image" OnClick="DisplayProfileImageUploadForm" />
