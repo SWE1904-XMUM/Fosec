@@ -76,6 +76,7 @@
     <Content Include="Resources\CSS\bootstrap.min.css" />
     <Content Include="Resources\CSS\main.css" />
     <Content Include="Resources\Image\defaultProfileImage.png" />
+    <Content Include="Resources\Image\error-icon.png" />
     <Content Include="Resources\Image\logo.png" />
     <Content Include="Resources\Image\student_engagement.jpg" />
     <Content Include="Resources\Js\bootstrap.bundle.min.js" />

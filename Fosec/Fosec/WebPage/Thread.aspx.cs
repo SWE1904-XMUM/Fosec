@@ -19,16 +19,43 @@ namespace Fosec.WebPage
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            string uname = SessionManager.GetUsername();
+            int userId = UserDb.GetUserIdByUsername(uname);
+            
             //get threadid from link
             string threadid = HttpContext.Current.Request.QueryString["threadid"];
-            if(threadid == null)
+            int UID = ThreadDb.GetUserID(threadid);
+            if (threadid == null)
             {
-                WebPageUtil.DisplayMessageAndRedirect("Error, this page does not exist", "/WebPage/Home.aspx", this.Page);
+                //WebPageUtil.DisplayMessageAndRedirect("Error, this page does not exist", "/WebPage/Home.aspx", this.Page);
+                errorContainer.Visible = true;
+                threadContainer.Visible = false;
+            }
+            else
+            {
+                threadContainer.Visible = true;
+                errorContainer.Visible = false;
             }
 
             //TODO disable reply if not logged in
-            
-           // ReplyBtn.Enabled = false;
+            if (!userId.Equals(-1))
+            {
+                ReplyBtn.Enabled = true;
+                DelBtn.Visible = true;
+            }
+            else
+            {
+                ReplyBtn.Enabled = false;
+                DelBtn.Visible = false;
+            }
+            if (userId.Equals(UID))
+            {
+                DelBtn.Visible = true;
+            }
+            else
+                DelBtn.Visible = false;
+
+
         }
 
         protected void ReplyBtn_Click(object sender, EventArgs e)
@@ -66,23 +93,25 @@ namespace Fosec.WebPage
 
         protected void DelBtn_Click(object sender, EventArgs e)
         {
-            // need session manager to ensure only owner can delete
+           
             string uname = SessionManager.GetUsername();
             int userId = UserDb.GetUserIdByUsername(uname);
             string threadid = HttpContext.Current.Request.QueryString["threadid"];
             int UID = ThreadDb.GetUserID(threadid);
             if (!userId.Equals(UID))
             {
+                
+                WebPageUtil.DisplayMessage("not the creator of this thread, no permission to delete");
+                DelBtn.Enabled = false;
 
-             //   MessageBoxUtil.DisplayMessage("not the creator of this thread, no permission to delete");
-                //DelBtn.Enabled = false;
 
-             //   WebPageUtil.DisplayMessage("not the creator of this thread, no permission to delete");
-                //DelBtn.Enabled = false;
             }
-            /*else
-            ThreadDb.DeleteThread(threadid);
-            DelBtn.Enabled = true;*/
+            else
+            {
+                
+                ThreadDb.DeleteThread(threadid);
+                DelBtn.Enabled = true;
+            }
         }
 
     }
