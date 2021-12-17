@@ -17,12 +17,14 @@ namespace Fosec.WebPage
     {
         ThreadCommentDb threadComment = new ThreadCommentDb();
         UserDb userDb = new UserDb();
+        ThreadDb threadDb = new ThreadDb();
         String reply;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             //get threadid from link
             string threadid = HttpContext.Current.Request.QueryString["threadid"];
+           
 
             //TODO disable reply if not logged in
         }
@@ -59,6 +61,17 @@ namespace Fosec.WebPage
         {
             reply = ReplyThread.Text;
         }
+
+        protected void DelBtn_Click(object sender, EventArgs e)
+        {
+            // need session manager to ensure only owner can delete
+            string uname = SessionManager.GetUsername();
+            int userId = userDb.GetUserIdByUsername(uname);
+            //if (userId != )
+            string threadid = HttpContext.Current.Request.QueryString["threadid"];
+            threadDb.DeleteThread(threadid);
+        }
+
     }
 }
 

@@ -52,7 +52,7 @@ namespace Fosec.Database
             }
         }
 
-        public bool DeleteThread(int threadId)
+        public bool DeleteThread(string threadId)
         {
             string query = "delete Threads where threadId = @0";
             SqlCommand cmd = new SqlCommand(query, connection);
