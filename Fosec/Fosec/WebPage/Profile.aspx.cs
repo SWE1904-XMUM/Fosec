@@ -30,7 +30,7 @@ namespace Fosec.WebPage
                 userProfileDetail.DataSourceID = "LoggedInUserProfileData";
                 userThreadRepeater.DataSourceID = "LoggedInUserThreadData";
             }
-            else if (userid != null)
+            else if (userid != null && UserDb.CheckUserIdExistence(Int32.Parse(userid)))
             {
                 userProfile.DataSourceID = "OtherUserProfileData";
                 userProfileDetail.DataSourceID = "OtherUserProfileData";
