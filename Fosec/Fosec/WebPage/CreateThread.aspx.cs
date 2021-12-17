@@ -18,19 +18,12 @@ namespace Fosec.WebPage
         // Thread page txt
         string titleTxt, contentTxt, tagTxt;
 
-        // Text change
-        bool titleChange = false;
-        bool contentChange = false;
-
         // Server control's functions
         protected void Page_Load(object sender, EventArgs e)
         {
             DisplayTagsFromDb();
 
-            threadTitle.TextChanged += new EventHandler(TextChange);
-            content.TextChanged += new EventHandler(TextChange);
-
-            if (!String.IsNullOrEmpty(Request.QueryString["threadid"]) && titleChange.Equals(false) && contentChange.Equals(false))
+            if (!String.IsNullOrEmpty(Request.QueryString["threadid"]) && !IsPostBack)
             {
                 DisplayThreadContent();
             }
@@ -67,12 +60,6 @@ namespace Fosec.WebPage
             {
                 InsertNewThread();
             }
-        }
-
-        protected void TextChange(object sender, EventArgs e)
-        {
-            titleChange = true;
-            contentChange = true;
         }
 
         // Other functions
@@ -149,6 +136,7 @@ namespace Fosec.WebPage
                     if (!tagNoFromDb.Equals(-1))
                     {
                         string tagNameFromDb = TagDb.GetTagNameByTagId(tagNoFromDb);
+                        SessionManager.SetTag(tagNameFromDb);
 
                         if (!tagNameFromDb.Equals("nothing"))
                         {
