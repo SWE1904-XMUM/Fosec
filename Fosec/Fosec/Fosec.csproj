@@ -96,7 +96,7 @@
     <Compile Include="Session\SessionManager.cs" />
     <Compile Include="Utils\HashUtil.cs" />
     <Compile Include="Utils\ImageUtil.cs" />
-    <Compile Include="Utils\MessageBoxUtil.cs" />
+    <Compile Include="Utils\WebPageUtil.cs" />
     <Compile Include="Utils\StringUtil.cs" />
     <Compile Include="Utils\ValidationUtil.cs" />
     <Compile Include="WebPage\CreateThread.aspx.cs">

@@ -17,12 +17,16 @@ namespace Fosec.WebPage
     {
         // Thread page txt
         string titleTxt, contentTxt, tagTxt;
-        string threadId = HttpContext.Current.Request.QueryString["threadid"];
 
         // Server control's functions
         protected void Page_Load(object sender, EventArgs e)
         {
             DisplayTagsFromDb();
+
+            if (!String.IsNullOrEmpty(Request.QueryString["threadid"]))
+            {
+                DisplayThreadContent();
+            }
         }
 
         private void tag_Click(object sender, EventArgs e)
@@ -46,10 +50,10 @@ namespace Fosec.WebPage
 
         protected void submitThread_Click(object sender, EventArgs e)
         {
-            if(Request.QueryString.Keys.Count > 0)
+            if(!String.IsNullOrEmpty(Request.QueryString["threadid"]))
             {
                 DisplayThreadContent();
-                UpdateThreadContent(); 
+                UpdateThreadContent();
             }
 
             else
@@ -124,27 +128,29 @@ namespace Fosec.WebPage
 
         private void DisplayThreadContent()
         {
+            string threadId = Request.QueryString["threadid"];
             SqlDataReader r = ThreadDb.GetThreadContent(int.Parse(threadId));
 
             if (r.HasRows)
             {
-                r.Read();
-
-                threadTitle.Text = r["title"].ToString();
-                content.Text = r["content"].ToString();
-                string tagNoFromDb = r["tagNo"].ToString();
-
-                if (!tagNoFromDb.Equals("-1"))
+                while(r.Read())
                 {
-                    string tagNameFromDb = TagDb.GetTagNameByTagId(int.Parse(tagNoFromDb));
+                    threadTitle.Text = r.GetString(0);
+                    content.Text = r.GetString(2);
+                    int tagNoFromDb = r.GetInt32(1);
 
-                    if(!tagNameFromDb.Equals("nothing"))
+                    if (!tagNoFromDb.Equals(-1))
                     {
-                        foreach (Button button in tag.Controls.OfType<Button>())
+                        string tagNameFromDb = TagDb.GetTagNameByTagId(tagNoFromDb);
+
+                        if (!tagNameFromDb.Equals("nothing"))
                         {
-                            if (button.Text.Equals(tagNameFromDb))
+                            foreach (Button button in tag.Controls.OfType<Button>())
                             {
-                                button.Attributes.Add("style", "background-color: #05767B");
+                                if (button.Text.Equals(tagNameFromDb))
+                                {
+                                    button.Attributes.Add("style", "background-color: #05767B");
+                                }
                             }
                         }
                     }
@@ -161,6 +167,7 @@ namespace Fosec.WebPage
         {
             GetThreadText();
 
+            string threadId = Request.QueryString["threadid"];
             string tagName = SessionManager.GetTag();
             int tagNo = TagDb.GetTagIdByTagName(tagName);
 
