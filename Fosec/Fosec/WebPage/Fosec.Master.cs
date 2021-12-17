@@ -20,8 +20,8 @@ namespace Fosec
 
             guestActionBar.Visible = (username == "");
             loggedInActionBar.Visible = (username != "");
-            
-            if(username != "")
+
+            if (username != "")
             {
                 loggedInUsername.InnerText = username;
             }
@@ -42,6 +42,7 @@ namespace Fosec
                     //Response.Redirect("Home.aspx");
                     SessionManager.SetLogin(true);
                     SessionManager.SetUsername(unameTxt);
+                    WebPageUtil.DisplayMessageAndRedirect("Login successful", "/WebPage/Home.aspx", this.Page);
                 }
 
                 else
@@ -53,7 +54,7 @@ namespace Fosec
 
             else
             {
-                WebPageUtil.DisplayMessage("Not an existing user, please signup!");
+                WebPageUtil.DisplayMessageAndRedirect("Not an existing user, please signup!", "/WebPage/SignupAndLogin.aspx?action=signup", this.Page);
             }
         }
 

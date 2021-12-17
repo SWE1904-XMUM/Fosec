@@ -70,7 +70,7 @@ namespace Fosec.WebPage
                     if (insertUser.Equals(true))
                     {
                         ClearSignupFields();
-                        WebPageUtil.DisplayMessageAndRedirect("Signup successfully! Please login.", "/WebPage/SignupAndLogin.aspx?action=login", ClientScript);
+                        WebPageUtil.DisplayMessageAndRedirect("Signup successfully! Please login.", "/WebPage/SignupAndLogin.aspx?action=login", this.Page);
                     }
 
                     else
@@ -122,10 +122,10 @@ namespace Fosec.WebPage
                 if (checkPassword.Equals(true))
                 {
                     ClearLoginFields();
-                    //TODO debug: session not set
+                    //TODO debug: session not set, login bar still exist
                     SessionManager.SetLogin(true);
                     SessionManager.SetUsername(signupUnameTxt);
-                    WebPageUtil.Redirect("/WebPage/Home.aspx", ClientScript);
+                    WebPageUtil.DisplayMessageAndRedirect("Login successful", "/WebPage/Home.aspx", this.Page);
                 }
 
                 else
