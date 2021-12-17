@@ -19,9 +19,6 @@ namespace Fosec.WebPage
         // Signup column
         string signupEmailTxt, signupUnameTxt, signupPwdTxt, signupConfirmPwdTxt;
 
-        // Class initialization
-        UserDb userDb = new UserDb();
-
         protected void Page_Load(object sender, EventArgs e)
         {
             pillsSignUpTab.ServerClick += ActivateSignup;
@@ -58,18 +55,17 @@ namespace Fosec.WebPage
         {
             GetSignupInputText();
 
-            ValidationUtil validationUtil = new ValidationUtil();
-            string uname = validationUtil.ValidateUname(signupUnameTxt);
-            string pwd = validationUtil.ValidatePassword(signupPwdTxt);
-            string email = validationUtil.ValidateEmail(signupEmailTxt); //TODO validate whether email already exist
+            string uname = ValidationUtil.ValidateUname(signupUnameTxt);
+            string pwd = ValidationUtil.ValidatePassword(signupPwdTxt);
+            string email = ValidationUtil.ValidateEmail(signupEmailTxt); //TODO validate whether email already exist
 
             if (email.Equals("pass") && uname.Equals("pass") && pwd.Equals("pass") && signupConfirmPwdTxt.Equals(signupPwdTxt))
             {
-                bool checkExistingUser = userDb.CheckExistingUser(signupUnameTxt);
+                bool checkExistingUser = UserDb.CheckExistingUser(signupUnameTxt);
 
                 if (checkExistingUser.Equals(false))
                 {
-                    bool insertUser = userDb.InsertUsers(signupUnameTxt, signupEmailTxt, signupPwdTxt);
+                    bool insertUser = UserDb.InsertUsers(signupUnameTxt, signupEmailTxt, signupPwdTxt);
 
                     if (insertUser.Equals(true))
                     {
@@ -118,17 +114,18 @@ namespace Fosec.WebPage
         {
             GetLoginInputText();
 
-            bool checkExistingUser = userDb.CheckExistingUser(loginUnameTxt);
-            bool checkPassword = userDb.CheckUserPassword(loginUnameTxt, loginPwdTxt);
+            bool checkExistingUser = UserDb.CheckExistingUser(loginUnameTxt);
+            bool checkPassword = UserDb.CheckUserPassword(loginUnameTxt, loginPwdTxt);
 
             if (checkExistingUser.Equals(true))
             {
                 if (checkPassword.Equals(true))
                 {
                     ClearLoginFields();
+                    //TODO debug: session not set
                     SessionManager.SetLogin(true);
                     SessionManager.SetUsername(signupUnameTxt);
-                    Response.Redirect("/WebPage/Home.aspx");
+                    MessageBoxUtil.Redirect("/WebPage/Home.aspx", ClientScript);
                 }
 
                 else

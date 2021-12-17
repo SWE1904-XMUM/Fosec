@@ -15,16 +15,12 @@ namespace Fosec.WebPage
 {
     public partial class Thread : System.Web.UI.Page
     {
-        ThreadCommentDb threadComment = new ThreadCommentDb();
-        UserDb userDb = new UserDb();
-        ThreadDb threadDb = new ThreadDb();
         String reply;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             //get threadid from link
             string threadid = HttpContext.Current.Request.QueryString["threadid"];
-           
 
             //TODO disable reply if not logged in
         }
@@ -36,9 +32,9 @@ namespace Fosec.WebPage
             if (!reply.Equals(""))
             {
                 string uname = SessionManager.GetUsername();
-                int userId = userDb.GetUserIdByUsername(uname);
+                int userId = UserDb.GetUserIdByUsername(uname);
                 string TID = HttpContext.Current.Request.QueryString["threadid"];
-                bool insertComment = threadComment.InsertThreadComment(userId, TID, reply);
+                bool insertComment = ThreadCommentDb.InsertThreadComment(userId, TID, reply);
 
                 if (insertComment.Equals(true))
                 {
@@ -64,12 +60,13 @@ namespace Fosec.WebPage
 
         protected void DelBtn_Click(object sender, EventArgs e)
         {
+            // TODO thread extra functions
             // need session manager to ensure only owner can delete
             string uname = SessionManager.GetUsername();
-            int userId = userDb.GetUserIdByUsername(uname);
+            int userId = UserDb.GetUserIdByUsername(uname);
             //if (userId != )
             string threadid = HttpContext.Current.Request.QueryString["threadid"];
-            threadDb.DeleteThread(threadid);
+            ThreadDb.DeleteThread(threadid);
         }
 
     }

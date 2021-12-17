@@ -14,9 +14,6 @@ namespace Fosec
     {
         string unameTxt, pwdTxt;
 
-        // Class initialization
-        UserDb userDb = new UserDb();
-
         protected void Page_Load(object sender, EventArgs e)
         {
             string username = SessionManager.GetUsername();
@@ -34,8 +31,8 @@ namespace Fosec
         {
             GetLoginTxt();
 
-            bool checkExistingUser = userDb.CheckExistingUser(unameTxt);
-            bool checkPassword = userDb.CheckUserPassword(unameTxt, pwdTxt);
+            bool checkExistingUser = UserDb.CheckExistingUser(unameTxt);
+            bool checkPassword = UserDb.CheckUserPassword(unameTxt, pwdTxt);
 
             if (checkExistingUser.Equals(true))
             {

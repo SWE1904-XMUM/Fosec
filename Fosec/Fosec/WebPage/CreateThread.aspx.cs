@@ -19,11 +19,6 @@ namespace Fosec.WebPage
         string titleTxt, contentTxt, tagTxt;
         string threadId = HttpContext.Current.Request.QueryString["threadid"];
 
-        // Class initialization
-        TagDb tagDb = new TagDb();
-        ThreadDb threadDb = new ThreadDb();
-        UserDb userDb = new UserDb();
-
         // Server control's functions
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -66,7 +61,7 @@ namespace Fosec.WebPage
         // Other functions
         private void DisplayTagsFromDb()
         {
-            SqlDataReader r = tagDb.DisplayTags();
+            SqlDataReader r = TagDb.DisplayTags();
 
             if (r.HasRows)
             {
@@ -95,14 +90,14 @@ namespace Fosec.WebPage
             if (!titleTxt.Equals("") && !contentTxt.Equals(""))
             {
                 string uname = SessionManager.GetUsername();
-                int userId = userDb.GetUserIdByUsername(uname);
+                int userId = UserDb.GetUserIdByUsername(uname);
 
                 string tagName = SessionManager.GetTag();
-                int tagNo = tagDb.GetTagIdByTagName(tagName);
+                int tagNo = TagDb.GetTagIdByTagName(tagName);
 
                 if (!userId.Equals(-1) && !tagNo.Equals(-1))
                 {
-                    bool insertThread = threadDb.InsertThread(userId, titleTxt, tagNo, contentTxt);
+                    bool insertThread = ThreadDb.InsertThread(userId, titleTxt, tagNo, contentTxt);
 
                     if (insertThread.Equals(true))
                     {
@@ -129,7 +124,7 @@ namespace Fosec.WebPage
 
         private void DisplayThreadContent()
         {
-            SqlDataReader r = threadDb.GetThreadContent(int.Parse(threadId));
+            SqlDataReader r = ThreadDb.GetThreadContent(int.Parse(threadId));
 
             if (r.HasRows)
             {
@@ -141,7 +136,7 @@ namespace Fosec.WebPage
 
                 if (!tagNoFromDb.Equals("-1"))
                 {
-                    string tagNameFromDb = tagDb.GetTagNameByTagId(int.Parse(tagNoFromDb));
+                    string tagNameFromDb = TagDb.GetTagNameByTagId(int.Parse(tagNoFromDb));
 
                     if(!tagNameFromDb.Equals("nothing"))
                     {
@@ -167,11 +162,11 @@ namespace Fosec.WebPage
             GetThreadText();
 
             string tagName = SessionManager.GetTag();
-            int tagNo = tagDb.GetTagIdByTagName(tagName);
+            int tagNo = TagDb.GetTagIdByTagName(tagName);
 
             if(tagNo != -1)
             {
-                bool editThread = threadDb.EditThread(int.Parse(threadId), titleTxt, tagNo, contentTxt);
+                bool editThread = ThreadDb.EditThread(int.Parse(threadId), titleTxt, tagNo, contentTxt);
 
                 if(editThread.Equals(true))
                 {
