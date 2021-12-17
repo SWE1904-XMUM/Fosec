@@ -123,7 +123,7 @@ namespace Fosec.WebPage
         private void DisplayThreadContent()
         {
             string threadId = Request.QueryString["threadid"];
-            SqlDataReader r = ThreadDb.GetThreadContent(int.Parse(threadId));
+            SqlDataReader r = ThreadDb.GetThreadContentByThreadId(int.Parse(threadId));
 
             if (r.HasRows)
             {
