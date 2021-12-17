@@ -24,7 +24,7 @@ namespace Fosec.WebPage
             
             //get threadid from link
             string threadid = HttpContext.Current.Request.QueryString["threadid"];
-            int UID = ThreadDb.GetUserID(threadid);
+            //int UID = ThreadDb.GetUserID(threadid);
             if (threadid == null)
             {
                 //WebPageUtil.DisplayMessageAndRedirect("Error, this page does not exist", "/WebPage/Home.aspx", this.Page);
@@ -48,12 +48,14 @@ namespace Fosec.WebPage
                 ReplyBtn.Enabled = false;
                 DelBtn.Visible = false;
             }
-            if (userId.Equals(UID))
+            /* if (userId.Equals(UID))
             {
                 DelBtn.Visible = true;
             }
             else
+            {
                 DelBtn.Visible = false;
+            } */
 
 
         }
