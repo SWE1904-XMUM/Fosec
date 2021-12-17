@@ -33,6 +33,24 @@ namespace Fosec.WebPage
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl threadContainer;
 
         /// <summary>
+        /// editBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton editBtn;
+
+        /// <summary>
+        /// deleteBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button deleteBtn;
+
+        /// <summary>
         /// threadRepeater control.
         /// </summary>
         /// <remarks>
@@ -40,15 +58,6 @@ namespace Fosec.WebPage
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater threadRepeater;
-
-        /// <summary>
-        /// DelBtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton DelBtn;
 
         /// <summary>
         /// threadCommentRepeater control.

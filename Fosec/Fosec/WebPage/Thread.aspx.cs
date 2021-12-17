@@ -16,70 +16,45 @@ namespace Fosec.WebPage
     public partial class Thread : System.Web.UI.Page
     {
         String reply;
+        string threadid = HttpContext.Current.Request.QueryString["threadid"];
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            string uname = SessionManager.GetUsername();
-            int userId = UserDb.GetUserIdByUsername(uname);
-            
-            //get threadid from link
-            string threadid = HttpContext.Current.Request.QueryString["threadid"];
-            //int UID = ThreadDb.GetUserID(threadid);
-            if (threadid == null)
-            {
-                //WebPageUtil.DisplayMessageAndRedirect("Error, this page does not exist", "/WebPage/Home.aspx", this.Page);
-                errorContainer.Visible = true;
-                threadContainer.Visible = false;
-            }
-            else
-            {
-                threadContainer.Visible = true;
-                errorContainer.Visible = false;
-            }
+            // display error instead of thread if no threadid is given
+            errorContainer.Visible = (threadid == null); //or threadid does not exist
+            threadContainer.Visible = !errorContainer.Visible;
 
-            //TODO disable reply if not logged in
-            if (!userId.Equals(-1))
+            if (threadid != null)
             {
-                ReplyBtn.Enabled = true;
-                DelBtn.Visible = true;
-            }
-            else
-            {
-                ReplyBtn.Enabled = false;
-                DelBtn.Visible = false;
-            }
-            /* if (userId.Equals(UID))
-            {
-                DelBtn.Visible = true;
-            }
-            else
-            {
-                DelBtn.Visible = false;
-            } */
+                //display delete button if the current user is the author of current thread
+                editBtn.Visible = deleteBtn.Visible = (UserDb.GetUserIdByUsername(SessionManager.GetUsername()) == ThreadDb.GetUserID(threadid));
 
-
+                //disable reply button if not logged in
+                //TODO add block to replace the comment area
+                if (SessionManager.GetUsername() == "")
+                {
+                    ReplyThread.Enabled = false;
+                    ReplyBtn.Enabled = false;
+                }
+            }
         }
 
         protected void ReplyBtn_Click(object sender, EventArgs e)
         {
             GetThreadReply();
 
-            if (!reply.Equals(""))
+            if (!reply.Trim().Equals(""))
             {
-                string uname = SessionManager.GetUsername();
-                int userId = UserDb.GetUserIdByUsername(uname);
-                string TID = HttpContext.Current.Request.QueryString["threadid"];
-                bool insertComment = ThreadCommentDb.InsertThreadComment(userId, TID, reply);
+                int userId = UserDb.GetUserIdByUsername(SessionManager.GetUsername());
+                bool insertComment = ThreadCommentDb.InsertThreadComment(userId, threadid, reply);
 
-                if (insertComment.Equals(true))
+                if (insertComment)
                 {
-                    // Code is provided in WebPageUtil class, just need to call
-                    WebPageUtil.DisplayMessage("Data inserted successfully");
+                    WebPageUtil.DisplayMessage("Your comment has been submitted");
                 }
-
                 else
                 {
-                    WebPageUtil.DisplayMessage("Data insert fail");
+                    WebPageUtil.DisplayMessage("Your comment has failed to be submit, please try again");
                 }
             }
             else
@@ -88,34 +63,27 @@ namespace Fosec.WebPage
             }
         }
 
+        protected void DelBtn_Click(object sender, EventArgs e)
+        {
+            if (UserDb.GetUserIdByUsername(SessionManager.GetUsername()) == ThreadDb.GetUserID(threadid))
+            {
+                bool result = ThreadDb.DeleteThread(threadid);
+                //TODO delete comments for this thread
+                if (result)
+                {
+                    WebPageUtil.DisplayMessageAndRedirect("Thread has been deleted", "/WebPage/Home.aspx", this.Page);
+                }
+                else
+                {
+                    WebPageUtil.DisplayMessage("Thread deletion has failed, please try again");
+                }
+            }
+        }
+
         private void GetThreadReply()
         {
             reply = ReplyThread.Text;
         }
-
-        protected void DelBtn_Click(object sender, EventArgs e)
-        {
-           
-            string uname = SessionManager.GetUsername();
-            int userId = UserDb.GetUserIdByUsername(uname);
-            string threadid = HttpContext.Current.Request.QueryString["threadid"];
-            int UID = ThreadDb.GetUserID(threadid);
-            if (!userId.Equals(UID))
-            {
-                
-                WebPageUtil.DisplayMessage("not the creator of this thread, no permission to delete");
-                DelBtn.Enabled = false;
-
-
-            }
-            else
-            {
-                
-                ThreadDb.DeleteThread(threadid);
-                DelBtn.Enabled = true;
-            }
-        }
-
     }
 }
 
