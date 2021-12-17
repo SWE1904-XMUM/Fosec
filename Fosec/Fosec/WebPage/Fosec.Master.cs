@@ -38,8 +38,6 @@ namespace Fosec
             {
                 if (checkPassword.Equals(true))
                 {
-                    // TODO -> display right content for users
-                    //Response.Redirect("Home.aspx");
                     SessionManager.SetLogin(true);
                     SessionManager.SetUsername(unameTxt);
                     WebPageUtil.DisplayMessageAndRedirect("Login successful", "/WebPage/Home.aspx", this.Page);

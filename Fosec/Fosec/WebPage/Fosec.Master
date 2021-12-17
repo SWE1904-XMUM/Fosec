@@ -4,9 +4,10 @@
 
 <html lang="utf-8">
 <head runat="server">
-    <title></title>
-    <asp:ContentPlaceHolder ID="head" runat="server">
-    </asp:ContentPlaceHolder>
+    <title>
+        <asp:ContentPlaceHolder ID="PageTitle" runat="server">
+        </asp:ContentPlaceHolder>
+    </title>
     <script src="../Resources/Js/jquery-3.6.0.min.js"></script>
     <script src="../Resources/Js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
@@ -21,50 +22,50 @@
                     <img id="logo" src="/Resources/Image/logo.png" alt="Fosec" />
                 </a>
                 <div class="navbar-right row" id="userActionBar">
-                <asp:Panel ID="guestActionBar" CssClass="col-12 row" runat="server">
-                    <div class="col-5">
-                        <asp:TextBox ID="uname" CssClass="form-control" type="text" placeholder="Your username" runat="server"></asp:TextBox>
-                    </div>
-                    <div class="col-5">
-                        <asp:TextBox ID="pwd" CssClass="form-control" type="password" placeholder="Your password" runat="server"></asp:TextBox>
-                    </div>
-                    <div class="col-2">
-                        <asp:Button CssClass="btn" ID="login" runat="server" Text="Login" OnClick="login_Click"/>
-                    </div>
-                    <div class="row">
-                        <p class="text-right">
-                            Do not have an account?&nbsp;
+                    <asp:Panel ID="guestActionBar" CssClass="col-12 row" runat="server">
+                        <div class="col-5">
+                            <asp:TextBox ID="uname" CssClass="form-control" type="text" placeholder="Your username" runat="server"></asp:TextBox>
+                        </div>
+                        <div class="col-5">
+                            <asp:TextBox ID="pwd" CssClass="form-control" type="password" placeholder="Your password" runat="server"></asp:TextBox>
+                        </div>
+                        <div class="col-2">
+                            <asp:Button CssClass="btn" ID="login" runat="server" Text="Login" OnClick="login_Click" />
+                        </div>
+                        <div class="row">
+                            <p class="text-right">
+                                Do not have an account?&nbsp;
                             <span>
                                 <a href="/WebPage/SignupAndLogin.aspx?action=signup">Sign up</a>
                             </span>
-                        </p>
-                    </div>
-                </asp:Panel>
-                <asp:Panel ID="loggedInActionBar" CssClass="col-12" runat="server">
-                    <div class="text-right">
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="bi bi-person-fill"></i>
-                                <span id="loggedInUsername" runat="server">@Username</span>
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li>
-                                    <!-- <a class="dropdown-item" href="/WebPage/Profile.aspx">Profile</a> -->
-                                    <asp:LinkButton CssClass="dropdown-item" PostBackUrl="/WebPage/Profile.aspx" Text="Profile" runat="server"></asp:LinkButton>
-                                </li>
-                                <li>
-                                    <!-- <a class="dropdown-item" href="#">Logout</a> -->
-                                    <asp:Button CssClass="dropdown-item" OnClick="Logout_Click" Text="Logout" runat="server"/>
-                                </li>
-                            </ul>
+                            </p>
                         </div>
-                    </div>
-                </asp:Panel>
-               </div>
+                    </asp:Panel>
+                    <asp:Panel ID="loggedInActionBar" CssClass="col-12" runat="server">
+                        <div class="text-right">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-person-fill"></i>
+                                    <span id="loggedInUsername" runat="server">@Username</span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li>
+                                        <!-- <a class="dropdown-item" href="/WebPage/Profile.aspx">Profile</a> -->
+                                        <asp:LinkButton CssClass="dropdown-item" PostBackUrl="/WebPage/Profile.aspx" Text="Profile" runat="server"></asp:LinkButton>
+                                    </li>
+                                    <li>
+                                        <!-- <a class="dropdown-item" href="#">Logout</a> -->
+                                        <asp:Button CssClass="dropdown-item" OnClick="Logout_Click" Text="Logout" runat="server" />
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </asp:Panel>
+                </div>
             </div>
         </nav>
         <div class="container-fluid">
-            <asp:ContentPlaceHolder ID="PageContent" runat="server"/>
+            <asp:ContentPlaceHolder ID="PageContent" runat="server" />
         </div>
     </form>
 </body>

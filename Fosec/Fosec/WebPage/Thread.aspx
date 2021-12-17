@@ -2,6 +2,10 @@
 
 <%@ Import Namespace="Fosec.Utils" %>
 
+<asp:Content ContentPlaceHolderID="PageTitle" runat="server">
+    Thread - Fosec
+</asp:Content>
+
 <asp:Content ContentPlaceHolderID="PageContent" runat="server">
     <div class="container" id="view-thread-container">
         <div id="mainThreadContainer">
@@ -29,13 +33,11 @@
                                     <asp:Label CssClass="threadDate col-4" runat="server" Text='<%# Eval("date") %>' />
                                      <asp:LinkButton ID="EditBtn" CssClass="threadEdit" runat="server" href='<%# @"/WebPage/CreateThread.aspx?threadid=" + Eval("threadId") %>'>Edit</asp:LinkButton>
                                     <asp:LinkButton ID="DelBtn" CssClass="threadDel" runat="server" OnClick="DelBtn_Click">Delete</asp:LinkButton>
-                                   
                                 </div>
                             </div>
                         </div>
                     </div>
                 </ItemTemplate>
-                
             </asp:Repeater>
             
 

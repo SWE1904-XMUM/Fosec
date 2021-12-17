@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WebPage/Fosec.Master" AutoEventWireup="true" CodeBehind="SignupAndLogin.aspx.cs" Inherits="Fosec.WebPage.SignupAndLogin" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+<asp:Content ContentPlaceHolderID="PageTitle" runat="server">
+    Login and Sign Up - Fosec
 </asp:Content>
 <asp:Content ContentPlaceHolderID="PageContent" runat="server">
     <div class="row">

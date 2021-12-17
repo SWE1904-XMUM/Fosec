@@ -1,4 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WebPage/Fosec.Master" AutoEventWireup="true" CodeBehind="CreateThread.aspx.cs" Inherits="Fosec.WebPage.CreateThread" %>
+
+<asp:Content ContentPlaceHolderID="PageTitle" runat="server">
+    Create Thread - Fosec
+</asp:Content>
+
 <asp:Content ContentPlaceHolderID="PageContent" runat="server">
     <div class="container" id="thread-container">
         <div class="row">
