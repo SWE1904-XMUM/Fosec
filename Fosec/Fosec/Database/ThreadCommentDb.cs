@@ -7,11 +7,11 @@ using System.Web;
 
 namespace Fosec.Database
 {
-    public class ThreadCommentDb
+    public static class ThreadCommentDb
     {
         private static SqlConnection connection = ConnectionProvider.GetDatabaseConnection();
 
-        public bool InsertThreadComment(int UserID, String threadID, String comment)
+        public static bool InsertThreadComment(int UserID, String threadID, String comment)
         {
             string query = "insert into ThreadComment (userID,threadID,comment) values (@2,@3,@4)";
             SqlCommand cmd = new SqlCommand(query, connection);

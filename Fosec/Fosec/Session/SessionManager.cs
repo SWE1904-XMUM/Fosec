@@ -25,9 +25,17 @@ namespace Fosec.Session
         {
             if (HttpContext.Current.Session[UNAME] != null)
             {
-                return HttpContext.Current.Session["uname"].ToString();
+                return HttpContext.Current.Session[UNAME].ToString();
             }
             return "";
+        }
+
+        public static void RemoveUsername()
+        {
+            if(HttpContext.Current.Session[UNAME] != null)
+            {
+                HttpContext.Current.Session.Remove(UNAME);
+            }
         }
 
         public static void SetTag(string tagName)

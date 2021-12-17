@@ -6,18 +6,19 @@ using System.Web;
 
 namespace Fosec.Database
 {
-    public class TagDb
+    public static class TagDb
     {
         private static SqlConnection connection = ConnectionProvider.GetDatabaseConnection();
 
-        public SqlDataReader DisplayTags()
+        public static SqlDataReader DisplayTags()
         {
+            //TODO return list instead of data reader
             string query = "select tagName from Tag";
             SqlCommand cmd = new SqlCommand(query, connection);
             return cmd.ExecuteReader();
         }
 
-        public int GetTagIdByTagName(string tagName)
+        public static int GetTagIdByTagName(string tagName)
         {
             string query = "select tagId from Tag where tagName = @0";
             SqlCommand cmd = new SqlCommand(query, connection);
@@ -36,7 +37,7 @@ namespace Fosec.Database
             }
         }
 
-        public string GetTagNameByTagId(int tagId)
+        public static string GetTagNameByTagId(int tagId)
         {
             string query = "select tagName from Tag where tagId = @0";
             SqlCommand cmd = new SqlCommand(query, connection);

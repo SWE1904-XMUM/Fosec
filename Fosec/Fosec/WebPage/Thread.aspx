@@ -3,7 +3,6 @@
 <%@ Import Namespace="Fosec.Utils" %>
 
 <asp:Content ContentPlaceHolderID="PageContent" runat="server">
-    <!-- TODO thread page content -->
     <div class="container" id="view-thread-container">
         <div id="mainThreadContainer">
             <asp:Repeater ID="threadRepeater" runat="server" DataSourceID="ThreadData">

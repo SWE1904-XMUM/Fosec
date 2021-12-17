@@ -7,11 +7,11 @@ using System.Web;
 
 namespace Fosec.Database
 {
-    public class UserDb
+    public static class UserDb
     {
         private static SqlConnection connection = ConnectionProvider.GetDatabaseConnection();
 
-        public bool InsertUsers(string username, string email, string pwd)
+        public static bool InsertUsers(string username, string email, string pwd)
         {
             string query = "insert into Users (username, email, pwd) values (@0,@1,@2)";
             SqlCommand cmd = new SqlCommand(query, connection);
@@ -31,14 +31,14 @@ namespace Fosec.Database
             }
         }
 
-        public int GetUserIdByUsername(string uname)
+        public static int GetUserIdByUsername(string uname)
         {
             string query = "select userId from Users where username = @0";
             SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@0", uname);
             SqlDataReader r = cmd.ExecuteReader();
 
-            if(r.HasRows)
+            if (r.HasRows)
             {
                 r.Read();
                 return r.GetInt32(0);
@@ -50,16 +50,16 @@ namespace Fosec.Database
             }
         }
 
-        public bool CheckExistingUser(string uname)
+        public static bool CheckExistingUser(string uname)
         {
             string query = "select username from Users where username = @0";
             SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@0", uname);
             SqlDataReader r = cmd.ExecuteReader();
 
-            if(r.HasRows)
+            if (r.HasRows)
             {
-                return true; 
+                return true;
             }
 
             else
@@ -68,19 +68,19 @@ namespace Fosec.Database
             }
         }
 
-        public bool CheckUserPassword(string uname, string pwd)
+        public static bool CheckUserPassword(string uname, string pwd)
         {
             string query = "select pwd from Users where username = @0";
             SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@0", uname);
             SqlDataReader r = cmd.ExecuteReader();
 
-            if(r.HasRows)
+            if (r.HasRows)
             {
                 r.Read();
-                bool compare = HashUtil.CompareHash(r.GetString(0),pwd);
+                bool compare = HashUtil.CompareHash(r.GetString(0), pwd);
 
-                if(compare.Equals(true))
+                if (compare.Equals(true))
                 {
                     return true;
                 }
@@ -104,7 +104,21 @@ namespace Fosec.Database
             cmd.Parameters.AddWithValue("@0", profileImage);
             cmd.Parameters.AddWithValue("@1", userid);
 
-            if(cmd.ExecuteNonQuery() > 0)
+            if (cmd.ExecuteNonQuery() > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static bool CheckUserIdExistence(int userid)
+        {
+            string query = "select username from users where userid=@0";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@0", userid);
+            SqlDataReader r = cmd.ExecuteReader();
+
+            if (r.HasRows)
             {
                 return true;
             }

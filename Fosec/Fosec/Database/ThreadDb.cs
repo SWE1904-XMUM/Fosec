@@ -6,11 +6,11 @@ using System.Web;
 
 namespace Fosec.Database
 {
-    public class ThreadDb
+    public static class ThreadDb
     {
         private static SqlConnection connection = ConnectionProvider.GetDatabaseConnection();
 
-        public bool InsertThread(int userId, string title, int tagNo, string content)
+        public static bool InsertThread(int userId, string title, int tagNo, string content)
         {
             string query = "insert into Threads (userId, title, tagNo, content) values (@0,@1,@2,@3)";
             SqlCommand cmd = new SqlCommand(query, connection);
@@ -31,7 +31,7 @@ namespace Fosec.Database
             }
         }
 
-        public bool EditThread(int threadId, string title, int tagNo, string content)
+        public static bool EditThread(int threadId, string title, int tagNo, string content)
         {
             string query = "update Threads set title = @0 ,tagNo = @1, content = @2 where threadId = @3";
             SqlCommand cmd = new SqlCommand(query, connection);
@@ -52,7 +52,7 @@ namespace Fosec.Database
             }
         }
 
-        public bool DeleteThread(string threadId)
+        public static bool DeleteThread(string threadId)
         {
             string query = "delete Threads where threadId = @0";
             SqlCommand cmd = new SqlCommand(query, connection);
@@ -70,7 +70,7 @@ namespace Fosec.Database
             }
         }
 
-        public SqlDataReader GetThreadContent(int threadId)
+        public static SqlDataReader GetThreadContent(int threadId)
         {
             string query = "select title, tagNo, content from Threads where threadId = @0";
             SqlCommand cmd = new SqlCommand(query, connection);

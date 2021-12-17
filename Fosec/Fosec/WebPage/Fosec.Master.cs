@@ -14,17 +14,14 @@ namespace Fosec
     {
         string unameTxt, pwdTxt;
 
-        // Class initialization
-        UserDb userDb = new UserDb();
-
         protected void Page_Load(object sender, EventArgs e)
         {
             string username = SessionManager.GetUsername();
 
             guestActionBar.Visible = (username == "");
             loggedInActionBar.Visible = (username != "");
-            
-            if(username != "")
+
+            if (username != "")
             {
                 loggedInUsername.InnerText = username;
             }
@@ -34,8 +31,8 @@ namespace Fosec
         {
             GetLoginTxt();
 
-            bool checkExistingUser = userDb.CheckExistingUser(unameTxt);
-            bool checkPassword = userDb.CheckUserPassword(unameTxt, pwdTxt);
+            bool checkExistingUser = UserDb.CheckExistingUser(unameTxt);
+            bool checkPassword = UserDb.CheckUserPassword(unameTxt, pwdTxt);
 
             if (checkExistingUser.Equals(true))
             {
@@ -45,19 +42,26 @@ namespace Fosec
                     //Response.Redirect("Home.aspx");
                     SessionManager.SetLogin(true);
                     SessionManager.SetUsername(unameTxt);
+                    WebPageUtil.DisplayMessageAndRedirect("Login successful", "/WebPage/Home.aspx", this.Page);
                 }
 
                 else
                 {
-                    MessageBoxUtil.DisplayMessage("Invalid password!");
+                    WebPageUtil.DisplayMessage("Invalid password!");
                     pwd.BackColor = System.Drawing.Color.LightCoral;
                 }
             }
 
             else
             {
-                MessageBoxUtil.DisplayMessage("Not an existing user, please signup!");
+                WebPageUtil.DisplayMessageAndRedirect("Not an existing user, please signup!", "/WebPage/SignupAndLogin.aspx?action=signup", this.Page);
             }
+        }
+
+        protected void Logout_Click(object sender, EventArgs e)
+        {
+            SessionManager.RemoveUsername();
+            Response.Redirect("/WebPage/Home.aspx");
         }
 
         private void GetLoginTxt()

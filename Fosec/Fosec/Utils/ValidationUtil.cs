@@ -7,11 +7,11 @@ using System.Windows;
 
 namespace Fosec.Utils
 {
-    public class ValidationUtil
+    public static class ValidationUtil
     {
         public static readonly string RESULT_PASS = "pass";
 
-        public string ValidatePassword(string pwd)
+        public static string ValidatePassword(string pwd)
         {
             var hasNumber = new Regex(@"[0-9]+");
             var hasUpperChar = new Regex(@"[A-Z]+");
@@ -20,22 +20,22 @@ namespace Fosec.Utils
 
             if (!hasLowerChar.IsMatch(pwd))
             {
-                return "Password should contain At least one lower case letter";
+                return "Password should contain at least one lower case letter";
             }
 
             else if (!hasUpperChar.IsMatch(pwd))
             {
-                return "Password should contain At least one upper case letter";
+                return "Password should contain at least one upper case letter";
             }
 
             else if (!hasNumber.IsMatch(pwd))
             {
-                return "Password should contain At least one numeric value";
+                return "Password should contain at least one numeric value";
             }
 
             else if (!hasSymbols.IsMatch(pwd))
             {
-                return "Password should contain At least one special case characters";
+                return "Password should contain at least one special case characters";
             }
 
             else if(pwd.Length < 8)
@@ -49,7 +49,7 @@ namespace Fosec.Utils
             }    
         }
 
-        public string ValidateUname(string uname)
+        public static string ValidateUname(string uname)
         {
             if(uname.Length < 6)
             {
@@ -62,7 +62,7 @@ namespace Fosec.Utils
             }
         }
 
-        public string ValidateEmail(string email)
+        public static string ValidateEmail(string email)
         {
             var pattern = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
 
