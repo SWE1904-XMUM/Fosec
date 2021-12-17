@@ -18,12 +18,12 @@
                 <asp:HyperLink CssClass="text-right btn" Text="Create New Thread" NavigateUrl="/WebPage/CreateThread.aspx" runat="server"></asp:HyperLink>
             </div>
         </div>
-        <!-- TODO selected tag -->
+
         <div class="box-shadow thread-container">
             <div class="sectionTitle p-2">
                 <asp:Label Text="All" ID="selectedTagName" class="text-center" runat="server"></asp:Label>
             </div>
-            <!-- TODO threads -->
+
             <div id="homeThreadContainer">
                 <asp:Repeater ID="threadRepeater" runat="server" DataSourceID="AllThreadDataSource">
                     <ItemTemplate>
@@ -53,7 +53,6 @@
                         <br />
                     </ItemTemplate>
                 </asp:Repeater>
-
 
                 <%--Data Sources--%>
                 <asp:SqlDataSource ID="TagDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Tag]"></asp:SqlDataSource>
