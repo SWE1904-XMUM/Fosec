@@ -68,6 +68,24 @@ namespace Fosec.Database
             }
         }
 
+        public static bool CheckExistingEmail(string email)
+        {
+            string query = "select email from Users where email = @0";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@0", email);
+            SqlDataReader r = cmd.ExecuteReader();
+
+            if (r.HasRows)
+            {
+                return true;
+            }
+
+            else
+            {
+                return false;
+            }
+        }
+
         public static bool CheckUserPassword(string uname, string pwd)
         {
             string query = "select pwd from Users where username = @0";

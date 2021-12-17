@@ -58,31 +58,40 @@ namespace Fosec.WebPage
 
             string uname = ValidationUtil.ValidateUname(signupUnameTxt);
             string pwd = ValidationUtil.ValidatePassword(signupPwdTxt);
-            string email = ValidationUtil.ValidateEmail(signupEmailTxt); //TODO validate whether email already exist
+            string email = ValidationUtil.ValidateEmail(signupEmailTxt);
 
             if (email.Equals("pass") && uname.Equals("pass") && pwd.Equals("pass") && signupConfirmPwdTxt.Equals(signupPwdTxt))
             {
+                bool checkExistingEmail = UserDb.CheckExistingEmail(signupEmailTxt);
                 bool checkExistingUser = UserDb.CheckExistingUser(signupUnameTxt);
 
-                if (checkExistingUser.Equals(false))
+                if (checkExistingEmail.Equals(false))
                 {
-                    bool insertUser = UserDb.InsertUsers(signupUnameTxt, signupEmailTxt, signupPwdTxt);
-
-                    if (insertUser.Equals(true))
+                    if (checkExistingUser.Equals(false))
                     {
-                        ClearSignupFields();
-                        WebPageUtil.DisplayMessageAndRedirect("Signup successfully! Please login.", "/WebPage/SignupAndLogin.aspx?action=login", this.Page);
-                    }
+                        bool insertUser = UserDb.InsertUsers(signupUnameTxt, signupEmailTxt, signupPwdTxt);
 
+                        if (insertUser.Equals(true))
+                        {
+                            ClearSignupFields();
+                            WebPageUtil.DisplayMessageAndRedirect("Signup successfully! Please login.", "/WebPage/SignupAndLogin.aspx?action=login", this.Page);
+                        }
+
+                        else
+                        {
+                            WebPageUtil.DisplayMessage("Fail to signup.");
+                        }
+                    }
+                    
                     else
                     {
-                        WebPageUtil.DisplayMessage("Fail to signup.");
+                        WebPageUtil.DisplayMessage("Username already existed, please try for another.");
                     }
                 }
 
                 else
                 {
-                    WebPageUtil.DisplayMessage("Username already existed, please try for another.");
+                    WebPageUtil.DisplayMessage("Email already existed, please try for another.");
                 }
             }
 
