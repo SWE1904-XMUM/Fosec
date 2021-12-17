@@ -49,7 +49,7 @@
                                         <div class="tagName col-8">
                                             <asp:Label CssClass="btn no-hover tag-in-thread" runat="server" Text='<%# Eval("tagName") %>' />
                                         </div>
-                                        <asp:Label CssClass="threadDate col-4" runat="server" Text='<%# Eval("date") %>' />
+                                        <asp:Label CssClass="threadDate col-4 text-right" runat="server" Text='<%# Eval("date") %>' />
                                     </div>
                                 </div>
                             </div>
