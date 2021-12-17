@@ -2,6 +2,10 @@
 
 <%@ Import Namespace="Fosec.Utils" %>
 
+<asp:Content ContentPlaceHolderID="PageTitle" runat="server">
+    Thread - Fosec
+</asp:Content>
+
 <asp:Content ContentPlaceHolderID="PageContent" runat="server">
     <div class="container" id="view-thread-container">
         <div id="mainThreadContainer">

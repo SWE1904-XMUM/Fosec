@@ -2,6 +2,10 @@
 
 <%@ Import Namespace="Fosec.Utils" %>
 
+<asp:Content ContentPlaceHolderID="PageTitle" runat="server">
+    Fosec
+</asp:Content>
+
 <asp:Content ContentPlaceHolderID="PageContent" runat="server">
     <div class="container">
         <div id="tagContainer" class="box-shadow">
