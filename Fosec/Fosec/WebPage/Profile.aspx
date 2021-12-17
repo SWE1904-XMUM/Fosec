@@ -7,7 +7,13 @@
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="PageContent" runat="server">
-    <div class="container">
+    <div class="container d-flex flex-column align-items-center my-5" id="errorContainer" runat="server" visible="false">
+        <img src="/Resources/Image/error-icon.png" />
+        <p class="display-3 text-uppercase">Error!</p>
+        <p class="display-6">This page does not exist</p>
+        <asp:LinkButton CssClass="btn" runat="server" PostBackUrl="/WebPage/Home.aspx" Text="Go back to Home"></asp:LinkButton>
+    </div>
+    <div class="container" id="profileContainer" runat="server">
         <div class="row" id="profile-container">
             <div id="userInformationContainer" class="col-3 p-2">
                 <asp:ListView ID="userProfile" runat="server" DataSourceID="LoggedInUserProfileData">

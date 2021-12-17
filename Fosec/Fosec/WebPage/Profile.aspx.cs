@@ -38,7 +38,8 @@ namespace Fosec.WebPage
             }
             else
             {
-                WebPageUtil.DisplayMessageAndRedirect("Error: This page does not exist", "/WebPage/Home.aspx", this.Page);
+                errorContainer.Visible = true;
+                profileContainer.Visible = false;
             }
         }
 

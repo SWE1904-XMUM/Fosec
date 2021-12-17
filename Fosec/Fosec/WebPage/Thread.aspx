@@ -18,7 +18,7 @@
             <div class="row">
                 <div class="text-right mt-3">
                     <!-- TODO debug: edit button not working -->
-                    <asp:LinkButton ID="editBtn" CssClass="btn" runat="server" href='<%# @"/WebPage/CreateThread.aspx?threadid=" + Eval("threadId") %>'>Edit</asp:LinkButton>
+                    <asp:LinkButton ID="editBtn" CssClass="btn" runat="server" href='<%# @"/WebPage/CreateThread.aspx?threadid=" + Eval("threadId") %>' Text="Edit"></asp:LinkButton>
                     <!-- TODO danger button -->
                     <asp:Button ID="deleteBtn" CssClass="btn" runat="server" OnClick="DelBtn_Click" Text="Delete" />
                 </div>
