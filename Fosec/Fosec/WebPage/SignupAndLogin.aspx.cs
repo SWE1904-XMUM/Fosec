@@ -29,6 +29,7 @@ namespace Fosec.WebPage
             {
                 ActivateSignup(sender, e);
             }
+
             else
             {
                 ActivateLogin(sender, e);
