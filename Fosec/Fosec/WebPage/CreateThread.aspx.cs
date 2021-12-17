@@ -52,7 +52,7 @@ namespace Fosec.WebPage
         {
             if(!String.IsNullOrEmpty(Request.QueryString["threadid"]))
             {
-                DisplayThreadContent();
+                GetThreadText();
                 UpdateThreadContent();
             }
 
@@ -159,8 +159,6 @@ namespace Fosec.WebPage
 
         private void UpdateThreadContent()
         {
-            GetThreadText();
-
             string threadId = Request.QueryString["threadid"];
             string tagName = SessionManager.GetTag();
             int tagNo = TagDb.GetTagIdByTagName(tagName);
