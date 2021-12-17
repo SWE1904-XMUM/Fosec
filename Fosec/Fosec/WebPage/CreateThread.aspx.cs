@@ -34,7 +34,7 @@ namespace Fosec.WebPage
             tagTxt = ((Button)sender).CommandArgument;
             SessionManager.SetTag(tagTxt);
 
-            foreach (Button button in tag.Controls.OfType<Button>())
+            foreach (Button button in tagPlaceHolder.Controls.OfType<Button>())
             {
                 if (button.Text != SessionManager.GetTag())
                 {
@@ -65,25 +65,19 @@ namespace Fosec.WebPage
         // Other functions
         private void DisplayTagsFromDb()
         {
-            SqlDataReader r = TagDb.DisplayTags();
+            List<string> tagList = TagDb.GetAllTags();
 
-            if (r.HasRows)
+            if(tagList.Count > 0)
             {
-                while (r.Read())
+                foreach(string tag in tagList)
                 {
                     Button tagBtn = new Button();
-                    string tagName = r["tagName"].ToString();
-                    tagBtn.CommandArgument = tagName;
+                    tagBtn.CommandArgument = tag;
                     tagBtn.CssClass = "btn tag-btn";
-                    tagBtn.Text = tagName;
+                    tagBtn.Text = tag;
                     tagBtn.Click += new EventHandler(tag_Click);
-                    tag.Controls.Add(tagBtn);
+                    tagPlaceHolder.Controls.Add(tagBtn);
                 }
-            }
-
-            else
-            {
-                WebPageUtil.DisplayMessage("No tag found.");
             }
         }
 
@@ -145,7 +139,7 @@ namespace Fosec.WebPage
 
                         if (!tagNameFromDb.Equals("nothing"))
                         {
-                            foreach (Button button in tag.Controls.OfType<Button>())
+                            foreach (Button button in tagPlaceHolder.Controls.OfType<Button>())
                             {
                                 if (button.Text.Equals(tagNameFromDb))
                                 {
