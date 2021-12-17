@@ -32,17 +32,23 @@
                     <div class="title-container">
                         <h2><span><i class="bi bi-person-fill me-1"></i></span>Profile</h2>
                     </div>
-                    <div class="profile-info-container">
+                    <div class="profile-info-container mx-2">
                         <asp:ListView ID="userProfileDetail" runat="server" DataSourceID="LoggedInUserProfileData">
                             <ItemTemplate>
                                 <table class="profile">
+                                    <thead>
+                                        <tr>
+                                            <th class="col-4"></th>
+                                            <th class="col-4"></th>
+                                        </tr>
+                                    </thead>
                                     <tr>
-                                        <td class="fixed-column-width">Username: </td>
+                                        <td class="fw-bold">Username: </td>
                                         <td>
                                             <asp:Label runat="server"><%#Eval("username") %></asp:Label></td>
                                     </tr>
                                     <tr>
-                                        <td class="fixed-column-width">Email: </td>
+                                        <td class="fw-bold">Email: </td>
                                         <td>
                                             <asp:Label runat="server"><%#Eval("email") %></asp:Label></td>
                                     </tr>
@@ -50,7 +56,7 @@
                             </ItemTemplate>
                         </asp:ListView>
                         <!-- TODO separate edit function -->
-                        <div class="profile m-3">
+                        <div class="profile m-2">
                             <div class="m-1">
                                 <asp:Button ID="openEditProfileImageContainerBtn" CssClass="btn" runat="server" Text="Change Profile Image" OnClick="DisplayProfileImageUploadForm" />
                                 <asp:Button ID="openEditPasswordContainerBtn" CssClass="btn" runat="server" Text="Change Password" OnClick="DisplayChangePasswordForm" />
@@ -91,7 +97,7 @@
                                             </asp:TableCell>
                                         </asp:TableRow>
                                     </asp:Table>
-                                    <asp:Button Text="Update Password" ID="updatePasswordBtn" runat="server" CssClass="btn" OnClick="UpdatePassword"/>
+                                    <asp:Button Text="Update Password" ID="updatePasswordBtn" runat="server" CssClass="btn" OnClick="UpdatePassword" />
                                 </div>
                             </div>
                         </div>
