@@ -9,6 +9,7 @@
 <asp:Content ID="PageContent" ContentPlaceHolderID="PageContent" runat="server">
     <div class="container d-flex flex-column align-items-center my-5" id="errorContainer" runat="server">
         <!-- TODO add image -->
+        <img src="/Resources/Image/error-icon.png" />
         <p class="display-3 text-uppercase">Error!</p>
         <p class="display-6">This page does not exist</p>
         <asp:LinkButton CssClass="btn" runat="server" PostBackUrl="/WebPage/Home.aspx" Text="Go back to Home"></asp:LinkButton>
