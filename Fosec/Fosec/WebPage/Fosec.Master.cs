@@ -60,6 +60,12 @@ namespace Fosec
             }
         }
 
+        protected void Logout_Click(object sender, EventArgs e)
+        {
+            SessionManager.RemoveUsername();
+            Response.Redirect("/WebPage/Home.aspx");
+        }
+
         private void GetLoginTxt()
         {
             unameTxt = uname.Text;

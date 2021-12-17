@@ -61,7 +61,7 @@ namespace Fosec.WebPage
             ValidationUtil validationUtil = new ValidationUtil();
             string uname = validationUtil.ValidateUname(signupUnameTxt);
             string pwd = validationUtil.ValidatePassword(signupPwdTxt);
-            string email = validationUtil.ValidateEmail(signupEmailTxt);
+            string email = validationUtil.ValidateEmail(signupEmailTxt); //TODO validate whether email already exist
 
             if (email.Equals("pass") && uname.Equals("pass") && pwd.Equals("pass") && signupConfirmPwdTxt.Equals(signupPwdTxt))
             {
@@ -73,7 +73,8 @@ namespace Fosec.WebPage
 
                     if (insertUser.Equals(true))
                     {
-                        MessageBoxUtil.DisplayMessage("Signup successfully! Please login.");
+                        ClearSignupFields();
+                        MessageBoxUtil.DisplayMessageAndRedirect("Signup successfully! Please login.", "/WebPage/SignupAndLogin.aspx?action=login", ClientScript);
                     }
 
                     else
@@ -124,9 +125,10 @@ namespace Fosec.WebPage
             {
                 if (checkPassword.Equals(true))
                 {
-                    Response.Redirect("Home.aspx");
+                    ClearLoginFields();
                     SessionManager.SetLogin(true);
                     SessionManager.SetUsername(signupUnameTxt);
+                    Response.Redirect("/WebPage/Home.aspx");
                 }
 
                 else
@@ -154,6 +156,20 @@ namespace Fosec.WebPage
             signupUnameTxt = signupUname.Text;
             signupPwdTxt = signupPwd.Text;
             signupConfirmPwdTxt = signupConfirmPwd.Text;
+        }
+
+        private void ClearLoginFields()
+        {
+            loginUname.Text = "";
+            loginPwd.Text = "";
+        }
+
+        private void ClearSignupFields()
+        {
+            signupEmail.Text = "";
+            signupUname.Text = "";
+            signupPwd.Text = "";
+            signupConfirmPwd.Text = "";
         }
     }
 }

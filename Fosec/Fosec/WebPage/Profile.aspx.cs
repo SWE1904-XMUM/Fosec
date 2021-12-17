@@ -16,8 +16,12 @@ namespace Fosec.WebPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            // TODO remove
-            SessionManager.SetUsername("pjou00");
+            // TODO get userid from link
+            // if the userid belongs to the logged in user, display the user's profile (include edit field)
+            // otherwise, display the user's profile (without edit field)
+
+            // if no userid is passed, display the logged in user's profile
+            // go back to homepage if not logged in
         }
 
         protected void SubmitProfileImage(object sender, EventArgs e)
