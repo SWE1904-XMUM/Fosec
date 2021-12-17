@@ -7,7 +7,13 @@
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="PageContent" runat="server">
-    <div class="container">
+    <div class="container d-flex flex-column align-items-center my-5" id="errorContainer" runat="server" visible="false">
+        <img src="/Resources/Image/error-icon.png" />
+        <p class="display-3 text-uppercase">Error!</p>
+        <p class="display-6">This page does not exist</p>
+        <asp:LinkButton CssClass="btn" runat="server" PostBackUrl="/WebPage/Home.aspx" Text="Go back to Home"></asp:LinkButton>
+    </div>
+    <div class="container" id="profileContainer" runat="server">
         <div class="row" id="profile-container">
             <div id="userInformationContainer" class="col-3 p-2">
                 <asp:ListView ID="userProfile" runat="server" DataSourceID="LoggedInUserProfileData">
@@ -26,7 +32,7 @@
             <div id="homeThreadContainer" class="col-9 p-1">
                 <div class="profile-container">
                     <div class="title-container">
-                        <h2>Profile</h2>
+                        <h2><span><i class="bi bi-person-fill me-1"></i></span>Profile</h2>
                     </div>
                     <div class="profile-info-container">
                         <asp:ListView ID="userProfileDetail" runat="server" DataSourceID="LoggedInUserProfileData">
@@ -46,6 +52,7 @@
 
                             </ItemTemplate>
                         </asp:ListView>
+                        <!-- TODO separate edit function -->
                         <table class="profile">
                             <tr>
                                 <td class="fixed-column-width">Profile Picture: </td>
@@ -54,27 +61,26 @@
                             </tr>
                         </table>
                         <asp:Button Text="Submit" ID="submitProfileBtn" CssClass="btn" runat="server" OnClick="SubmitProfileImage" />
-
                     </div>
                 </div>
                 <div class="profile-container">
                     <div class="title-container">
-                        <h2>Asked Questions</h2>
+                        <h2><i class="bi bi-patch-question me-2"></i>Asked Questions</h2>
                     </div>
                     <div class="profile-info-container">
                         <asp:Repeater ID="userThreadRepeater" runat="server" DataSourceID="LoggedInUserThreadData">
                             <ItemTemplate>
                                 <itemtemplate>
-                                    <div class="threadContainer row">
+                                    <div class="threadContainer-profile row">
                                         <a class="link-text-view px-4 py-2" href='<%# @"/WebPage/Thread.aspx?threadid=" + Eval("threadId") %>'>
                                             <asp:Label CssClass="threadTitle row" runat="server" Text='<%# Eval("title") %>' />
                                             <asp:Label CssClass="threadContent row" runat="server" Text='<%# Eval("content") %>' />
                                         </a>
                                         <div class="row">
                                             <div class="tagName col-8">
-                                                <asp:Label CssClass="btn tag-btn" runat="server" Text='<%# Eval("tagName") %>' />
+                                                <asp:Label CssClass="btn tag-btn no-hover tag-in-thread" runat="server" Text='<%# Eval("tagName") %>' />
                                             </div>
-                                            <asp:Label CssClass="threadDate col-4" runat="server" Text='<%# Eval("date") %>' />
+                                            <asp:Label CssClass="threadDate col-4 text-right" runat="server" Text='<%# Eval("date") %>' />
                                         </div>
                                     </div>
                                     <br />

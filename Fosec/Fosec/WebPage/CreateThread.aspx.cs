@@ -3,12 +3,8 @@ using Fosec.Session;
 using Fosec.Utils;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace Fosec.WebPage
@@ -123,7 +119,7 @@ namespace Fosec.WebPage
         private void DisplayThreadContent()
         {
             string threadId = Request.QueryString["threadid"];
-            SqlDataReader r = ThreadDb.GetThreadContent(int.Parse(threadId));
+            SqlDataReader r = ThreadDb.GetThreadContentByThreadId(int.Parse(threadId));
 
             if (r.HasRows)
             {

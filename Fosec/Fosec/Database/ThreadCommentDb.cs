@@ -1,9 +1,5 @@
-﻿using Fosec.Utils;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 
 namespace Fosec.Database
 {
@@ -18,18 +14,7 @@ namespace Fosec.Database
             cmd.Parameters.AddWithValue("@2", UserID);
             cmd.Parameters.AddWithValue("@3", threadID);
             cmd.Parameters.AddWithValue("@4", comment);
-            int insert = cmd.ExecuteNonQuery();
-
-            if (insert > 0)
-            {
-                return true;
-            }
-
-            else
-            {
-                return false;
-            }
-
+            return cmd.ExecuteNonQuery() > 0;
         }
     }
 }

@@ -15,6 +15,24 @@ namespace Fosec.WebPage
     {
 
         /// <summary>
+        /// errorContainer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl errorContainer;
+
+        /// <summary>
+        /// profileContainer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl profileContainer;
+
+        /// <summary>
         /// userProfile control.
         /// </summary>
         /// <remarks>

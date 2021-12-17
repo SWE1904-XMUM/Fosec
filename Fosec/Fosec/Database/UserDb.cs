@@ -1,9 +1,5 @@
 ﻿using Fosec.Utils;
-using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 
 namespace Fosec.Database
 {
@@ -18,17 +14,8 @@ namespace Fosec.Database
             cmd.Parameters.AddWithValue("@0", username);
             cmd.Parameters.AddWithValue("@1", email);
             cmd.Parameters.AddWithValue("@2", HashUtil.GetHashedStringByInput(pwd));
-            int insert = cmd.ExecuteNonQuery();
 
-            if (insert > 0)
-            {
-                return true;
-            }
-
-            else
-            {
-                return false;
-            }
+            return cmd.ExecuteNonQuery() > 0;
         }
 
         public static int GetUserIdByUsername(string uname)
@@ -43,11 +30,7 @@ namespace Fosec.Database
                 r.Read();
                 return r.GetInt32(0);
             }
-
-            else
-            {
-                return -1;
-            }
+            return -1;
         }
 
         public static bool CheckExistingUser(string uname)
@@ -57,15 +40,7 @@ namespace Fosec.Database
             cmd.Parameters.AddWithValue("@0", uname);
             SqlDataReader r = cmd.ExecuteReader();
 
-            if (r.HasRows)
-            {
-                return true;
-            }
-
-            else
-            {
-                return false;
-            }
+            return (r.HasRows && r.Read());
         }
 
         public static bool CheckExistingEmail(string email)
@@ -97,22 +72,9 @@ namespace Fosec.Database
             {
                 r.Read();
                 bool compare = HashUtil.CompareHash(r.GetString(0), pwd);
-
-                if (compare.Equals(true))
-                {
-                    return true;
-                }
-
-                else
-                {
-                    return false;
-                }
+                return compare.Equals(true);
             }
-
-            else
-            {
-                return false;
-            }
+            return false;
         }
 
         public static bool UpdateUserProfileImage(int userid, byte[] profileImage)
@@ -122,11 +84,7 @@ namespace Fosec.Database
             cmd.Parameters.AddWithValue("@0", profileImage);
             cmd.Parameters.AddWithValue("@1", userid);
 
-            if (cmd.ExecuteNonQuery() > 0)
-            {
-                return true;
-            }
-            return false;
+            return cmd.ExecuteNonQuery() > 0;
         }
 
         public static bool CheckUserIdExistence(int userid)
@@ -136,11 +94,7 @@ namespace Fosec.Database
             cmd.Parameters.AddWithValue("@0", userid);
             SqlDataReader r = cmd.ExecuteReader();
 
-            if (r.HasRows)
-            {
-                return true;
-            }
-            return false;
+            return (r.HasRows && r.Read());
         }
     }
 }
