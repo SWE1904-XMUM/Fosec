@@ -41,7 +41,7 @@ namespace Fosec.WebPage
 
                 if (insertComment.Equals(true))
                 {
-                    // Code is provided in MessageBoxUtil class, just need to call
+                    // Code is provided in WebPageUtil class, just need to call
                     WebPageUtil.DisplayMessage("Data inserted successfully");
                 }
 
@@ -70,7 +70,11 @@ namespace Fosec.WebPage
             int UID = ThreadDb.GetUserID(threadid);
             if (!userId.Equals(UID))
             {
+
              //   MessageBoxUtil.DisplayMessage("not the creator of this thread, no permission to delete");
+                //DelBtn.Enabled = false;
+
+             //   WebPageUtil.DisplayMessage("not the creator of this thread, no permission to delete");
                 //DelBtn.Enabled = false;
             }
             /*else
