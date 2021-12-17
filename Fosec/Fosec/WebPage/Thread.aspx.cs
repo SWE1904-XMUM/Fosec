@@ -15,9 +15,6 @@ namespace Fosec.WebPage
 {
     public partial class Thread : System.Web.UI.Page
     {
-        ThreadCommentDb threadComment = new ThreadCommentDb();
-        UserDb userDb = new UserDb();
-        ThreadDb threadDb = new ThreadDb();
         String reply;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -38,24 +35,24 @@ namespace Fosec.WebPage
             if (!reply.Equals(""))
             {
                 string uname = SessionManager.GetUsername();
-                int userId = userDb.GetUserIdByUsername(uname);
+                int userId = UserDb.GetUserIdByUsername(uname);
                 string TID = HttpContext.Current.Request.QueryString["threadid"];
-                bool insertComment = threadComment.InsertThreadComment(userId, TID, reply);
+                bool insertComment = ThreadCommentDb.InsertThreadComment(userId, TID, reply);
 
                 if (insertComment.Equals(true))
                 {
-                    // Code is provided in MessageBoxUtil class, just need to call
-                    MessageBoxUtil.DisplayMessage("Data inserted successfully");
+                    // Code is provided in WebPageUtil class, just need to call
+                    WebPageUtil.DisplayMessage("Data inserted successfully");
                 }
 
                 else
                 {
-                    MessageBoxUtil.DisplayMessage("Data insert fail");
+                    WebPageUtil.DisplayMessage("Data insert fail");
                 }
             }
             else
             {
-                MessageBoxUtil.DisplayMessage("Please write a reply in the text box before replying to the thread");
+                WebPageUtil.DisplayMessage("Please write a reply in the text box before replying to the thread");
             }
         }
 
@@ -68,16 +65,16 @@ namespace Fosec.WebPage
         {
             // need session manager to ensure only owner can delete
             string uname = SessionManager.GetUsername();
-            int userId = userDb.GetUserIdByUsername(uname);
+            int userId = UserDb.GetUserIdByUsername(uname);
             string threadid = HttpContext.Current.Request.QueryString["threadid"];
-            int UID = threadDb.GetUserID(threadid);
+            int UID = ThreadDb.GetUserID(threadid);
             if (!userId.Equals(UID))
             {
-             //   MessageBoxUtil.DisplayMessage("not the creator of this thread, no permission to delete");
+             //   WebPageUtil.DisplayMessage("not the creator of this thread, no permission to delete");
                 DelBtn.Enabled = false;
             }
             else
-            threadDb.DeleteThread(threadid);
+            ThreadDb.DeleteThread(threadid);
             DelBtn.Enabled = true;
         }
 
