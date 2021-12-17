@@ -44,22 +44,41 @@ namespace Fosec.WebPage
 
         protected void SubmitProfileImage(object sender, EventArgs e)
         {
-            // TODO validation
-            if (uploadProfileImage.HasFile)
+            // validation
+            if (!uploadProfileImage.HasFile)
             {
+                WebPageUtil.DisplayMessage("Please upload an image");
+            }
+
+            // check file type
+            string fileType = uploadProfileImage.PostedFile.ContentType.ToLower();
+            if (fileType != "image/jpeg" && fileType != "image/png")
+            {
+                WebPageUtil.DisplayMessage("Please upload image in jpeg or png type " + fileType);
+                return;
+            }
+
+            try
+            {
+                // convert uploaded file into bytes
                 BinaryReader br = new BinaryReader(uploadProfileImage.PostedFile.InputStream);
                 byte[] uploadedImage = br.ReadBytes(uploadProfileImage.PostedFile.ContentLength);
-                bool result = UserDb.UpdateUserProfileImage(1, uploadedImage);
+                bool result = UserDb.UpdateUserProfileImage(UserDb.GetUserIdByUsername(SessionManager.GetUsername()), uploadedImage);
 
+                // upload image to database
                 if (result == true)
                 {
                     WebPageUtil.DisplayMessage("Profile Image has been updated");
+                    Server.Transfer(Request.RawUrl);
                 }
-
                 else
                 {
                     WebPageUtil.DisplayMessage("Error in uploading profile image, please try again");
                 }
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.StackTrace);
             }
         }
     }
