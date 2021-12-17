@@ -39,11 +39,7 @@ namespace Fosec.Database
                 r.Read();
                 return r.GetInt32(0);
             }
-
-            else
-            {
-                return -1;
-            }
+            return -1;
         }
 
         public static string GetTagNameByTagId(int tagId)

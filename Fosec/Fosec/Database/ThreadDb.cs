@@ -24,11 +24,7 @@ namespace Fosec.Database
             {
                 return true;
             }
-
-            else
-            {
-                return false;
-            }
+            return false;
         }
 
         public static bool EditThread(int threadId, string title, int tagNo, string content)
@@ -45,11 +41,7 @@ namespace Fosec.Database
             {
                 return true;
             }
-
-            else
-            {
-                return false;
-            }
+            return false;
         }
 
         public static bool DeleteThread(string threadId)
@@ -63,22 +55,19 @@ namespace Fosec.Database
             {
                 return true;
             }
-
-            else
-            {
-                return false;
-            }
+            return false;
         }
 
-        public static SqlDataReader GetThreadContent(int threadId)
+        public static SqlDataReader GetThreadContentByThreadId(int threadId)
         {
+            // TODO return values instead of sqldatareader
             string query = "select title, tagNo, content from Threads where threadId = @0";
             SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@0", threadId);
             return cmd.ExecuteReader();
         }
 
-        public static int GetUserID(String threadId)
+        public static int GetUserIdByThreadId(String threadId)
         {
             string query = "select userId from Threads where threadId = @0";
             SqlCommand cmd = new SqlCommand(query, connection);
@@ -90,11 +79,7 @@ namespace Fosec.Database
                 r.Read();
                 return r.GetInt32(0);
             }
-
-            else
-            {
-                return -1;
-            }
+            return -1;
         }
     }
 }

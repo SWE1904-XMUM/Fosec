@@ -27,7 +27,7 @@ namespace Fosec.WebPage
             if (threadid != null)
             {
                 //display delete button if the current user is the author of current thread
-                editBtn.Visible = deleteBtn.Visible = (UserDb.GetUserIdByUsername(SessionManager.GetUsername()) == ThreadDb.GetUserID(threadid));
+                editBtn.Visible = deleteBtn.Visible = (UserDb.GetUserIdByUsername(SessionManager.GetUsername()) == ThreadDb.GetUserIdByThreadId(threadid));
 
                 //disable reply button if not logged in
                 //TODO add block to replace the comment area
@@ -51,6 +51,7 @@ namespace Fosec.WebPage
                 if (insertComment)
                 {
                     WebPageUtil.DisplayMessage("Your comment has been submitted");
+                    //TODO reload page
                 }
                 else
                 {
@@ -65,7 +66,7 @@ namespace Fosec.WebPage
 
         protected void DelBtn_Click(object sender, EventArgs e)
         {
-            if (UserDb.GetUserIdByUsername(SessionManager.GetUsername()) == ThreadDb.GetUserID(threadid))
+            if (UserDb.GetUserIdByUsername(SessionManager.GetUsername()) == ThreadDb.GetUserIdByThreadId(threadid))
             {
                 bool result = ThreadDb.DeleteThread(threadid);
                 //TODO delete comments for this thread

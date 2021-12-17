@@ -17,6 +17,7 @@
         <div id="mainThreadContainer">
             <div class="row">
                 <div class="text-right mt-3">
+                    <!-- TODO debug: edit button not working -->
                     <asp:LinkButton ID="editBtn" CssClass="btn" runat="server" href='<%# @"/WebPage/CreateThread.aspx?threadid=" + Eval("threadId") %>'>Edit</asp:LinkButton>
                     <!-- TODO danger button -->
                     <asp:Button ID="deleteBtn" CssClass="btn" runat="server" OnClick="DelBtn_Click" Text="Delete" />
@@ -71,7 +72,7 @@
                                         <hr />
                                         <div class="row">
                                             <div class="col-8"></div>
-                                            <asp:Label CssClass="threadDate col-4" runat="server" Text='<%# Eval("commentdate") %>' />
+                                            <asp:Label CssClass="threadDate col-4 text-right" runat="server" Text='<%# Eval("commentdate") %>' />
                                         </div>
                                     </div>
                                 </div>
