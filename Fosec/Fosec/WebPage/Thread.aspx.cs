@@ -24,9 +24,11 @@ namespace Fosec.WebPage
         {
             //get threadid from link
             string threadid = HttpContext.Current.Request.QueryString["threadid"];
-           
+
 
             //TODO disable reply if not logged in
+            
+           // ReplyBtn.Enabled = false;
         }
 
         protected void ReplyBtn_Click(object sender, EventArgs e)
@@ -67,9 +69,16 @@ namespace Fosec.WebPage
             // need session manager to ensure only owner can delete
             string uname = SessionManager.GetUsername();
             int userId = userDb.GetUserIdByUsername(uname);
-            //if (userId != )
             string threadid = HttpContext.Current.Request.QueryString["threadid"];
+            int UID = threadDb.GetUserID(threadid);
+            if (!userId.Equals(UID))
+            {
+             //   MessageBoxUtil.DisplayMessage("not the creator of this thread, no permission to delete");
+                DelBtn.Enabled = false;
+            }
+            else
             threadDb.DeleteThread(threadid);
+            DelBtn.Enabled = true;
         }
 
     }
