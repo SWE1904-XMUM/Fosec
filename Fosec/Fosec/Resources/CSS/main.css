@@ -132,8 +132,6 @@ a:hover {
     padding: 1rem;
     box-shadow: var(--box-shadow);
     border-radius: 0.5rem;
-    position: relative;
-   
 }
 
 .threadTitle {
@@ -294,4 +292,12 @@ a:hover {
 /* TODO unit px??? */
 #view-thread-container{
     width:1000px;
+}
+
+.threadContainer-profile {
+    background-color: var(--primary-color);
+    margin: 0.3rem 0.5rem;
+    padding: 1rem;
+    box-shadow: var(--box-shadow);
+    border-radius: 0.5rem;
 }

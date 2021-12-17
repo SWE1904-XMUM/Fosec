@@ -18,7 +18,7 @@
             <div class="mb-2">
                 <label for="content" class="form-label thread-label">Content</label>
                 <p class="thread-description">Please include all the informations of your question</p>
-                <asp:TextBox id="content" CssClass="form-control" TextMode="MultiLine" type="text" placeholder="Content" runat="server"></asp:TextBox>
+                <asp:TextBox id="content" CssClass="form-control" TextMode="MultiLine" type="text" placeholder="Content" runat="server" Rows="6"></asp:TextBox>
             </div>
             <asp:Button CssClass="btn" ID="submitThread" runat="server" Text="Submit" OnClick="submitThread_Click" />
         </div>
