@@ -78,7 +78,7 @@ namespace Fosec.Database
             return cmd.ExecuteReader();
         }
 
-        public int GetUserID(String threadId)
+        public static int GetUserID(String threadId)
         {
             string query = "select userId from Threads where threadId = @0";
             SqlCommand cmd = new SqlCommand(query, connection);
