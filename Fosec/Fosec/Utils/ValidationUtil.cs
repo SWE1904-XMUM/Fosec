@@ -7,11 +7,11 @@ using System.Windows;
 
 namespace Fosec.Utils
 {
-    public class ValidationUtil
+    public static class ValidationUtil
     {
         public static readonly string RESULT_PASS = "pass";
 
-        public string ValidatePassword(string pwd)
+        public static string ValidatePassword(string pwd)
         {
             var hasNumber = new Regex(@"[0-9]+");
             var hasUpperChar = new Regex(@"[A-Z]+");
@@ -49,7 +49,7 @@ namespace Fosec.Utils
             }    
         }
 
-        public string ValidateUname(string uname)
+        public static string ValidateUname(string uname)
         {
             if(uname.Length < 6)
             {
@@ -62,7 +62,7 @@ namespace Fosec.Utils
             }
         }
 
-        public string ValidateEmail(string email)
+        public static string ValidateEmail(string email)
         {
             var pattern = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
 

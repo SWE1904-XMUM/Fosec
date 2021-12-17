@@ -14,9 +14,6 @@ namespace Fosec
     {
         string unameTxt, pwdTxt;
 
-        // Class initialization
-        UserDb userDb = new UserDb();
-
         protected void Page_Load(object sender, EventArgs e)
         {
             string username = SessionManager.GetUsername();
@@ -34,8 +31,8 @@ namespace Fosec
         {
             GetLoginTxt();
 
-            bool checkExistingUser = userDb.CheckExistingUser(unameTxt);
-            bool checkPassword = userDb.CheckUserPassword(unameTxt, pwdTxt);
+            bool checkExistingUser = UserDb.CheckExistingUser(unameTxt);
+            bool checkPassword = UserDb.CheckUserPassword(unameTxt, pwdTxt);
 
             if (checkExistingUser.Equals(true))
             {
@@ -49,15 +46,21 @@ namespace Fosec
 
                 else
                 {
-                    MessageBoxUtil.DisplayMessage("Invalid password!");
+                    WebPageUtil.DisplayMessage("Invalid password!");
                     pwd.BackColor = System.Drawing.Color.LightCoral;
                 }
             }
 
             else
             {
-                MessageBoxUtil.DisplayMessage("Not an existing user, please signup!");
+                WebPageUtil.DisplayMessage("Not an existing user, please signup!");
             }
+        }
+
+        protected void Logout_Click(object sender, EventArgs e)
+        {
+            SessionManager.RemoveUsername();
+            Response.Redirect("/WebPage/Home.aspx");
         }
 
         private void GetLoginTxt()

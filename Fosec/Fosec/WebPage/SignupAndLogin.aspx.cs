@@ -19,9 +19,6 @@ namespace Fosec.WebPage
         // Signup column
         string signupEmailTxt, signupUnameTxt, signupPwdTxt, signupConfirmPwdTxt;
 
-        // Class initialization
-        UserDb userDb = new UserDb();
-
         protected void Page_Load(object sender, EventArgs e)
         {
             pillsSignUpTab.ServerClick += ActivateSignup;
@@ -59,57 +56,57 @@ namespace Fosec.WebPage
         {
             GetSignupInputText();
 
-            ValidationUtil validationUtil = new ValidationUtil();
-            string uname = validationUtil.ValidateUname(signupUnameTxt);
-            string pwd = validationUtil.ValidatePassword(signupPwdTxt);
-            string email = validationUtil.ValidateEmail(signupEmailTxt);
+            string uname = ValidationUtil.ValidateUname(signupUnameTxt);
+            string pwd = ValidationUtil.ValidatePassword(signupPwdTxt);
+            string email = ValidationUtil.ValidateEmail(signupEmailTxt); //TODO validate whether email already exist
 
             if (email.Equals("pass") && uname.Equals("pass") && pwd.Equals("pass") && signupConfirmPwdTxt.Equals(signupPwdTxt))
             {
-                bool checkExistingUser = userDb.CheckExistingUser(signupUnameTxt);
+                bool checkExistingUser = UserDb.CheckExistingUser(signupUnameTxt);
 
                 if (checkExistingUser.Equals(false))
                 {
-                    bool insertUser = userDb.InsertUsers(signupUnameTxt, signupEmailTxt, signupPwdTxt);
+                    bool insertUser = UserDb.InsertUsers(signupUnameTxt, signupEmailTxt, signupPwdTxt);
 
                     if (insertUser.Equals(true))
                     {
-                        MessageBoxUtil.DisplayMessage("Signup successfully! Please login.");
+                        ClearSignupFields();
+                        WebPageUtil.DisplayMessageAndRedirect("Signup successfully! Please login.", "/WebPage/SignupAndLogin.aspx?action=login", ClientScript);
                     }
 
                     else
                     {
-                        MessageBoxUtil.DisplayMessage("Fail to signup.");
+                        WebPageUtil.DisplayMessage("Fail to signup.");
                     }
                 }
 
                 else
                 {
-                    MessageBoxUtil.DisplayMessage("Username already existed, please try for another.");
+                    WebPageUtil.DisplayMessage("Username already existed, please try for another.");
                 }
             }
 
             else if (email != "pass")
             {
-                MessageBoxUtil.DisplayMessage(email);
+                WebPageUtil.DisplayMessage(email);
                 signupEmail.BackColor = System.Drawing.Color.LightCoral;
             }
 
             else if (uname != "pass")
             {
-                MessageBoxUtil.DisplayMessage(uname);
+                WebPageUtil.DisplayMessage(uname);
                 signupUname.BackColor = System.Drawing.Color.LightCoral;
             }
 
             else if (pwd != "pass")
             {
-                MessageBoxUtil.DisplayMessage(pwd);
+                WebPageUtil.DisplayMessage(pwd);
                 signupPwd.BackColor = System.Drawing.Color.LightCoral;
             }
 
             else if (!signupConfirmPwdTxt.Equals(signupPwdTxt))
             {
-                MessageBoxUtil.DisplayMessage("Please enter same password!");
+                WebPageUtil.DisplayMessage("Please enter same password!");
                 signupConfirmPwd.BackColor = System.Drawing.Color.LightCoral;
             }
         }
@@ -118,28 +115,30 @@ namespace Fosec.WebPage
         {
             GetLoginInputText();
 
-            bool checkExistingUser = userDb.CheckExistingUser(loginUnameTxt);
-            bool checkPassword = userDb.CheckUserPassword(loginUnameTxt, loginPwdTxt);
+            bool checkExistingUser = UserDb.CheckExistingUser(loginUnameTxt);
+            bool checkPassword = UserDb.CheckUserPassword(loginUnameTxt, loginPwdTxt);
 
             if (checkExistingUser.Equals(true))
             {
                 if (checkPassword.Equals(true))
                 {
-                    Response.Redirect("Home.aspx");
+                    ClearLoginFields();
+                    //TODO debug: session not set
                     SessionManager.SetLogin(true);
                     SessionManager.SetUsername(signupUnameTxt);
+                    WebPageUtil.Redirect("/WebPage/Home.aspx", ClientScript);
                 }
 
                 else
                 {
-                    MessageBoxUtil.DisplayMessage("Invalid password!");
+                    WebPageUtil.DisplayMessage("Invalid password!");
                     loginPwd.BackColor = System.Drawing.Color.LightCoral;
                 }
             }
 
             else
             {
-                MessageBoxUtil.DisplayMessage("Not an existing user, please signup!");
+                WebPageUtil.DisplayMessage("Not an existing user, please signup!");
             }
         }
 
@@ -155,6 +154,20 @@ namespace Fosec.WebPage
             signupUnameTxt = signupUname.Text;
             signupPwdTxt = signupPwd.Text;
             signupConfirmPwdTxt = signupConfirmPwd.Text;
+        }
+
+        private void ClearLoginFields()
+        {
+            loginUname.Text = "";
+            loginPwd.Text = "";
+        }
+
+        private void ClearSignupFields()
+        {
+            signupEmail.Text = "";
+            signupUname.Text = "";
+            signupPwd.Text = "";
+            signupConfirmPwd.Text = "";
         }
     }
 }

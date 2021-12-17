@@ -15,8 +15,6 @@ namespace Fosec.WebPage
 {
     public partial class Thread : System.Web.UI.Page
     {
-        ThreadCommentDb threadComment = new ThreadCommentDb();
-        UserDb userDb = new UserDb();
         String reply;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -24,6 +22,7 @@ namespace Fosec.WebPage
             //get threadid from link
             string threadid = HttpContext.Current.Request.QueryString["threadid"];
 
+            //TODO disable reply if not logged in
         }
 
         protected void ReplyBtn_Click(object sender, EventArgs e)
@@ -33,24 +32,24 @@ namespace Fosec.WebPage
             if (!reply.Equals(""))
             {
                 string uname = SessionManager.GetUsername();
-                int userId = userDb.GetUserIdByUsername(uname);
+                int userId = UserDb.GetUserIdByUsername(uname);
                 string TID = HttpContext.Current.Request.QueryString["threadid"];
-                bool insertComment = threadComment.InsertThreadComment(userId, TID, reply);
+                bool insertComment = ThreadCommentDb.InsertThreadComment(userId, TID, reply);
 
                 if (insertComment.Equals(true))
                 {
                     // Code is provided in MessageBoxUtil class, just need to call
-                    MessageBoxUtil.DisplayMessage("Data inserted successfully");
+                    WebPageUtil.DisplayMessage("Data inserted successfully");
                 }
 
                 else
                 {
-                    MessageBoxUtil.DisplayMessage("Data insert fail");
+                    WebPageUtil.DisplayMessage("Data insert fail");
                 }
             }
             else
             {
-                MessageBoxUtil.DisplayMessage("Please write a reply in the text box before replying to the thread");
+                WebPageUtil.DisplayMessage("Please write a reply in the text box before replying to the thread");
             }
         }
 
@@ -58,6 +57,18 @@ namespace Fosec.WebPage
         {
             reply = ReplyThread.Text;
         }
+
+        protected void DelBtn_Click(object sender, EventArgs e)
+        {
+            // TODO thread extra functions
+            // need session manager to ensure only owner can delete
+            string uname = SessionManager.GetUsername();
+            int userId = UserDb.GetUserIdByUsername(uname);
+            //if (userId != )
+            string threadid = HttpContext.Current.Request.QueryString["threadid"];
+            ThreadDb.DeleteThread(threadid);
+        }
+
     }
 }
 

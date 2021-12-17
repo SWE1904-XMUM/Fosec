@@ -15,24 +15,6 @@ namespace Fosec.WebPage
     {
 
         /// <summary>
-        /// AllThreadDataSource control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource AllThreadDataSource;
-
-        /// <summary>
-        /// SqlDataSource1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
-
-        /// <summary>
         /// threadRepeater control.
         /// </summary>
         /// <remarks>
@@ -40,6 +22,15 @@ namespace Fosec.WebPage
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater threadRepeater;
+
+        /// <summary>
+        /// threadCommentRepeater control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater threadCommentRepeater;
 
         /// <summary>
         /// ReplyThread control.
@@ -58,5 +49,23 @@ namespace Fosec.WebPage
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button ReplyBtn;
+
+        /// <summary>
+        /// ThreadData control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource ThreadData;
+
+        /// <summary>
+        /// ThreadCommentData control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource ThreadCommentData;
     }
 }
