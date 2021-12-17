@@ -6,7 +6,7 @@ using System.Web.UI;
 
 namespace Fosec.Utils
 {
-    public static class MessageBoxUtil
+    public static class WebPageUtil
     {
         public static void DisplayMessage(string message)
         {

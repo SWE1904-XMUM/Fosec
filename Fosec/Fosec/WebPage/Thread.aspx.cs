@@ -39,17 +39,17 @@ namespace Fosec.WebPage
                 if (insertComment.Equals(true))
                 {
                     // Code is provided in MessageBoxUtil class, just need to call
-                    MessageBoxUtil.DisplayMessage("Data inserted successfully");
+                    WebPageUtil.DisplayMessage("Data inserted successfully");
                 }
 
                 else
                 {
-                    MessageBoxUtil.DisplayMessage("Data insert fail");
+                    WebPageUtil.DisplayMessage("Data insert fail");
                 }
             }
             else
             {
-                MessageBoxUtil.DisplayMessage("Please write a reply in the text box before replying to the thread");
+                WebPageUtil.DisplayMessage("Please write a reply in the text box before replying to the thread");
             }
         }
 

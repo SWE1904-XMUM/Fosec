@@ -70,42 +70,42 @@ namespace Fosec.WebPage
                     if (insertUser.Equals(true))
                     {
                         ClearSignupFields();
-                        MessageBoxUtil.DisplayMessageAndRedirect("Signup successfully! Please login.", "/WebPage/SignupAndLogin.aspx?action=login", ClientScript);
+                        WebPageUtil.DisplayMessageAndRedirect("Signup successfully! Please login.", "/WebPage/SignupAndLogin.aspx?action=login", ClientScript);
                     }
 
                     else
                     {
-                        MessageBoxUtil.DisplayMessage("Fail to signup.");
+                        WebPageUtil.DisplayMessage("Fail to signup.");
                     }
                 }
 
                 else
                 {
-                    MessageBoxUtil.DisplayMessage("Username already existed, please try for another.");
+                    WebPageUtil.DisplayMessage("Username already existed, please try for another.");
                 }
             }
 
             else if (email != "pass")
             {
-                MessageBoxUtil.DisplayMessage(email);
+                WebPageUtil.DisplayMessage(email);
                 signupEmail.BackColor = System.Drawing.Color.LightCoral;
             }
 
             else if (uname != "pass")
             {
-                MessageBoxUtil.DisplayMessage(uname);
+                WebPageUtil.DisplayMessage(uname);
                 signupUname.BackColor = System.Drawing.Color.LightCoral;
             }
 
             else if (pwd != "pass")
             {
-                MessageBoxUtil.DisplayMessage(pwd);
+                WebPageUtil.DisplayMessage(pwd);
                 signupPwd.BackColor = System.Drawing.Color.LightCoral;
             }
 
             else if (!signupConfirmPwdTxt.Equals(signupPwdTxt))
             {
-                MessageBoxUtil.DisplayMessage("Please enter same password!");
+                WebPageUtil.DisplayMessage("Please enter same password!");
                 signupConfirmPwd.BackColor = System.Drawing.Color.LightCoral;
             }
         }
@@ -125,19 +125,19 @@ namespace Fosec.WebPage
                     //TODO debug: session not set
                     SessionManager.SetLogin(true);
                     SessionManager.SetUsername(signupUnameTxt);
-                    MessageBoxUtil.Redirect("/WebPage/Home.aspx", ClientScript);
+                    WebPageUtil.Redirect("/WebPage/Home.aspx", ClientScript);
                 }
 
                 else
                 {
-                    MessageBoxUtil.DisplayMessage("Invalid password!");
+                    WebPageUtil.DisplayMessage("Invalid password!");
                     loginPwd.BackColor = System.Drawing.Color.LightCoral;
                 }
             }
 
             else
             {
-                MessageBoxUtil.DisplayMessage("Not an existing user, please signup!");
+                WebPageUtil.DisplayMessage("Not an existing user, please signup!");
             }
         }
 

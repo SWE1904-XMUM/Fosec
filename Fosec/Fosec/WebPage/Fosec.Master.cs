@@ -46,14 +46,14 @@ namespace Fosec
 
                 else
                 {
-                    MessageBoxUtil.DisplayMessage("Invalid password!");
+                    WebPageUtil.DisplayMessage("Invalid password!");
                     pwd.BackColor = System.Drawing.Color.LightCoral;
                 }
             }
 
             else
             {
-                MessageBoxUtil.DisplayMessage("Not an existing user, please signup!");
+                WebPageUtil.DisplayMessage("Not an existing user, please signup!");
             }
         }
 

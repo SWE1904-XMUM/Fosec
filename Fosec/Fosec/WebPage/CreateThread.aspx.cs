@@ -79,7 +79,7 @@ namespace Fosec.WebPage
 
             else
             {
-                MessageBoxUtil.DisplayMessage("No tag found.");
+                WebPageUtil.DisplayMessage("No tag found.");
             }
         }
 
@@ -101,24 +101,24 @@ namespace Fosec.WebPage
 
                     if (insertThread.Equals(true))
                     {
-                        MessageBoxUtil.DisplayMessage("Submitted successfully.");
+                        WebPageUtil.DisplayMessage("Submitted successfully.");
                     }
 
                     else
                     {
-                        MessageBoxUtil.DisplayMessage("Fail to submit thread, please try again.");
+                        WebPageUtil.DisplayMessage("Fail to submit thread, please try again.");
                     }
                 }
 
                 else
                 {
-                    MessageBoxUtil.DisplayMessage("No userId or tagNo found.");
+                    WebPageUtil.DisplayMessage("No userId or tagNo found.");
                 }
             }
 
             else
             {
-                MessageBoxUtil.DisplayMessage("Please fill in all field.");
+                WebPageUtil.DisplayMessage("Please fill in all field.");
             }
         }
 
@@ -153,7 +153,7 @@ namespace Fosec.WebPage
 
             else
             {
-                MessageBoxUtil.DisplayMessage("No content found.");
+                WebPageUtil.DisplayMessage("No content found.");
             }
         }
 
@@ -170,18 +170,18 @@ namespace Fosec.WebPage
 
                 if(editThread.Equals(true))
                 {
-                    MessageBoxUtil.DisplayMessage("Updated successfully.");
+                    WebPageUtil.DisplayMessage("Updated successfully.");
                 }
 
                 else
                 {
-                    MessageBoxUtil.DisplayMessage("Fail to update, please try again.");
+                    WebPageUtil.DisplayMessage("Fail to update, please try again.");
                 }
             }
 
             else
             {
-                MessageBoxUtil.DisplayMessage("No tagNo found.");
+                WebPageUtil.DisplayMessage("No tagNo found.");
             }
         }
 
