@@ -23,7 +23,14 @@ namespace Fosec.WebPage
             string threadid = HttpContext.Current.Request.QueryString["threadid"];
             if(threadid == null)
             {
-                WebPageUtil.DisplayMessageAndRedirect("Error, this page does not exist", "/WebPage/Home.aspx", this.Page);
+                //WebPageUtil.DisplayMessageAndRedirect("Error, this page does not exist", "/WebPage/Home.aspx", this.Page);
+                errorContainer.Visible = true;
+                threadContainer.Visible = false;
+            }
+            else
+            {
+                threadContainer.Visible = true;
+                errorContainer.Visible = false;
             }
 
             //TODO disable reply if not logged in

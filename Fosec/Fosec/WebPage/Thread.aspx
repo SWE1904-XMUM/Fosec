@@ -6,8 +6,14 @@
     Thread - Fosec
 </asp:Content>
 
-<asp:Content ContentPlaceHolderID="PageContent" runat="server">
-    <div class="container" id="view-thread-container">
+<asp:Content ID="PageContent" ContentPlaceHolderID="PageContent" runat="server">
+    <div class="container d-flex flex-column align-items-center my-5" id="errorContainer" runat="server">
+        <!-- TODO add image -->
+        <p class="display-3 text-uppercase">Error!</p>
+        <p class="display-6">This page does not exist</p>
+        <asp:LinkButton CssClass="btn" runat="server" PostBackUrl="/WebPage/Home.aspx" Text="Go back to Home"></asp:LinkButton>
+    </div>
+    <div class="container" id="threadContainer" runat="server">
         <div id="mainThreadContainer">
             <asp:Repeater ID="threadRepeater" runat="server" DataSourceID="ThreadData">
                 <ItemTemplate>
@@ -21,7 +27,7 @@
                         <div class="threadInformation col-9 d-flex flex-column justify-content-between">
                             <div class="threadInformation link-text-view">
                                 <asp:Label CssClass="threadTitle row" runat="server" Text='<%# Eval("title") %>' />
-                                
+
                                 <asp:Label CssClass="threadContent row" runat="server" Text='<%# Eval("content") %>' />
                             </div>
                             <div>
@@ -31,7 +37,7 @@
                                         <asp:Label CssClass="btn no-hover tag-in-thread" runat="server" Text='<%# Eval("tagName") %>' />
                                     </div>
                                     <asp:Label CssClass="threadDate col-4" runat="server" Text='<%# Eval("date") %>' />
-                                     <asp:LinkButton ID="EditBtn" CssClass="threadEdit" runat="server" href='<%# @"/WebPage/CreateThread.aspx?threadid=" + Eval("threadId") %>'>Edit</asp:LinkButton>
+                                    <asp:LinkButton ID="EditBtn" CssClass="threadEdit" runat="server" href='<%# @"/WebPage/CreateThread.aspx?threadid=" + Eval("threadId") %>'>Edit</asp:LinkButton>
                                     <asp:LinkButton ID="DelBtn" CssClass="threadDel" runat="server" OnClick="DelBtn_Click">Delete</asp:LinkButton>
                                 </div>
                             </div>
@@ -39,7 +45,7 @@
                     </div>
                 </ItemTemplate>
             </asp:Repeater>
-            
+
 
             <!--get threadComments here -->
             <div class="row">
@@ -73,15 +79,15 @@
             </div>
         </div>
 
-        <!-- Insert comment -->
-        <div class="row d-flex justify-content-end mb-3">
-            <div class="col-lg-10 col-sm-9 col-9">
-                <asp:TextBox ID="ReplyThread" CssClass="form-control" TextMode="MultiLine" type="text" placeHolder="reply here" runat="server" rows="6"></asp:TextBox>
-            </div>
-            <div class="col-lg-1 col-sm-2 col-2 reply-button-container">
-                <asp:Button ID="ReplyBtn" runat="server" Text="Reply" CssClass="btn" OnClick="ReplyBtn_Click" />
-            </div>
+    <!-- Insert comment -->
+    <div class="row d-flex justify-content-end mb-3">
+        <div class="col-lg-10 col-sm-9 col-9">
+            <asp:TextBox ID="ReplyThread" CssClass="form-control" TextMode="MultiLine" type="text" placeHolder="reply here" runat="server" Rows="6"></asp:TextBox>
         </div>
+        <div class="col-lg-1 col-sm-2 col-2 reply-button-container">
+            <asp:Button ID="ReplyBtn" runat="server" Text="Reply" CssClass="btn" OnClick="ReplyBtn_Click" />
+        </div>
+    </div>
     </div>
 
     <!-- Data Sources -->
