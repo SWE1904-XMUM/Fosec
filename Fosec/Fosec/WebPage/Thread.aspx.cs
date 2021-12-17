@@ -71,11 +71,11 @@ namespace Fosec.WebPage
             if (!userId.Equals(UID))
             {
              //   MessageBoxUtil.DisplayMessage("not the creator of this thread, no permission to delete");
-                DelBtn.Enabled = false;
+                //DelBtn.Enabled = false;
             }
-            else
+            /*else
             ThreadDb.DeleteThread(threadid);
-            DelBtn.Enabled = true;
+            DelBtn.Enabled = true;*/
         }
 
     }
