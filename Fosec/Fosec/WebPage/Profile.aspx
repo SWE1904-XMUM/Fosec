@@ -52,6 +52,7 @@
 
                             </ItemTemplate>
                         </asp:ListView>
+                        <!-- TODO separate edit function -->
                         <table class="profile">
                             <tr>
                                 <td class="fixed-column-width">Profile Picture: </td>
@@ -60,7 +61,6 @@
                             </tr>
                         </table>
                         <asp:Button Text="Submit" ID="submitProfileBtn" CssClass="btn" runat="server" OnClick="SubmitProfileImage" />
-
                     </div>
                 </div>
                 <div class="profile-container">
