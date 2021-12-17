@@ -25,8 +25,6 @@
                             <asp:Label runat="server"><%#Eval("username") %></asp:Label></h4>
                     </ItemTemplate>
                 </asp:ListView>
-
-                <!-- TODO improve ui -->
             </div>
 
             <div id="homeThreadContainer" class="col-9 p-1">
@@ -49,18 +47,54 @@
                                             <asp:Label runat="server"><%#Eval("email") %></asp:Label></td>
                                     </tr>
                                 </table>
-
                             </ItemTemplate>
                         </asp:ListView>
                         <!-- TODO separate edit function -->
-                        <table class="profile">
-                            <tr>
-                                <td class="fixed-column-width">Profile Picture: </td>
-                                <td>
-                                    <asp:FileUpload ID="uploadProfileImage" runat="server" /></td>
-                            </tr>
-                        </table>
-                        <asp:Button Text="Submit" ID="submitProfileBtn" CssClass="btn" runat="server" OnClick="SubmitProfileImage" />
+                        <div class="profile m-3">
+                            <div class="m-1">
+                                <asp:Button ID="openEditProfileImageContainerBtn" CssClass="btn" runat="server" Text="Change Profile Image" OnClick="DisplayProfileImageUploadForm" />
+                                <asp:Button ID="openEditPasswordContainerBtn" CssClass="btn" runat="server" Text="Change Password" OnClick="DisplayChangePasswordForm" />
+                            </div>
+                            <div id="editProfileContainer">
+                                <div id="editProfileImageContainer" class="my-3 d-flex align-content-center flex-row flex-nowrap justify-content-center align-items-center" runat="server" visible="false">
+                                    <asp:FileUpload ID="uploadProfileImage" runat="server" CssClass="form-control mx-2" />
+                                    <asp:Button ID="submitProfileImageBtn" runat="server" OnClick="SubmitProfileImage" CssClass="btn mx-2" Text="Upload" />
+                                </div>
+                                <div id="editPasswordContainer" class="m-1" runat="server" visible="false">
+                                    <asp:Table runat="server">
+                                        <asp:TableHeaderRow>
+                                            <asp:TableHeaderCell CssClass="col-4"></asp:TableHeaderCell>
+                                            <asp:TableHeaderCell CssClass="col-5"></asp:TableHeaderCell>
+                                        </asp:TableHeaderRow>
+                                        <asp:TableRow>
+                                            <asp:TableCell>
+                                                <asp:Label Text="Current Password: " CssClass="form-label" runat="server"></asp:Label>
+                                            </asp:TableCell>
+                                            <asp:TableCell>
+                                                <asp:TextBox ID="currentPasswordField" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox>
+                                            </asp:TableCell>
+                                        </asp:TableRow>
+                                        <asp:TableRow>
+                                            <asp:TableCell>
+                                                <asp:Label Text="New password: " CssClass="form-label" runat="server"></asp:Label>
+                                            </asp:TableCell>
+                                            <asp:TableCell>
+                                                <asp:TextBox ID="newPasswordField" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox>
+                                            </asp:TableCell>
+                                        </asp:TableRow>
+                                        <asp:TableRow>
+                                            <asp:TableCell>
+                                                <asp:Label Text="Confirm New Password: " CssClass="form-label" runat="server"></asp:Label>
+                                            </asp:TableCell>
+                                            <asp:TableCell>
+                                                <asp:TextBox ID="confirmNewPasswordField" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox>
+                                            </asp:TableCell>
+                                        </asp:TableRow>
+                                    </asp:Table>
+                                    <asp:Button Text="Update Password" ID="updatePasswordBtn" runat="server" CssClass="btn" OnClick="UpdatePassword"/>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="profile-container">

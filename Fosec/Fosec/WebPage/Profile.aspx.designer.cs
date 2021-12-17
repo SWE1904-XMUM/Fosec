@@ -51,6 +51,33 @@ namespace Fosec.WebPage
         protected global::System.Web.UI.WebControls.ListView userProfileDetail;
 
         /// <summary>
+        /// openEditProfileImageContainerBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button openEditProfileImageContainerBtn;
+
+        /// <summary>
+        /// openEditPasswordContainerBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button openEditPasswordContainerBtn;
+
+        /// <summary>
+        /// editProfileImageContainer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl editProfileImageContainer;
+
+        /// <summary>
         /// uploadProfileImage control.
         /// </summary>
         /// <remarks>
@@ -60,13 +87,58 @@ namespace Fosec.WebPage
         protected global::System.Web.UI.WebControls.FileUpload uploadProfileImage;
 
         /// <summary>
-        /// submitProfileBtn control.
+        /// submitProfileImageBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button submitProfileBtn;
+        protected global::System.Web.UI.WebControls.Button submitProfileImageBtn;
+
+        /// <summary>
+        /// editPasswordContainer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl editPasswordContainer;
+
+        /// <summary>
+        /// currentPasswordField control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox currentPasswordField;
+
+        /// <summary>
+        /// newPasswordField control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox newPasswordField;
+
+        /// <summary>
+        /// confirmNewPasswordField control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox confirmNewPasswordField;
+
+        /// <summary>
+        /// updatePasswordBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button updatePasswordBtn;
 
         /// <summary>
         /// userThreadRepeater control.
