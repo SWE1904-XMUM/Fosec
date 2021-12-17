@@ -122,10 +122,10 @@ namespace Fosec.WebPage
             {
                 if (checkPassword.Equals(true))
                 {
-                    ClearLoginFields();
                     //TODO debug: session not set, login bar still exist
                     SessionManager.SetLogin(true);
-                    SessionManager.SetUsername(signupUnameTxt);
+                    SessionManager.SetUsername(loginUnameTxt);
+                    ClearLoginFields();
                     WebPageUtil.DisplayMessageAndRedirect("Login successful", "/WebPage/Home.aspx", this.Page);
                 }
 
