@@ -12,7 +12,6 @@ namespace Fosec.Database
 
         public static List<string> GetAllTags()
         {
-            //TODO return list instead of data reader
             List<string> tagList = new List<string>();
             string query = "select tagName from Tag";
             SqlCommand cmd = new SqlCommand(query, connection);
