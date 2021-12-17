@@ -77,5 +77,24 @@ namespace Fosec.Database
             cmd.Parameters.AddWithValue("@0", threadId);
             return cmd.ExecuteReader();
         }
+
+        public int GetUserID(String threadId)
+        {
+            string query = "select userId from Threads where threadId = @0";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@0", threadId);
+            SqlDataReader r = cmd.ExecuteReader();
+
+            if (r.HasRows)
+            {
+                r.Read();
+                return r.GetInt32(0);
+            }
+
+            else
+            {
+                return -1;
+            }
+        }
     }
 }

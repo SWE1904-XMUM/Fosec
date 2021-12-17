@@ -3,11 +3,10 @@
 <%@ Import Namespace="Fosec.Utils" %>
 
 <asp:Content ContentPlaceHolderID="PageContent" runat="server">
-    <!-- TODO profile page content -->
     <div class="container">
         <div class="row" id="profile-container">
             <div id="userInformationContainer" class="col-3 p-2">
-                <asp:ListView ID="ListView1" runat="server" DataSourceID="UserProfileData">
+                <asp:ListView ID="userProfile" runat="server" DataSourceID="LoggedInUserProfileData">
                     <ItemTemplate>
                         <div class="image-holder mb-3">
                             <asp:Image CssClass="userProfileImage" runat="server" ImageUrl='<%#ImageUtil.GetBase64PathByByteArray(Eval("profileImage"))%>' />
@@ -26,7 +25,7 @@
                         <h2>Profile</h2>
                     </div>
                     <div class="profile-info-container">
-                        <asp:ListView ID="ListView2" runat="server" DataSourceID="UserProfileData">
+                        <asp:ListView ID="userProfileDetail" runat="server" DataSourceID="LoggedInUserProfileData">
                             <ItemTemplate>
                                 <table class="profile">
                                     <tr>
@@ -59,7 +58,7 @@
                         <h2>Asked Questions</h2>
                     </div>
                     <div class="profile-info-container">
-                        <asp:Repeater ID="threadRepeater" runat="server" DataSourceID="UserThreadData">
+                        <asp:Repeater ID="userThreadRepeater" runat="server" DataSourceID="LoggedInUserThreadData">
                             <ItemTemplate>
                                 <itemtemplate>
                                     <div class="threadContainer row">
@@ -84,16 +83,29 @@
         </div>
     </div>
 
-    <!-- Datasources -->
-    <asp:SqlDataSource ID="UserProfileData" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [username], [email], [profileImage] FROM [Users] WHERE ([username] = @username)">
+    <!-- Datasources for logged in users -->
+    <asp:SqlDataSource ID="LoggedInUserProfileData" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [username], [email], [profileImage] FROM [Users] WHERE ([username] = @username)">
         <SelectParameters>
             <asp:SessionParameter Name="username" SessionField="uname" Type="String" />
         </SelectParameters>
     </asp:SqlDataSource>
-    <asp:SqlDataSource ID="UserThreadData" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT Threads.threadId as threadid, Threads.title as title, Tag.tagName as tagname, Threads.[content] as content, Threads.threadDate as date FROM Threads LEFT OUTER JOIN Tag ON Threads.tagNo = tag.tagid LEFT OUTER JOIN Users ON Threads.userId = Users.userId WHERE (Users.username = @username)">
+    <asp:SqlDataSource ID="LoggedInUserThreadData" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT Threads.threadId as threadid, Threads.title as title, Tag.tagName as tagname, Threads.[content] as content, Threads.threadDate as date FROM Threads LEFT OUTER JOIN Tag ON Threads.tagNo = tag.tagid LEFT OUTER JOIN Users ON Threads.userId = Users.userId WHERE (Users.username = @username)">
         <SelectParameters>
             <asp:SessionParameter Name="username" SessionField="uname" />
         </SelectParameters>
     </asp:SqlDataSource>
+
+    <!-- Datasources for other users -->
+    <asp:SqlDataSource ID="OtherUserProfileData" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [username], [email], [profileImage] FROM [Users] WHERE (userid = @userid)">
+        <SelectParameters>
+            <asp:QueryStringParameter Name="userid" QueryStringField="userid" />
+        </SelectParameters>
+    </asp:SqlDataSource>
+    <asp:SqlDataSource ID="OtherUserThreadData" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT Threads.threadId as threadid, Threads.title as title, Tag.tagName as tagname, Threads.[content] as content, Threads.threadDate as date FROM Threads LEFT OUTER JOIN Tag ON Threads.tagNo = tag.tagid LEFT OUTER JOIN Users ON Threads.userId = Users.userId WHERE (Users.userid = @userid)">
+        <SelectParameters>
+            <asp:QueryStringParameter Name="userid" QueryStringField="userid" />
+        </SelectParameters>
+    </asp:SqlDataSource>
 </asp:Content>
+
 

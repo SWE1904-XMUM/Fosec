@@ -15,22 +15,22 @@ namespace Fosec.WebPage
     {
 
         /// <summary>
-        /// ListView1 control.
+        /// userProfile control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView ListView1;
+        protected global::System.Web.UI.WebControls.ListView userProfile;
 
         /// <summary>
-        /// ListView2 control.
+        /// userProfileDetail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView ListView2;
+        protected global::System.Web.UI.WebControls.ListView userProfileDetail;
 
         /// <summary>
         /// uploadProfileImage control.
@@ -51,30 +51,48 @@ namespace Fosec.WebPage
         protected global::System.Web.UI.WebControls.Button submitProfileBtn;
 
         /// <summary>
-        /// threadRepeater control.
+        /// userThreadRepeater control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater threadRepeater;
+        protected global::System.Web.UI.WebControls.Repeater userThreadRepeater;
 
         /// <summary>
-        /// UserProfileData control.
+        /// LoggedInUserProfileData control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource UserProfileData;
+        protected global::System.Web.UI.WebControls.SqlDataSource LoggedInUserProfileData;
 
         /// <summary>
-        /// UserThreadData control.
+        /// LoggedInUserThreadData control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource UserThreadData;
+        protected global::System.Web.UI.WebControls.SqlDataSource LoggedInUserThreadData;
+
+        /// <summary>
+        /// OtherUserProfileData control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource OtherUserProfileData;
+
+        /// <summary>
+        /// OtherUserThreadData control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource OtherUserThreadData;
     }
 }

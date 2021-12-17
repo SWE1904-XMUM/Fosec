@@ -53,7 +53,6 @@
                                     <asp:LinkButton CssClass="dropdown-item" PostBackUrl="/WebPage/Profile.aspx" Text="Profile" runat="server"></asp:LinkButton>
                                 </li>
                                 <li>
-                                    <%-- TODO logout function  --%>
                                     <!-- <a class="dropdown-item" href="#">Logout</a> -->
                                     <asp:Button CssClass="dropdown-item" OnClick="Logout_Click" Text="Logout" runat="server"/>
                                 </li>

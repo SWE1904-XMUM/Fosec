@@ -3,7 +3,6 @@
 <%@ Import Namespace="Fosec.Utils" %>
 
 <asp:Content ContentPlaceHolderID="PageContent" runat="server">
-    <!-- TODO thread page content -->
     <div class="container" id="view-thread-container">
         <div id="mainThreadContainer">
             <asp:Repeater ID="threadRepeater" runat="server" DataSourceID="ThreadData">
@@ -28,15 +27,17 @@
                                         <asp:Label CssClass="btn no-hover tag-in-thread" runat="server" Text='<%# Eval("tagName") %>' />
                                     </div>
                                     <asp:Label CssClass="threadDate col-4" runat="server" Text='<%# Eval("date") %>' />
-                                     <asp:LinkButton ID="EditBtn" CssClass="threadEdit" runat="server" href='<%# @"/WebPage/CreateThread.aspx?threadid=" + Eval("threadId") %>'>Edit</asp:LinkButton>
-                                    <asp:LinkButton ID="DelBtn" CssClass="threadDel" runat="server" OnClick="DelBtn_Click">Delete</asp:LinkButton>
+                                     
                                    
                                 </div>
                             </div>
                         </div>
                     </div>
                 </ItemTemplate>
+                
             </asp:Repeater>
+            <asp:LinkButton ID="EditBtn" CssClass="threadEdit" runat="server" href='<%# @"/WebPage/CreateThread.aspx?threadid=" + Eval("threadId") %>'>Edit</asp:LinkButton>
+                                    <asp:LinkButton ID="DelBtn" CssClass="threadDel" runat="server" OnClick="DelBtn_Click">Delete</asp:LinkButton>
 
             <!--get threadComments here -->
             <div class="row">

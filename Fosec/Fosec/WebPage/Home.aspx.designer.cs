@@ -7,65 +7,64 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Fosec.WebPage
-{
-
-
-    public partial class Home
-    {
-
+namespace Fosec.WebPage {
+    
+    
+    public partial class Home {
+        
         /// <summary>
         /// tagRepeater control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
+        /// To modify, move the field declaration from the designer file to a code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater tagRepeater;
-
+        
         /// <summary>
         /// selectedTagName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
+        /// To modify, move the field declaration from the designer file to a code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label selectedTagName;
-
+        
         /// <summary>
         /// threadRepeater control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
+        /// To modify, move the field declaration from the designer file to a code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater threadRepeater;
-
+        
         /// <summary>
         /// TagDataSource control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
+        /// To modify, move the field declaration from the designer file to a code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource TagDataSource;
-
+        
         /// <summary>
         /// AllThreadDataSource control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
+        /// To modify, move the field declaration from the designer file to a code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource AllThreadDataSource;
-
+        
         /// <summary>
         /// FilteredThreadDataSource control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
+        /// To modify, move the field declaration from the designer file to a code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource FilteredThreadDataSource;
+
     }
 }

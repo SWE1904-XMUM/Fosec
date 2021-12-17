@@ -13,16 +13,16 @@ namespace Fosec.Utils
             HttpContext.Current.Response.Write("<script>alert('" + message + "')</script>");
         }
 
-        public static void DisplayMessageAndRedirect(string message, string location, ClientScriptManager clientScript)
+        public static void DisplayMessageAndRedirect(string message, string location, Page page)
         {
             string cScript = @"<script type='text/javascript'>alert( '" + message + "');location.href='" + location + "';</script>";
-            clientScript.RegisterStartupScript(typeof(Page), "", cScript);
+            page.ClientScript.RegisterStartupScript(typeof(Page), "", cScript);
         }
 
-        public static void Redirect(string location, ClientScriptManager clientScript)
+        public static void Redirect(string location, Page page)
         {
             string cScript = @"<script type='text/javascript'>location.href='" + location + "';</script>";
-            clientScript.RegisterStartupScript(typeof(Page), "", cScript);
+            page.ClientScript.RegisterStartupScript(typeof(Page), "", cScript);
         }
     }
 }
