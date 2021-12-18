@@ -17,6 +17,7 @@ namespace Fosec.WebPage
         // Thread page txt
         string titleTxt, contentTxt, tagTxt;
         string threadId = HttpContext.Current.Request.QueryString["threadid"];
+        private static string selectedTag = "";
 
         // Server control's functions
         protected void Page_Load(object sender, EventArgs e)
@@ -46,12 +47,11 @@ namespace Fosec.WebPage
 
         private void tag_Click(object sender, EventArgs e)
         {
-            tagTxt = ((Button)sender).CommandArgument;
-            SessionManager.SetTag(tagTxt);
+            selectedTag = ((Button)sender).CommandArgument;
 
             foreach (Button button in tagPlaceHolder.Controls.OfType<Button>())
             {
-                if (button.Text != SessionManager.GetTag())
+                if (button.Text != selectedTag)
                 {
                     button.Attributes.Add("style", "background-color: #C8EDEF; color:#000000;");
                 }
@@ -178,8 +178,7 @@ namespace Fosec.WebPage
 
         private void UpdateThreadContent()
         {
-            string tagName = SessionManager.GetTag();
-            int tagNo = TagDb.GetTagIdByTagName(tagName);
+            int tagNo = TagDb.GetTagIdByTagName(selectedTag);
 
             if (tagNo != -1)
             {
