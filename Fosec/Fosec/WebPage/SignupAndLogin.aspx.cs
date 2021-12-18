@@ -136,7 +136,7 @@ namespace Fosec.WebPage
             {
                 if (checkPassword.Equals(true))
                 {
-                    SessionManager.SetLogin(true);
+                    SessionManager.SetLogin("true");
                     SessionManager.SetUsername(loginUnameTxt);
                     ClearLoginFields();
                     WebPageUtil.DisplayMessageAndRedirect("Login successful", "/WebPage/Home.aspx", this.Page);

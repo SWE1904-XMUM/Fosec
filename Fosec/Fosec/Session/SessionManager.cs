@@ -11,9 +11,18 @@ namespace Fosec.Session
         private static readonly string UNAME = "UNAME";
         private static readonly string TAG = "TAG";
 
-        public static void SetLogin(bool login)
+        public static void SetLogin(string login)
         {
             HttpContext.Current.Session[LOGIN] = login;
+        }
+
+        public static string GetLogin()
+        {
+            if(HttpContext.Current.Session[LOGIN] != null)
+            {
+                return HttpContext.Current.Session[LOGIN].ToString();
+            }
+            return "";
         }
 
         public static void SetUsername(string uname)

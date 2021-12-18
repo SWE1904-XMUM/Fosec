@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Fosec.Session;
+using System;
 using System.Web.UI.WebControls;
 
 namespace Fosec.WebPage
@@ -7,7 +8,15 @@ namespace Fosec.WebPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if(SessionManager.GetLogin().Equals("true"))
+            {
+                createNewThreadBtn.Visible = true;
+            }
 
+            else
+            {
+                createNewThreadBtn.Visible = false;
+            }
         }
 
         protected void TagButtonClick(object sender, EventArgs e)
