@@ -98,41 +98,41 @@ namespace Fosec.WebPage
         private void InsertNewThread()
         {
             GetThreadText();
-            //TODO change order
-            if (!titleTxt.Equals("") && !contentTxt.Equals(""))
+
+            int userId = UserDb.GetUserIdByUsername(SessionManager.GetUsername());
+            int tagNo = TagDb.GetTagIdByTagName(SessionManager.GetTag());
+            if (userId <= 0)
             {
-                string uname = SessionManager.GetUsername();
-                int userId = UserDb.GetUserIdByUsername(uname);
-
-                string tagName = SessionManager.GetTag();
-                int tagNo = TagDb.GetTagIdByTagName(tagName);
-
-                if (!userId.Equals(-1) && !tagNo.Equals(-1))
-                {
-                    bool insertThread = ThreadDb.InsertThread(userId, titleTxt, tagNo, contentTxt);
-
-                    if (insertThread.Equals(true))
-                    {
-                        WebPageUtil.DisplayMessageAndRedirect("Submitted successful", "/WebPage/Home.aspx", this.Page);
-                        //clear field
-                        //TODO direct to the thread page?
-                    }
-
-                    else
-                    {
-                        WebPageUtil.DisplayMessage("Fail to submit thread, please try again.");
-                    }
-                }
-
-                else
-                {
-                    WebPageUtil.DisplayMessage("No userId or tagNo found.");
-                }
+                WebPageUtil.DisplayMessageAndRedirect("Please login before create thread", "/WebPage/SignupAndLogin.aspx?action=login", this.Page);
             }
-
+            else if (titleTxt.Equals(""))
+            {
+                WebPageUtil.DisplayMessage("Please enter thread title");
+            }
+            else if (tagNo == -1)
+            {
+                WebPageUtil.DisplayMessage("Please select a subject");
+            }
+            else if (contentTxt.Equals(""))
+            {
+                WebPageUtil.DisplayMessage("Please enter thread content");
+            }
             else
             {
-                WebPageUtil.DisplayMessage("Please fill in all field.");
+                bool result = ThreadDb.InsertThread(userId, titleTxt, tagNo, contentTxt);
+
+                if (result)
+                {
+                    WebPageUtil.DisplayMessageAndRedirect("Submitted successful", "/WebPage/Home.aspx", this.Page);
+                    threadTitle.Text = "";
+                    SessionManager.RemoveTag();
+                    content.Text = "";
+                    //TODO direct to the thread page?
+                }
+                else
+                {
+                    WebPageUtil.DisplayMessage("Fail to submit thread, please try again.");
+                }
             }
         }
 

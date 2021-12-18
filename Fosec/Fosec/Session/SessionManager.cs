@@ -47,6 +47,14 @@ namespace Fosec.Session
             }
         }
 
+public static void RemoveTag()
+        {
+            if(HttpContext.Current.Session[TAG] != null)
+            {
+                HttpContext.Current.Session.Remove(TAG);
+            }
+        }
+
         public static void SetTag(string tagName)
         {
             HttpContext.Current.Session[TAG] = tagName;
