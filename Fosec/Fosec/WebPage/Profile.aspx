@@ -63,8 +63,8 @@
                             </div>
                             <div>
                                 <div id="editProfileImageContainer" class="my-3 d-flex align-content-center flex-row flex-nowrap justify-content-center align-items-center" runat="server" visible="false">
-                                    <asp:FileUpload ID="uploadProfileImage" runat="server" CssClass="form-control mx-2" />
-                                    <asp:Button ID="submitProfileImageBtn" runat="server" OnClick="SubmitProfileImage" CssClass="btn mx-2" Text="Upload" />
+                                    <asp:FileUpload ID="uploadProfileImage" runat="server" CssClass="form-control mx-2 mb-2" />
+                                    <asp:Button ID="submitProfileImageBtn" runat="server" OnClick="SubmitProfileImage" CssClass="btn mx-2 mb-2" Text="Upload" />
                                 </div>
                                 <div id="editPasswordContainer" class="m-1" runat="server" visible="false">
                                     <asp:Table runat="server">
@@ -97,7 +97,7 @@
                                             </asp:TableCell>
                                         </asp:TableRow>
                                     </asp:Table>
-                                    <asp:Button Text="Update Password" ID="updatePasswordBtn" runat="server" CssClass="btn" OnClick="UpdatePassword" />
+                                    <asp:Button Text="Update Password" ID="updatePasswordBtn" runat="server" CssClass="btn mt-2" OnClick="UpdatePassword" />
                                 </div>
                             </div>
                         </div>
@@ -105,7 +105,7 @@
                 </div>
                 <div class="profile-container">
                     <div class="title-container">
-                        <h2><i class="bi bi-patch-question me-2"></i>Asked Questions</h2>
+                        <h2><span><i class="bi bi-patch-question me-2"></i></span>Thread</h2>
                     </div>
                     <div class="profile-info-container">
                         <asp:Repeater ID="userThreadRepeater" runat="server" DataSourceID="LoggedInUserThreadData">
