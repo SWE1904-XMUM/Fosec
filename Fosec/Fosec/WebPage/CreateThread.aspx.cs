@@ -53,6 +53,12 @@ namespace Fosec.WebPage
 
         protected void submitThread_Click(object sender, EventArgs e)
         {
+            if (threadTitle.Text.Length > ThreadDb.MAX_TITLE_LENGTH)
+            {
+                WebPageUtil.DisplayMessage("The thread title has exceeded maximum length");
+                return;
+            }
+
             if (content.Text.Length > ThreadDb.MAX_CONTENT_LENGTH)
             {
                 WebPageUtil.DisplayMessage("The content has exceeded maximum length");
