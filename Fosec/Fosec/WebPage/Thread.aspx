@@ -15,12 +15,6 @@
     </div>
     <div class="container" id="threadContainer" runat="server">
         <div id="mainThreadContainer">
-            <div class="row">
-                <div class="text-right mt-3">
-                    <!-- TODO delete button not working-->
-                </div>
-            </div>
-
             <asp:Repeater ID="threadRepeater" runat="server" DataSourceID="ThreadData">
                 <ItemTemplate>
                     <div class="threadContainer row">
