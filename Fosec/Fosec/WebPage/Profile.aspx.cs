@@ -25,6 +25,7 @@ namespace Fosec.WebPage
                 userProfile.DataSourceID = "OtherUserProfileData";
                 userProfileDetail.DataSourceID = "OtherUserProfileData";
                 userThreadRepeater.DataSourceID = "OtherUserThreadData";
+                editProfileContainer.Visible = false;
             }
             else
             {
