@@ -17,16 +17,10 @@
         <div id="mainThreadContainer">
             <div class="row">
                 <div class="text-right mt-3">
-                    <!-- TODO debug: edit button not working -->
-                    
-                    <!-- TODO danger button -->
-                    
-                    
+                    <!-- TODO delete button not working-->
                 </div>
             </div>
-            
-            
-            
+
             <asp:Repeater ID="threadRepeater" runat="server" DataSourceID="ThreadData">
                 <ItemTemplate>
                     <div class="threadContainer row">

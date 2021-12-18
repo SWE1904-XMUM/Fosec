@@ -65,7 +65,7 @@ namespace Fosec.WebPage
             if (UserDb.GetUserIdByUsername(SessionManager.GetUsername()) == ThreadDb.GetUserIdByThreadId(threadid))
             {
                 bool result = ThreadDb.DeleteThread(threadid);
-                //TODO delete comments for this thread
+
                 if (result)
                 {
                     WebPageUtil.DisplayMessageAndRedirect("Thread has been deleted", "/WebPage/Home.aspx", this.Page);
