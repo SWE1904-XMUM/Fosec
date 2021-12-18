@@ -1,13 +1,21 @@
 ﻿using Fosec.Session;
 using System;
+using System.Web;
 using System.Web.UI.WebControls;
 
 namespace Fosec.WebPage
 {
     public partial class Home : System.Web.UI.Page
     {
+        string tagName = HttpContext.Current.Request.QueryString["tagName"];
         protected void Page_Load(object sender, EventArgs e)
-        {
+        {   
+            if(tagName != null)
+            {
+                selectedTagName.Text = tagName;
+                threadRepeater.DataSourceID = (tagName == "All") ? "AllThreadDataSource" : "FilteredThreadDataSource";
+            }
+
             if(SessionManager.GetLogin().Equals("true"))
             {
                 createNewThreadBtn.Visible = true;
