@@ -13,7 +13,7 @@ namespace Fosec.WebPage
     public partial class CreateThread : System.Web.UI.Page
     {
         // Thread page txt
-        string titleTxt, contentTxt, tagTxt;
+        string titleTxt, contentTxt;
         string threadId = HttpContext.Current.Request.QueryString["threadid"];
         private static string selectedTag = "";
 
@@ -28,14 +28,9 @@ namespace Fosec.WebPage
 
             DisplayTagsFromDb();
 
-            if (threadId == null)
+            // TODO -> debug for update
+            if (ThreadDb.CheckThreadExistence(int.Parse(threadId)) && !IsPostBack)
             {
-                threadContainer.Visible = true;
-            }
-
-            else if (ThreadDb.CheckThreadExistence(int.Parse(threadId)) && !IsPostBack)
-            {
-                threadContainer.Visible = true;
                 DisplayThreadContent();
             }
 
@@ -178,7 +173,7 @@ namespace Fosec.WebPage
                         if (button.Text.Equals(tagNameFromDb))
                         {
                             button.Attributes.Add("style", "background-color: #05767B; color:#FFFFFF;");
-                            //break;
+                            break;
                         }
                     }
                 }
