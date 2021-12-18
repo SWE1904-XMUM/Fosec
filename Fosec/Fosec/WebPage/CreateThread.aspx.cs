@@ -13,7 +13,7 @@ namespace Fosec.WebPage
     public partial class CreateThread : System.Web.UI.Page
     {
         // Thread page txt
-        string titleTxt, contentTxt, tagTxt;
+        string titleTxt, contentTxt;
         string threadId = HttpContext.Current.Request.QueryString["threadid"];
         private static string selectedTag = "";
 
@@ -28,7 +28,8 @@ namespace Fosec.WebPage
 
             DisplayTagsFromDb();
 
-            else if (ThreadDb.CheckThreadExistence(int.Parse(threadId)) && !IsPostBack)
+            // TODO -> debug for update
+            if (ThreadDb.CheckThreadExistence(int.Parse(threadId)) && !IsPostBack)
             {
                 DisplayThreadContent();
             }
