@@ -95,7 +95,7 @@ namespace Fosec.WebPage
 
                     if (insertThread.Equals(true))
                     {
-                        WebPageUtil.DisplayMessage("Submitted successfully.");
+                        WebPageUtil.DisplayMessageAndRedirect("Submitted successful", "/WebPage/Home.aspx", this.Page);
                     }
 
                     else
@@ -166,7 +166,7 @@ namespace Fosec.WebPage
 
                 if(editThread.Equals(true))
                 {
-                    WebPageUtil.DisplayMessage("Updated successfully.");
+                    WebPageUtil.DisplayMessageAndRedirect("Updated successful", "/WebPage/Home.aspx", this.Page);
                 }
 
                 else
