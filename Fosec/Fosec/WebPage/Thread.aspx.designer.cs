@@ -33,6 +33,24 @@ namespace Fosec.WebPage
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl threadContainer;
 
         /// <summary>
+        /// mainThreadContainer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl mainThreadContainer;
+
+        /// <summary>
+        /// editBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton editBtn;
+
+        /// <summary>
         /// deleteBtn control.
         /// </summary>
         /// <remarks>

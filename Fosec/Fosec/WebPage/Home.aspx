@@ -19,6 +19,7 @@
 
         <div class="row">
             <div class="align-right-container">
+                <!-- TODO display login first -->
                 <asp:HyperLink CssClass="text-right btn" Text="Create New Thread" NavigateUrl="/WebPage/CreateThread.aspx" runat="server"></asp:HyperLink>
             </div>
         </div>

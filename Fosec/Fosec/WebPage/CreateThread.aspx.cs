@@ -32,6 +32,8 @@ namespace Fosec.WebPage
 
             foreach (Button button in tagPlaceHolder.Controls.OfType<Button>())
             {
+                //TODO maybe use class rather than change the background color?
+                //the selected tag has black text
                 if (button.Text != SessionManager.GetTag())
                 {
                     button.Attributes.Add("style", "background-color: #C8EDEF; color:#000000;");
@@ -46,7 +48,7 @@ namespace Fosec.WebPage
 
         protected void submitThread_Click(object sender, EventArgs e)
         {
-            if(!String.IsNullOrEmpty(Request.QueryString["threadid"]))
+            if (!String.IsNullOrEmpty(Request.QueryString["threadid"]))
             {
                 GetThreadText();
                 UpdateThreadContent();
@@ -63,9 +65,9 @@ namespace Fosec.WebPage
         {
             List<string> tagList = TagDb.GetAllTags();
 
-            if(tagList.Count > 0)
+            if (tagList.Count > 0)
             {
-                foreach(string tag in tagList)
+                foreach (string tag in tagList)
                 {
                     Button tagBtn = new Button();
                     tagBtn.CommandArgument = tag;
@@ -95,7 +97,9 @@ namespace Fosec.WebPage
 
                     if (insertThread.Equals(true))
                     {
-                        WebPageUtil.DisplayMessage("Submitted successfully.");
+                        WebPageUtil.DisplayMessageAndRedirect("Submitted successful", "/WebPage/Home.aspx", this.Page);
+                        //clear field
+                        //TODO direct to the thread page?
                     }
 
                     else
@@ -123,7 +127,7 @@ namespace Fosec.WebPage
 
             if (r.HasRows)
             {
-                while(r.Read())
+                while (r.Read())
                 {
                     threadTitle.Text = r.GetString(0);
                     content.Text = r.GetString(2);
@@ -160,13 +164,13 @@ namespace Fosec.WebPage
             string tagName = SessionManager.GetTag();
             int tagNo = TagDb.GetTagIdByTagName(tagName);
 
-            if(tagNo != -1)
+            if (tagNo != -1)
             {
                 bool editThread = ThreadDb.EditThread(int.Parse(threadId), titleTxt, tagNo, contentTxt);
 
-                if(editThread.Equals(true))
+                if (editThread.Equals(true))
                 {
-                    WebPageUtil.DisplayMessage("Updated successfully.");
+                    WebPageUtil.DisplayMessageAndRedirect("Updated successful", "/WebPage/Home.aspx", this.Page);
                 }
 
                 else

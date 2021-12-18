@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using Fosec.Database;
 using Fosec.Session;
 using Fosec.Utils;
@@ -38,7 +33,7 @@ namespace Fosec
             {
                 if (checkPassword.Equals(true))
                 {
-                    SessionManager.SetLogin(true);
+                    SessionManager.SetLogin("true");
                     SessionManager.SetUsername(unameTxt);
                     WebPageUtil.DisplayMessageAndRedirect("Login successful", "/WebPage/Home.aspx", this.Page);
                 }
@@ -59,6 +54,7 @@ namespace Fosec
         protected void Logout_Click(object sender, EventArgs e)
         {
             SessionManager.RemoveUsername();
+            SessionManager.SetLogin("false");
             Response.Redirect("/WebPage/Home.aspx");
         }
 
