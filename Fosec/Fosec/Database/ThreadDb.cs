@@ -7,6 +7,7 @@ namespace Fosec.Database
     {
         private static SqlConnection connection = ConnectionProvider.GetDatabaseConnection();
         public readonly static int MAX_CONTENT_LENGTH = 999;
+        public readonly static int MAX_TITLE_LENGTH = 150;
 
         public static bool InsertThread(int userId, string title, int tagNo, string content)
         {

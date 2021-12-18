@@ -15,6 +15,15 @@ namespace Fosec.WebPage
     {
 
         /// <summary>
+        /// titleCharacterCount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label titleCharacterCount;
+
+        /// <summary>
         /// threadTitle control.
         /// </summary>
         /// <remarks>
@@ -33,13 +42,13 @@ namespace Fosec.WebPage
         protected global::System.Web.UI.WebControls.PlaceHolder tagPlaceHolder;
 
         /// <summary>
-        /// characterCount control.
+        /// contentCharacterCount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label characterCount;
+        protected global::System.Web.UI.WebControls.Label contentCharacterCount;
 
         /// <summary>
         /// content control.
