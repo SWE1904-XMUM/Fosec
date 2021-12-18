@@ -119,19 +119,18 @@ namespace Fosec.WebPage
             }
             else
             {
-                bool result = ThreadDb.InsertThread(userId, titleTxt, tagNo, contentTxt);
+                int result = ThreadDb.InsertThread(userId, titleTxt, tagNo, contentTxt);
 
-                if (result)
+                if (result > 0)
                 {
-                    WebPageUtil.DisplayMessageAndRedirect("Submitted successful", "/WebPage/Home.aspx", this.Page);
                     threadTitle.Text = "";
                     SessionManager.RemoveTag();
                     content.Text = "";
-                    //TODO direct to the thread page?
+                    WebPageUtil.DisplayMessageAndRedirect("Submitted successful", "/WebPage/Thread.aspx?threadid=" + result, this.Page);
                 }
                 else
                 {
-                    WebPageUtil.DisplayMessage("Fail to submit thread, please try again.");
+                    WebPageUtil.DisplayMessage("Fail to submit thread, please try again." + result);
                 }
             }
         }

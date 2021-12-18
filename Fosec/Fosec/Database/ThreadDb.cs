@@ -9,21 +9,17 @@ namespace Fosec.Database
         public readonly static int MAX_CONTENT_LENGTH = 999;
         public readonly static int MAX_TITLE_LENGTH = 150;
 
-        public static bool InsertThread(int userId, string title, int tagNo, string content)
+        public static int InsertThread(int userId, string title, int tagNo, string content)
         {
-            string query = "insert into Threads (userId, title, tagNo, content) values (@0,@1,@2,@3)";
+            string query = "insert into Threads (userId, title, tagNo, content) values (@0,@1,@2,@3); select scope_identity()";
             SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@0", userId);
             cmd.Parameters.AddWithValue("@1", title);
             cmd.Parameters.AddWithValue("@2", tagNo);
             cmd.Parameters.AddWithValue("@3", content);
-            int insert = cmd.ExecuteNonQuery();
+            int insert = Convert.ToInt32(cmd.ExecuteScalar());
 
-            if (insert > 0)
-            {
-                return true;
-            }
-            return false;
+            return insert;
         }
 
         public static bool EditThread(int threadId, string title, int tagNo, string content)
