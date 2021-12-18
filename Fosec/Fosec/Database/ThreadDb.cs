@@ -6,6 +6,7 @@ namespace Fosec.Database
     public static class ThreadDb
     {
         private static SqlConnection connection = ConnectionProvider.GetDatabaseConnection();
+        public readonly static int MAX_CONTENT_LENGTH = 999;
 
         public static bool InsertThread(int userId, string title, int tagNo, string content)
         {
@@ -52,7 +53,7 @@ namespace Fosec.Database
             {
                 bool deleteComment = ThreadCommentDb.DeleteThreadComment(threadId);
 
-                if(deleteComment.Equals(true))
+                if (deleteComment.Equals(true))
                 {
                     return true;
                 }

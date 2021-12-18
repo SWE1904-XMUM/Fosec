@@ -17,10 +17,10 @@ namespace Fosec.WebPage
         // Server control's functions
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (SessionManager.GetUsername() == "")
+            /*if (SessionManager.GetUsername() == "")
             {
                 WebPageUtil.DisplayMessageAndRedirect("Please login before create thread", "/WebPage/SignupAndLogin.aspx?action=login", this.Page);
-            }
+            }*/
 
             DisplayTagsFromDb();
 
@@ -51,7 +51,11 @@ namespace Fosec.WebPage
 
         protected void submitThread_Click(object sender, EventArgs e)
         {
-            //TODO check the length of thread can fit into db field
+            if (content.Text.Length > ThreadDb.MAX_CONTENT_LENGTH)
+            {
+                WebPageUtil.DisplayMessage("The content has exceeded maximum length");
+                return;
+            }
             if (!String.IsNullOrEmpty(Request.QueryString["threadid"]))
             {
                 GetThreadText();
@@ -62,6 +66,11 @@ namespace Fosec.WebPage
             {
                 InsertNewThread();
             }
+        }
+
+        protected void UpdateCharacterCount(object sender, EventArgs e)
+        {
+            characterCount.Text = content.Text.Length.ToString() + "/999";
         }
 
         // Other functions
@@ -172,6 +181,7 @@ namespace Fosec.WebPage
             {
                 bool editThread = ThreadDb.EditThread(int.Parse(threadId), titleTxt, tagNo, contentTxt);
 
+                //TODO edit message
                 if (editThread.Equals(true))
                 {
                     WebPageUtil.DisplayMessageAndRedirect("Updated successful", "/WebPage/Home.aspx", this.Page);
@@ -185,6 +195,7 @@ namespace Fosec.WebPage
 
             else
             {
+                //TODO tagNo??
                 WebPageUtil.DisplayMessage("No tagNo found.");
             }
         }
