@@ -60,7 +60,6 @@ namespace Fosec.Database
 
         public static (string, string, int) GetThreadContentByThreadId(int threadId)
         {
-            // TODO return values instead of sqldatareader
             string query = "select title, tagNo, content from Threads where threadId = @0";
             SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@0", threadId);
