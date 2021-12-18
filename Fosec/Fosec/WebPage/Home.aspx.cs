@@ -3,6 +3,7 @@ using System;
 using System.Web;
 using System.Web.UI.WebControls;
 using Fosec.Utils;
+using Fosec.Database;
 
 namespace Fosec.WebPage
 {
@@ -37,8 +38,15 @@ namespace Fosec.WebPage
 
         protected void DelBtn_Click(object sender, EventArgs e)
         {
-            //TODO delete thread
-            WebPageUtil.DisplayMessage("deleted");
+            bool result = ThreadDb.DeleteThread(((Button)sender).CommandArgument);
+            if (result)
+            {
+                WebPageUtil.DisplayMessageAndRedirect("Thread has been deleted", Request.RawUrl, this.Page);
+            }
+            else
+            {
+                WebPageUtil.DisplayMessage("ERROR: Thread was not deleted, please try again");
+            }
         }
     }
 }

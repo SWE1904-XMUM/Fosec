@@ -20,6 +20,7 @@ namespace Fosec.Database
 
         public static bool DeleteThreadComment(string threadId)
         {
+            //TODO check whether the thread has comment
             string query = "delete ThreadComment where threadId = @0";
             SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@0", threadId);
