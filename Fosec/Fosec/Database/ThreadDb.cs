@@ -50,7 +50,12 @@ namespace Fosec.Database
 
             if (delete > 0)
             {
-                return true;
+                bool deleteComment = ThreadCommentDb.DeleteThreadComment(threadId);
+
+                if(deleteComment.Equals(true))
+                {
+                    return true;
+                }
             }
             return false;
         }
