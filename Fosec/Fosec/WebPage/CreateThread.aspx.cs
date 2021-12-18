@@ -164,7 +164,6 @@ namespace Fosec.WebPage
                         if (button.Text.Equals(tagNameFromDb))
                         {
                             button.Attributes.Add("style", "background-color: #05767B; color:#FFFFFF;");
-                            break;
                         }
                     }
                 }
