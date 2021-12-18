@@ -1,6 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WebPage/Fosec.Master" AutoEventWireup="true" CodeBehind="Profile.aspx.cs" Inherits="Fosec.WebPage.Profile" %>
 
 <%@ Import Namespace="Fosec.Utils" %>
+<%@ Import Namespace="Fosec.Database" %>
+<%@ Import Namespace="Fosec.Session" %>
 
 <asp:Content ContentPlaceHolderID="PageTitle" runat="server">
     Profile - Fosec
@@ -113,7 +115,20 @@
                                 <itemtemplate>
                                     <div class="threadContainer-profile row">
                                         <a class="link-text-view px-4 py-2" href='<%# @"/WebPage/Thread.aspx?threadid=" + Eval("threadId") %>'>
-                                            <asp:Label CssClass="threadTitle row" runat="server" Text='<%# Eval("title") %>' />
+                                            <div class="d-flex flex-row justify-content-between">
+                                                <asp:Label CssClass="threadTitle" runat="server" Text='<%# Eval("title") %>' />
+                                                <div class="dropdown">
+                                                    <asp:LinkButton ID="threadDropdown" runat="server" CssClass="btn" data-bs-toggle="dropdown" aria-expanded="false" Visible='<%# int.Parse(Eval("userid").ToString()) == UserDb.GetUserIdByUsername(SessionManager.GetUsername()) %>'>
+                                        <i class="bi bi-three-dots-vertical"></i>
+                                                    </asp:LinkButton>
+                                                    <ul class="dropdown-menu dropdown-menu-end" runat="server" aria-labelledby="threadDropdown">
+                                                        <li>
+                                                            <asp:LinkButton ID="editBtn" runat="server" CssClass="dropdown-item" href='<%# @"/WebPage/CreateThread.aspx?threadid=" + Eval("threadId") %>' Text="Edit"></asp:LinkButton><li>
+                                                        <li>
+                                                            <asp:Button ID="deleteBtn" CssClass="dropdown-item" runat="server" OnClick="DelBtn_Click" Text="Delete" CommandArgument='<%#Eval("threadid") %>' /></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
                                             <asp:Label CssClass="threadContent row" runat="server" Text='<%# Eval("content") %>' />
                                         </a>
                                         <div class="row">
@@ -134,24 +149,24 @@
     </div>
 
     <!-- Datasources for logged in users -->
-    <asp:SqlDataSource ID="LoggedInUserProfileData" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [username], [email], [profileImage] FROM [Users] WHERE ([username] = @username)">
+    <asp:SqlDataSource ID="LoggedInUserProfileData" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT username, email, profileImage FROM Users WHERE (username = @username)">
         <SelectParameters>
             <asp:SessionParameter Name="username" SessionField="uname" Type="String" />
         </SelectParameters>
     </asp:SqlDataSource>
-    <asp:SqlDataSource ID="LoggedInUserThreadData" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT Threads.threadId as threadid, Threads.title as title, Tag.tagName as tagname, Threads.[content] as content, Threads.threadDate as date FROM Threads LEFT OUTER JOIN Tag ON Threads.tagNo = tag.tagid LEFT OUTER JOIN Users ON Threads.userId = Users.userId WHERE (Users.username = @username)">
+    <asp:SqlDataSource ID="LoggedInUserThreadData" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT Users.userId as userid, Threads.threadId as threadid, Threads.title as title, Tag.tagName as tagname, Threads.[content] as content, Threads.threadDate as date FROM Threads LEFT OUTER JOIN Tag ON Threads.tagNo = tag.tagid LEFT OUTER JOIN Users ON Threads.userId = Users.userId WHERE (Users.username = @username)">
         <SelectParameters>
             <asp:SessionParameter Name="username" SessionField="uname" />
         </SelectParameters>
     </asp:SqlDataSource>
 
     <!-- Datasources for other users -->
-    <asp:SqlDataSource ID="OtherUserProfileData" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [username], [email], [profileImage] FROM [Users] WHERE (userid = @userid)">
+    <asp:SqlDataSource ID="OtherUserProfileData" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT username as username, email as email, profileImage FROM Users WHERE (userid = @userid)">
         <SelectParameters>
             <asp:QueryStringParameter Name="userid" QueryStringField="userid" />
         </SelectParameters>
     </asp:SqlDataSource>
-    <asp:SqlDataSource ID="OtherUserThreadData" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT Threads.threadId as threadid, Threads.title as title, Tag.tagName as tagname, Threads.[content] as content, Threads.threadDate as date FROM Threads LEFT OUTER JOIN Tag ON Threads.tagNo = tag.tagid LEFT OUTER JOIN Users ON Threads.userId = Users.userId WHERE (Users.userid = @userid)">
+    <asp:SqlDataSource ID="OtherUserThreadData" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT Users.userId as userid, Threads.threadId as threadid, Threads.title as title, Tag.tagName as tagname, Threads.[content] as content, Threads.threadDate as date FROM Threads LEFT OUTER JOIN Tag ON Threads.tagNo = tag.tagid LEFT OUTER JOIN Users ON Threads.userId = Users.userId WHERE (Users.userid = @userid)">
         <SelectParameters>
             <asp:QueryStringParameter Name="userid" QueryStringField="userid" />
         </SelectParameters>

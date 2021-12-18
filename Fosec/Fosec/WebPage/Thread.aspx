@@ -26,9 +26,9 @@
                         </a>
                         <div class="threadInformation col-9 d-flex flex-column justify-content-between">
                             <div class="threadInformation link-text-view">
-                                <div class="row">
-                                    <asp:Label CssClass="threadTitle col-11" runat="server" Text='<%# Eval("title") %>' />
-                                    <div class="dropdown col-1 d-flex align-items-start justify-content-end">
+                                <div class="d-flex flex-row justify-content-between">
+                                    <asp:Label CssClass="threadTitle" runat="server" Text='<%# Eval("title") %>' />
+                                    <div class="dropdown">
                                         <asp:LinkButton ID="threadDropdown" runat="server" CssClass="btn" data-bs-toggle="dropdown" aria-expanded="false" Visible='<%# ViewState["btn"] %>'>
                                         <i class="bi bi-three-dots-vertical"></i>
                                         </asp:LinkButton>

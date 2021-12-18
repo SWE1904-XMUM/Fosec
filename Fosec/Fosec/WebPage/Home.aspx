@@ -1,6 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WebPage/Fosec.Master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="Fosec.WebPage.Home" %>
 
 <%@ Import Namespace="Fosec.Utils" %>
+<%@ Import Namespace="Fosec.Database" %>
+<%@ Import Namespace="Fosec.Session" %>
 
 <asp:Content ContentPlaceHolderID="PageTitle" runat="server">
     Fosec
@@ -40,7 +42,20 @@
                             </a>
                             <div class="threadInformation col-9 d-flex flex-column justify-content-between">
                                 <a class="threadInformation link-text-view" href='<%# @"/Webpage/Thread.aspx?threadid=" + Eval("threadId") %>'>
-                                    <asp:Label CssClass="threadTitle row" runat="server" Text='<%# Eval("title") %>' />
+                                    <div class="d-flex flex-row justify-content-between">
+                                        <asp:Label CssClass="threadTitle" runat="server" Text='<%# Eval("title") %>' />
+                                        <div class="dropdown">
+                                            <asp:LinkButton ID="threadDropdown" runat="server" CssClass="btn" data-bs-toggle="dropdown" aria-expanded="false" Visible='<%# int.Parse(Eval("userid").ToString()) == UserDb.GetUserIdByUsername(SessionManager.GetUsername()) %>'>
+                                        <i class="bi bi-three-dots-vertical"></i>
+                                            </asp:LinkButton>
+                                            <ul class="dropdown-menu dropdown-menu-end" runat="server" aria-labelledby="threadDropdown">
+                                                <li>
+                                                    <asp:LinkButton ID="editBtn" runat="server" CssClass="dropdown-item" href='<%# @"/WebPage/CreateThread.aspx?threadid=" + Eval("threadId") %>' Text="Edit"></asp:LinkButton><li>
+                                                <li>
+                                                    <asp:Button ID="deleteBtn" CssClass="dropdown-item" runat="server" OnClick="DelBtn_Click" Text="Delete" CommandArgument='<%#Eval("threadid") %>'/></li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                     <asp:Label CssClass="threadContent row limitContent" runat="server" Text='<%# Eval("content") %>' />
                                 </a>
                                 <div>
@@ -57,7 +72,7 @@
                         <br />
                     </ItemTemplate>
                 </asp:Repeater>
-                
+
                 <%--Data Sources--%>
                 <asp:SqlDataSource ID="TagDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Tag]"></asp:SqlDataSource>
                 <asp:SqlDataSource ID="AllThreadDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT Threads.threadId as threadid, Threads.userId as userid, Threads.title as title, Threads.[content] as content, Threads.threadDate AS date, Tag.tagName as tagname, Users.profileImage as profileimage, Users.username as username

@@ -118,5 +118,12 @@ namespace Fosec.WebPage
         {
             editPasswordContainer.Visible = !editPasswordContainer.Visible;
         }
+
+        protected void DelBtn_Click(object sender, EventArgs e)
+        {
+            //TODO delete thread
+            WebPageUtil.DisplayMessage("deleted");
+        }
+
     }
 }
