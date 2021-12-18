@@ -135,13 +135,18 @@ a:hover {
     border-radius: 0.5rem;
 }
 
+.threadTitle,
+.threadContent {
+    overflow-wrap: anywhere;
+}
+
 .threadTitle {
     font-weight: bold;
     font-size: 2rem;
     padding-left: 0;
 }
 
-.threadContet {
+.threadContent {
     padding: 0.8rem;
 }
 
