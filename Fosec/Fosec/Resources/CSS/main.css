@@ -70,6 +70,15 @@ a:hover {
         color: var(--color-black);
     }
 
+    .btn.primaryBtn,
+    .btn.primaryBtn:hover,
+    .btn.primaryBtn:focus,
+    .btn.primaryBtn:focus-visible {
+        background-color: var(--primary-color) !important;
+        color: var(--color-black) !important;
+        border: none !important;
+    }
+
 .tag-btn[selected=true] {
     background-color: var(--primary-color);
     color: var(--secondary-color);
@@ -205,10 +214,10 @@ a:hover {
     justify-content: center;
 }
 
-.signupReq{
-    color:red;
-    padding-bottom:20px;
-    font-size:12px;
+.signupReq {
+    color: red;
+    padding-bottom: 20px;
+    font-size: 12px;
 }
 
 .form-nav {
@@ -323,9 +332,9 @@ a:hover {
     color: var(--color-black);
 }
 
-#PageContent_threadRepeater_threadDropdown_0:focus,
-#PageContent_threadRepeater_threadDropdown_0:hover,
-#PageContent_threadRepeater_threadDropdown_0:focus-visible {
-    background-color: var(--secondary-color);
-    color: var(--color-white);
-}
+    #PageContent_threadRepeater_threadDropdown_0:focus,
+    #PageContent_threadRepeater_threadDropdown_0:hover,
+    #PageContent_threadRepeater_threadDropdown_0:focus-visible {
+        background-color: var(--secondary-color);
+        color: var(--color-white);
+    }

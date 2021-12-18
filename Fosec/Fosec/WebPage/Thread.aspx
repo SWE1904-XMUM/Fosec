@@ -29,7 +29,7 @@
                                 <div class="d-flex flex-row justify-content-between">
                                     <asp:Label CssClass="threadTitle" runat="server" Text='<%# Eval("title") %>' />
                                     <div class="dropdown">
-                                        <asp:LinkButton ID="threadDropdown" runat="server" CssClass="btn" data-bs-toggle="dropdown" aria-expanded="false" Visible='<%# ViewState["btn"] %>'>
+                                        <asp:LinkButton ID="threadDropdown" runat="server" CssClass="btn primaryBtn" data-bs-toggle="dropdown" aria-expanded="false" Visible='<%# ViewState["btn"] %>'>
                                         <i class="bi bi-three-dots-vertical"></i>
                                         </asp:LinkButton>
                                         <ul class="dropdown-menu dropdown-menu-end" runat="server" aria-labelledby="threadDropdown">
