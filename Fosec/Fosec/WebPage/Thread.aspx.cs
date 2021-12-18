@@ -3,7 +3,6 @@ using Fosec.Utils;
 using System;
 using System.Web;
 using Fosec.Session;
-using System.Web.UI.WebControls;
 
 namespace Fosec.WebPage
 {

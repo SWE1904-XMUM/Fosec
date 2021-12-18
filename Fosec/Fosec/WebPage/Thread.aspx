@@ -106,7 +106,7 @@
             <div id="commentDisabledContainer" class="d-flex justify-content-center text-center my-5" runat="server">
                 <div>
                     <p>Please Login before comment this thread.</p>
-                    <asp:LinkButton runat="server" PostBackUrl="/WebPage/SignupAndLogin.aspx?action=login" Text="Login"></asp:LinkButton>
+                    <asp:LinkButton runat="server" PostBackUrl="/WebPage/SignupAndLogin.aspx?action=login" Text="Login" CssClass="btn"></asp:LinkButton>
                 </div>
             </div>
         </div>

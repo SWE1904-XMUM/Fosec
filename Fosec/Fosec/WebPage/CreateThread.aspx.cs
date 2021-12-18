@@ -3,7 +3,6 @@ using Fosec.Session;
 using Fosec.Utils;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
@@ -28,8 +27,7 @@ namespace Fosec.WebPage
 
             DisplayTagsFromDb();
 
-            // TODO -> debug for update
-            if(threadId == null)
+            if (threadId == null)
             {
                 threadContainer.Visible = true;
             }
@@ -148,10 +146,8 @@ namespace Fosec.WebPage
 
                 if (result > 0)
                 {
-                    threadTitle.Text = "";
-                    selectedTag = "";
-                    content.Text = "";
-                    WebPageUtil.DisplayMessageAndRedirect("Submitted successful", "/WebPage/Thread.aspx?threadid=" + result, this.Page);
+                    ClearThreadForm();
+                    WebPageUtil.DisplayMessageAndRedirect("Your thread has been posted", "/WebPage/Thread.aspx?threadid=" + result, this.Page);
                 }
 
                 else
@@ -199,7 +195,7 @@ namespace Fosec.WebPage
 
                 if (editThread.Equals(true))
                 {
-                    WebPageUtil.DisplayMessageAndRedirect("Your thread has been uploaded", "/WebPage/Thread.aspx?threadid=" + threadId, this.Page);
+                    WebPageUtil.DisplayMessageAndRedirect("Your thread has been updated", "/WebPage/Thread.aspx?threadid=" + threadId, this.Page);
                 }
 
                 else
@@ -212,6 +208,13 @@ namespace Fosec.WebPage
             {
                 WebPageUtil.DisplayMessage("ERROR: Please try again");
             }
+        }
+
+        private void ClearThreadForm()
+        {
+            threadTitle.Text = "";
+            selectedTag = "";
+            content.Text = "";
         }
 
         private void GetThreadText()
