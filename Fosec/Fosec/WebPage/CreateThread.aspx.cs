@@ -39,6 +39,11 @@ namespace Fosec.WebPage
                 DisplayThreadContent();
             }
 
+            else if (ThreadDb.CheckThreadExistence(int.Parse(threadId)) && IsPostBack)
+            {
+                threadContainer.Visible = true;
+            }
+
             else
             {
                 threadContainer.Visible = false;
@@ -116,7 +121,7 @@ namespace Fosec.WebPage
 
             int userId = UserDb.GetUserIdByUsername(SessionManager.GetUsername());
             int tagNo = TagDb.GetTagIdByTagName(SessionManager.GetTag());
-            
+
             if (userId <= 0)
             {
                 WebPageUtil.DisplayMessageAndRedirect("Please login before create thread", "/WebPage/SignupAndLogin.aspx?action=login", this.Page);
