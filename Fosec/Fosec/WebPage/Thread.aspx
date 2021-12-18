@@ -13,7 +13,7 @@
         <p class="display-6">This page does not exist</p>
         <asp:LinkButton CssClass="btn" runat="server" PostBackUrl="/WebPage/Home.aspx" Text="Go back to Home"></asp:LinkButton>
     </div>
-    <div class="container" id="threadContainer" runat="server">
+    <div class="container px-5" id="threadContainer" runat="server">
         <div id="mainThreadContainer">
             <asp:Repeater ID="threadRepeater" runat="server" DataSourceID="ThreadData">
                 <ItemTemplate>
@@ -91,15 +91,23 @@
         </div>
 
         <!-- Insert comment -->
-        <div class="row d-flex justify-content-end mb-3">
-            <div class="row">
-                <asp:Label class="text-right" ID="commentCharacterCount" runat="server"></asp:Label>
+        <div class="row d-flex justify-content-end mb-3 mx-5">
+            <div id="commentEnabledContainer" runat="server" visible="false">
+                <div class="row">
+                    <asp:Label class="text-right" ID="commentCharacterCount" runat="server"></asp:Label>
+                </div>
+                <div class="row">
+                    <asp:TextBox ID="ReplyThread" CssClass="form-control" TextMode="MultiLine" type="text" placeHolder="Reply here" runat="server" Rows="6"></asp:TextBox>
+                </div>
+                <div class="text-right">
+                    <asp:Button ID="ReplyBtn" runat="server" Text="Reply" CssClass="btn px-5 my-3" OnClick="ReplyBtn_Click" />
+                </div>
             </div>
-            <div class="col-lg-10 col-sm-9 col-9">
-                <asp:TextBox ID="ReplyThread" CssClass="form-control" TextMode="MultiLine" type="text" placeHolder="reply here" runat="server" Rows="6"></asp:TextBox>
-            </div>
-            <div class="col-lg-1 col-sm-2 col-2 reply-button-container">
-                <asp:Button ID="ReplyBtn" runat="server" Text="Reply" CssClass="btn" OnClick="ReplyBtn_Click" />
+            <div id="commentDisabledContainer" class="d-flex justify-content-center text-center my-5" runat="server">
+                <div>
+                    <p>Please Login before comment this thread.</p>
+                    <asp:LinkButton runat="server" PostBackUrl="/WebPage/SignupAndLogin.aspx?action=login" Text="Login"></asp:LinkButton>
+                </div>
             </div>
         </div>
     </div>

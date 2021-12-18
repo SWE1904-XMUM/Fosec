@@ -24,12 +24,8 @@ namespace Fosec.WebPage
                 ViewState["btn"] = (UserDb.GetUserIdByUsername(SessionManager.GetUsername()) == ThreadDb.GetUserIdByThreadId(threadid));
 
                 //disable reply button if not logged in
-                //TODO add block to replace the comment area
-                if (SessionManager.GetUsername() == "")
-                {
-                    ReplyThread.Enabled = false;
-                    ReplyBtn.Enabled = false;
-                }
+                commentEnabledContainer.Visible = (SessionManager.GetUsername() != "");
+                commentDisabledContainer.Visible = !commentEnabledContainer.Visible;
             }
         }
 
@@ -51,7 +47,7 @@ namespace Fosec.WebPage
 
                 if (insertComment)
                 {
-                    WebPageUtil.DisplayMessageAndRedirect("Your comment has been submitted", Request.RawUrl, this.Page);
+                    WebPageUtil.Redirect(Request.RawUrl, this.Page);
                 }
                 else
                 {

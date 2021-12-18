@@ -51,6 +51,15 @@ namespace Fosec.WebPage
         protected global::System.Web.UI.WebControls.Repeater threadCommentRepeater;
 
         /// <summary>
+        /// commentEnabledContainer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl commentEnabledContainer;
+
+        /// <summary>
         /// commentCharacterCount control.
         /// </summary>
         /// <remarks>
@@ -76,6 +85,15 @@ namespace Fosec.WebPage
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button ReplyBtn;
+
+        /// <summary>
+        /// commentDisabledContainer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl commentDisabledContainer;
 
         /// <summary>
         /// ThreadData control.
