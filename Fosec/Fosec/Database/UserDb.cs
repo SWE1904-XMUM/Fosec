@@ -13,7 +13,7 @@ namespace Fosec.Database
             SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@0", username);
             cmd.Parameters.AddWithValue("@1", email);
-            cmd.Parameters.AddWithValue("@2", HashUtil.GetHashedStringByInput(pwd));
+            cmd.Parameters.AddWithValue("@2", HashUtil.GetHashedStringByInput(string.Concat(pwd, "2")));
 
             return cmd.ExecuteNonQuery() > 0;
         }
@@ -71,7 +71,7 @@ namespace Fosec.Database
             if (r.HasRows)
             {
                 r.Read();
-                bool compare = HashUtil.CompareHash(r.GetString(0), pwd);
+                bool compare = HashUtil.CompareHash(r.GetString(0), string.Concat(pwd, "2"));
                 return compare.Equals(true);
             }
             return false;
@@ -84,6 +84,15 @@ namespace Fosec.Database
             cmd.Parameters.AddWithValue("@0", profileImage);
             cmd.Parameters.AddWithValue("@1", userid);
 
+            return cmd.ExecuteNonQuery() > 0;
+        }
+
+        public static bool UpdateUserPassword(int userid, string pwd)
+        {
+            string query = "update users set pwd=@0 where userid=@1";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@0", HashUtil.GetHashedStringByInput(string.Concat(pwd, "2")));
+            cmd.Parameters.AddWithValue("@1", userid);
             return cmd.ExecuteNonQuery() > 0;
         }
 
