@@ -18,6 +18,7 @@ namespace Fosec.WebPage
                 userProfile.DataSourceID = "LoggedInUserProfileData";
                 userProfileDetail.DataSourceID = "LoggedInUserProfileData";
                 userThreadRepeater.DataSourceID = "LoggedInUserThreadData";
+                editProfileContainer.Visible = true;
             }
             else if (userid != null && UserDb.CheckUserIdExistence(Int32.Parse(userid)))
             {
