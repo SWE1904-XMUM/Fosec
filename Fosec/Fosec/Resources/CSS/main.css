@@ -77,7 +77,7 @@ a:hover {
 
 .link-text-view,
 .link-text-view:hover {
-    text-decoration: none; /*remove underline at links*/
+    text-decoration: none;
     color: var(--color-black);
 }
 
@@ -126,6 +126,7 @@ a:hover {
 .form-container {
     width: 75%;
 }
+
 /*Thread container & content*/
 .threadContainer {
     background-color: var(--primary-color);
@@ -195,6 +196,12 @@ a:hover {
 #login-or-signup {
     display: flex;
     justify-content: center;
+}
+
+.signupReq{
+    color:red;
+    padding-bottom:20px;
+    font-size:12px;
 }
 
 .form-nav {

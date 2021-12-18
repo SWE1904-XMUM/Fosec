@@ -46,7 +46,8 @@
         document.querySelector("#PageContent_threadTitle").onkeyup = UpdateTitleCharacterCount;
         document.querySelector("#PageContent_content").onkeyup = UpdateContentCharacterCount;
 
-        function UpdateTitleCharacterCount() {
+        function UpdateTitleCharacterCount()
+        {
             UpdateCharacterCount(
                 document.querySelector("#PageContent_titleCharacterCount"),
                 document.querySelector("#PageContent_threadTitle").value.length,
@@ -54,7 +55,8 @@
             );
         }
 
-        function UpdateContentCharacterCount() {
+        function UpdateContentCharacterCount()
+        {
             UpdateCharacterCount(
                 document.querySelector("#PageContent_contentCharacterCount"),
                 document.querySelector("#PageContent_content").value.length,

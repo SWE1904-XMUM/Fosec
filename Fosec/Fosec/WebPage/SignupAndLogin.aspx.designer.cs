@@ -96,6 +96,15 @@ namespace Fosec.WebPage
         protected global::System.Web.UI.WebControls.TextBox signupUname;
 
         /// <summary>
+        /// unameReq control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label unameReq;
+
+        /// <summary>
         /// signupPwd control.
         /// </summary>
         /// <remarks>
@@ -103,6 +112,15 @@ namespace Fosec.WebPage
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox signupPwd;
+
+        /// <summary>
+        /// pwdReq control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label pwdReq;
 
         /// <summary>
         /// signupConfirmPwd control.
