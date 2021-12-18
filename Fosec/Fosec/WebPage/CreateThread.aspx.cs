@@ -28,19 +28,23 @@ namespace Fosec.WebPage
             }
 
             DisplayTagsFromDb();
+
             if (threadId == null)
             {
                 threadContainer.Visible = true;
             }
+
             else if (ThreadDb.CheckThreadExistence(int.Parse(threadId)))
             {
                 threadContainer.Visible = true;
                 DisplayThreadContent();
             }
+
             else
             {
                 threadContainer.Visible = false;
             }
+
             errorContainer.Visible = !threadContainer.Visible;
         }
 
@@ -82,6 +86,7 @@ namespace Fosec.WebPage
                 GetThreadText();
                 UpdateThreadContent();
             }
+
             else
             {
                 InsertNewThread();
@@ -113,22 +118,27 @@ namespace Fosec.WebPage
 
             int userId = UserDb.GetUserIdByUsername(SessionManager.GetUsername());
             int tagNo = TagDb.GetTagIdByTagName(SessionManager.GetTag());
+            
             if (userId <= 0)
             {
                 WebPageUtil.DisplayMessageAndRedirect("Please login before create thread", "/WebPage/SignupAndLogin.aspx?action=login", this.Page);
             }
+
             else if (titleTxt.Equals(""))
             {
                 WebPageUtil.DisplayMessage("Please enter thread title");
             }
+
             else if (tagNo == -1)
             {
                 WebPageUtil.DisplayMessage("Please select a subject");
             }
+
             else if (contentTxt.Equals(""))
             {
                 WebPageUtil.DisplayMessage("Please enter thread content");
             }
+
             else
             {
                 int result = ThreadDb.InsertThread(userId, titleTxt, tagNo, contentTxt);
@@ -140,6 +150,7 @@ namespace Fosec.WebPage
                     content.Text = "";
                     WebPageUtil.DisplayMessageAndRedirect("Submitted successful", "/WebPage/Thread.aspx?threadid=" + result, this.Page);
                 }
+
                 else
                 {
                     WebPageUtil.DisplayMessage("Fail to submit thread, please try again." + result);
@@ -164,6 +175,7 @@ namespace Fosec.WebPage
                         if (button.Text.Equals(tagNameFromDb))
                         {
                             button.Attributes.Add("style", "background-color: #05767B; color:#FFFFFF;");
+                            break;
                         }
                     }
                 }
