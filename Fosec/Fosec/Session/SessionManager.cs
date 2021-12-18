@@ -18,7 +18,7 @@ namespace Fosec.Session
 
         public static string GetLogin()
         {
-            if(HttpContext.Current.Session[LOGIN] != null)
+            if (HttpContext.Current.Session[LOGIN] != null)
             {
                 return HttpContext.Current.Session[LOGIN].ToString();
             }
@@ -41,9 +41,17 @@ namespace Fosec.Session
 
         public static void RemoveUsername()
         {
-            if(HttpContext.Current.Session[UNAME] != null)
+            if (HttpContext.Current.Session[UNAME] != null)
             {
                 HttpContext.Current.Session.Remove(UNAME);
+            }
+        }
+
+        public static void RemoveTag()
+        {
+            if (HttpContext.Current.Session[TAG] != null)
+            {
+                HttpContext.Current.Session.Remove(TAG);
             }
         }
 
@@ -54,7 +62,7 @@ namespace Fosec.Session
 
         public static string GetTag()
         {
-            if(HttpContext.Current.Session[TAG] != null)
+            if (HttpContext.Current.Session[TAG] != null)
             {
                 return HttpContext.Current.Session[TAG].ToString();
             }

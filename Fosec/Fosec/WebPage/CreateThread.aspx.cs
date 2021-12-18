@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Web;
 using System.Web.UI.WebControls;
 
 namespace Fosec.WebPage
@@ -13,16 +14,32 @@ namespace Fosec.WebPage
     {
         // Thread page txt
         string titleTxt, contentTxt, tagTxt;
+        string threadId = HttpContext.Current.Request.QueryString["threadid"];
 
         // Server control's functions
         protected void Page_Load(object sender, EventArgs e)
         {
-            DisplayTagsFromDb();
-
-            if (!String.IsNullOrEmpty(Request.QueryString["threadid"]) && !IsPostBack)
+            if (SessionManager.GetUsername() == "")
             {
+                WebPageUtil.DisplayMessageAndRedirect("ERROR: Please login first", "/WebPage/SignupAndLogin.aspx?action=login", this.Page);
+                return;
+            }
+
+            DisplayTagsFromDb();
+            if (threadId == null)
+            {
+                threadContainer.Visible = true;
+            }
+            else if (ThreadDb.CheckThreadExistence(int.Parse(threadId)) && !IsPostBack)
+            {
+                threadContainer.Visible = true;
                 DisplayThreadContent();
             }
+            else
+            {
+                threadContainer.Visible = false;
+            }
+            errorContainer.Visible = !threadContainer.Visible;
         }
 
         private void tag_Click(object sender, EventArgs e)
@@ -32,8 +49,6 @@ namespace Fosec.WebPage
 
             foreach (Button button in tagPlaceHolder.Controls.OfType<Button>())
             {
-                //TODO maybe use class rather than change the background color?
-                //the selected tag has black text
                 if (button.Text != SessionManager.GetTag())
                 {
                     button.Attributes.Add("style", "background-color: #C8EDEF; color:#000000;");
@@ -48,12 +63,23 @@ namespace Fosec.WebPage
 
         protected void submitThread_Click(object sender, EventArgs e)
         {
-            if (!String.IsNullOrEmpty(Request.QueryString["threadid"]))
+            if (threadTitle.Text.Length > ThreadDb.MAX_TITLE_LENGTH)
+            {
+                WebPageUtil.DisplayMessage("The thread title has exceeded maximum length");
+                return;
+            }
+
+            if (content.Text.Length > ThreadDb.MAX_CONTENT_LENGTH)
+            {
+                WebPageUtil.DisplayMessage("The content has exceeded maximum length");
+                return;
+            }
+
+            if (threadId != null)
             {
                 GetThreadText();
                 UpdateThreadContent();
             }
-
             else
             {
                 InsertNewThread();
@@ -83,46 +109,44 @@ namespace Fosec.WebPage
         {
             GetThreadText();
 
-            if (!titleTxt.Equals("") && !contentTxt.Equals(""))
+            int userId = UserDb.GetUserIdByUsername(SessionManager.GetUsername());
+            int tagNo = TagDb.GetTagIdByTagName(SessionManager.GetTag());
+            if (userId <= 0)
             {
-                string uname = SessionManager.GetUsername();
-                int userId = UserDb.GetUserIdByUsername(uname);
-
-                string tagName = SessionManager.GetTag();
-                int tagNo = TagDb.GetTagIdByTagName(tagName);
-
-                if (!userId.Equals(-1) && !tagNo.Equals(-1))
-                {
-                    bool insertThread = ThreadDb.InsertThread(userId, titleTxt, tagNo, contentTxt);
-
-                    if (insertThread.Equals(true))
-                    {
-                        WebPageUtil.DisplayMessageAndRedirect("Submitted successful", "/WebPage/Home.aspx", this.Page);
-                        //clear field
-                        //TODO direct to the thread page?
-                    }
-
-                    else
-                    {
-                        WebPageUtil.DisplayMessage("Fail to submit thread, please try again.");
-                    }
-                }
-
-                else
-                {
-                    WebPageUtil.DisplayMessage("No userId or tagNo found.");
-                }
+                WebPageUtil.DisplayMessageAndRedirect("Please login before create thread", "/WebPage/SignupAndLogin.aspx?action=login", this.Page);
             }
-
+            else if (titleTxt.Equals(""))
+            {
+                WebPageUtil.DisplayMessage("Please enter thread title");
+            }
+            else if (tagNo == -1)
+            {
+                WebPageUtil.DisplayMessage("Please select a subject");
+            }
+            else if (contentTxt.Equals(""))
+            {
+                WebPageUtil.DisplayMessage("Please enter thread content");
+            }
             else
             {
-                WebPageUtil.DisplayMessage("Please fill in all field.");
+                int result = ThreadDb.InsertThread(userId, titleTxt, tagNo, contentTxt);
+
+                if (result > 0)
+                {
+                    threadTitle.Text = "";
+                    SessionManager.RemoveTag();
+                    content.Text = "";
+                    WebPageUtil.DisplayMessageAndRedirect("Submitted successful", "/WebPage/Thread.aspx?threadid=" + result, this.Page);
+                }
+                else
+                {
+                    WebPageUtil.DisplayMessage("Fail to submit thread, please try again." + result);
+                }
             }
         }
 
         private void DisplayThreadContent()
         {
-            string threadId = Request.QueryString["threadid"];
             SqlDataReader r = ThreadDb.GetThreadContentByThreadId(int.Parse(threadId));
 
             if (r.HasRows)
@@ -160,7 +184,6 @@ namespace Fosec.WebPage
 
         private void UpdateThreadContent()
         {
-            string threadId = Request.QueryString["threadid"];
             string tagName = SessionManager.GetTag();
             int tagNo = TagDb.GetTagIdByTagName(tagName);
 
@@ -170,18 +193,18 @@ namespace Fosec.WebPage
 
                 if (editThread.Equals(true))
                 {
-                    WebPageUtil.DisplayMessageAndRedirect("Updated successful", "/WebPage/Home.aspx", this.Page);
+                    WebPageUtil.DisplayMessageAndRedirect("Your thread has been uploaded", "/WebPage/Thread.aspx?threadid=" + threadId, this.Page);
                 }
 
                 else
                 {
-                    WebPageUtil.DisplayMessage("Fail to update, please try again.");
+                    WebPageUtil.DisplayMessage("ERROR: Update Failed, please try again");
                 }
             }
 
             else
             {
-                WebPageUtil.DisplayMessage("No tagNo found.");
+                WebPageUtil.DisplayMessage("ERROR: Please try again");
             }
         }
 

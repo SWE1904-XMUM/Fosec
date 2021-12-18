@@ -14,8 +14,6 @@ namespace Fosec.WebPage
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //TODO check if already login, if not show message and direct to login page
-
             // display error instead of thread if no threadid is given
             errorContainer.Visible = (threadid == null); //or threadid does not exist
             threadContainer.Visible = !errorContainer.Visible;
@@ -26,37 +24,35 @@ namespace Fosec.WebPage
                 ViewState["btn"] = (UserDb.GetUserIdByUsername(SessionManager.GetUsername()) == ThreadDb.GetUserIdByThreadId(threadid));
 
                 //disable reply button if not logged in
-                //TODO add block to replace the comment area
-                if (SessionManager.GetUsername() == "")
-                {
-                    ReplyThread.Enabled = false;
-                    ReplyBtn.Enabled = false;
-                }
+                commentEnabledContainer.Visible = (SessionManager.GetUsername() != "");
+                commentDisabledContainer.Visible = !commentEnabledContainer.Visible;
             }
         }
 
         protected void ReplyBtn_Click(object sender, EventArgs e)
         {
             GetThreadReply();
-
-            if (!reply.Trim().Equals(""))
+            if (reply.Length > ThreadCommentDb.MAX_CONTENT_LENGTH)
+            {
+                WebPageUtil.DisplayMessage("The reply content has exceeded maximum length");
+            }
+            else if (reply.Equals(""))
+            {
+                WebPageUtil.DisplayMessage("Please write a reply in the text box before replying to the thread");
+            }
+            else
             {
                 int userId = UserDb.GetUserIdByUsername(SessionManager.GetUsername());
                 bool insertComment = ThreadCommentDb.InsertThreadComment(userId, threadid, reply);
 
                 if (insertComment)
                 {
-                    WebPageUtil.DisplayMessage("Your comment has been submitted");
-                    //TODO reload page
+                    WebPageUtil.Redirect(Request.RawUrl, this.Page);
                 }
                 else
                 {
-                    WebPageUtil.DisplayMessage("Your comment has failed to be submit, please try again");
+                    WebPageUtil.DisplayMessage("ERROR: Error occurs when submitting the comment, please try again");
                 }
-            }
-            else
-            {
-                WebPageUtil.DisplayMessage("Please write a reply in the text box before replying to the thread");
             }
         }
 
@@ -79,10 +75,10 @@ namespace Fosec.WebPage
 
         private void GetThreadReply()
         {
-            reply = ReplyThread.Text;
+            reply = ReplyThread.Text.Trim();
         }
 
-    
+
     }
 }
 

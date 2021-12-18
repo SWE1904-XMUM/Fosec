@@ -6,6 +6,7 @@ namespace Fosec.Database
     public static class ThreadCommentDb
     {
         private static SqlConnection connection = ConnectionProvider.GetDatabaseConnection();
+        public readonly static int MAX_CONTENT_LENGTH = 999;
 
         public static bool InsertThreadComment(int UserID, String threadID, String comment)
         {

@@ -15,6 +15,33 @@ namespace Fosec.WebPage
     {
 
         /// <summary>
+        /// errorContainer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl errorContainer;
+
+        /// <summary>
+        /// threadContainer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl threadContainer;
+
+        /// <summary>
+        /// titleCharacterCount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label titleCharacterCount;
+
+        /// <summary>
         /// threadTitle control.
         /// </summary>
         /// <remarks>
@@ -31,6 +58,15 @@ namespace Fosec.WebPage
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.PlaceHolder tagPlaceHolder;
+
+        /// <summary>
+        /// contentCharacterCount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label contentCharacterCount;
 
         /// <summary>
         /// content control.

@@ -135,19 +135,24 @@ a:hover {
     border-radius: 0.5rem;
 }
 
+.threadTitle,
+.threadContent {
+    overflow-wrap: anywhere;
+}
+
 .threadTitle {
     font-weight: bold;
     font-size: 2rem;
     padding-left: 0;
 }
 
-.threadContet {
+.threadContent {
     padding: 0.8rem;
 }
 
 /*start of master page css*/
 #logo {
-    height: 10rem;
+    height: 7.5rem;
 }
 
 .navbar > .container-fluid {
@@ -178,7 +183,7 @@ a:hover {
     margin-bottom: 0.2rem;
 }
 
-#thread-container {
+#threadContainer {
     margin-top: 2rem;
     margin-bottom: 2rem;
     background-color: var(--color-white);

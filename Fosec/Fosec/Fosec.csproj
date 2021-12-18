@@ -80,6 +80,7 @@
     <Content Include="Resources\Image\logo.png" />
     <Content Include="Resources\Image\student_engagement.jpg" />
     <Content Include="Resources\Js\bootstrap.bundle.min.js" />
+    <Content Include="Resources\Js\main.js" />
     <Content Include="Web.config" />
     <Content Include="WebPage\CreateThread.aspx" />
     <Content Include="WebPage\Home.aspx" />
