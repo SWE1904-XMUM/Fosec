@@ -27,16 +27,18 @@
                         <div class="threadInformation col-9 d-flex flex-column justify-content-between">
                             <div class="threadInformation link-text-view">
                                 <div class="row">
-                                <asp:Label CssClass="threadTitle col-11" runat="server" Text='<%# Eval("title") %>' />
-                                <div class="dropdown col-1 d-flex align-items-start justify-content-end">
-                                  <asp:LinkButton ID="threadDropdown" runat="server"  CssClass="btn" data-bs-toggle="dropdown" aria-expanded="false" visible='<%# ViewState["btn"] %>'>
+                                    <asp:Label CssClass="threadTitle col-11" runat="server" Text='<%# Eval("title") %>' />
+                                    <div class="dropdown col-1 d-flex align-items-start justify-content-end">
+                                        <asp:LinkButton ID="threadDropdown" runat="server" CssClass="btn" data-bs-toggle="dropdown" aria-expanded="false" Visible='<%# ViewState["btn"] %>'>
                                         <i class="bi bi-three-dots-vertical"></i>
-                                  </asp:LinkButton>
-                                  <ul class="dropdown-menu dropdown-menu-end" runat="server" aria-labelledby="threadDropdown">
-                                    <li><asp:LinkButton ID="editBtn" runat="server" CssClass="dropdown-item" href='<%# @"/WebPage/CreateThread.aspx?threadid=" + Eval("threadId") %>' Text="Edit"></asp:LinkButton><li>
-                                    <li><asp:Button ID="deleteBtn" CssClass="dropdown-item" runat="server" OnClick="DelBtn_Click" Text="Delete" /></li>
-                                  </ul>
-                                </div>
+                                        </asp:LinkButton>
+                                        <ul class="dropdown-menu dropdown-menu-end" runat="server" aria-labelledby="threadDropdown">
+                                            <li>
+                                                <asp:LinkButton ID="editBtn" runat="server" CssClass="dropdown-item" href='<%# @"/WebPage/CreateThread.aspx?threadid=" + Eval("threadId") %>' Text="Edit"></asp:LinkButton><li>
+                                            <li>
+                                                <asp:Button ID="deleteBtn" CssClass="dropdown-item" runat="server" OnClick="DelBtn_Click" Text="Delete" /></li>
+                                        </ul>
+                                    </div>
                                 </div>
                                 <asp:Label CssClass="threadContent row" runat="server" Text='<%# Eval("content") %>' />
                             </div>
@@ -90,6 +92,9 @@
 
         <!-- Insert comment -->
         <div class="row d-flex justify-content-end mb-3">
+            <div class="row">
+                <asp:Label class="text-right" ID="commentCharacterCount" runat="server"></asp:Label>
+            </div>
             <div class="col-lg-10 col-sm-9 col-9">
                 <asp:TextBox ID="ReplyThread" CssClass="form-control" TextMode="MultiLine" type="text" placeHolder="reply here" runat="server" Rows="6"></asp:TextBox>
             </div>
@@ -114,4 +119,29 @@
             <asp:QueryStringParameter QueryStringField="threadid" Name="threadId" />
         </SelectParameters>
     </asp:SqlDataSource>
+
+    <script type="text/javascript">
+        UpdateCommentCharacterCount();
+
+        document.querySelector("#PageContent_ReplyThread").onkeyup = UpdateCommentCharacterCount;
+
+        function UpdateCommentCharacterCount() {
+            UpdateCharacterCount(
+                document.querySelector("#PageContent_commentCharacterCount"),
+                document.querySelector("#PageContent_ReplyThread").value.length,
+                999
+            );
+        }
+
+        function UpdateCharacterCount(characterCountTextHolder, targetText_length, maxLength) {
+            characterCountTextHolder.innerHTML = targetText_length + "/" + maxLength + " characters";
+            if (targetText_length > maxLength) {
+                characterCountTextHolder.style.color = "#FF0000";
+            }
+            else {
+                characterCountTextHolder.style.color = "#000000";
+            }
+        }
+    </script>
+
 </asp:Content>

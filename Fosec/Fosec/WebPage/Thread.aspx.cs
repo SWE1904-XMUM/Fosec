@@ -36,8 +36,15 @@ namespace Fosec.WebPage
         protected void ReplyBtn_Click(object sender, EventArgs e)
         {
             GetThreadReply();
-
-            if (!reply.Trim().Equals(""))
+            if (reply.Length > ThreadCommentDb.MAX_CONTENT_LENGTH)
+            {
+                WebPageUtil.DisplayMessage("The reply content has exceeded maximum length");
+            }
+            else if (reply.Equals(""))
+            {
+                WebPageUtil.DisplayMessage("Please write a reply in the text box before replying to the thread");
+            }
+            else
             {
                 int userId = UserDb.GetUserIdByUsername(SessionManager.GetUsername());
                 bool insertComment = ThreadCommentDb.InsertThreadComment(userId, threadid, reply);
@@ -48,12 +55,8 @@ namespace Fosec.WebPage
                 }
                 else
                 {
-                    WebPageUtil.DisplayMessage("Your comment has failed to be submit, please try again");
+                    WebPageUtil.DisplayMessage("ERROR: Error occurs when submitting the comment, please try again");
                 }
-            }
-            else
-            {
-                WebPageUtil.DisplayMessage("Please write a reply in the text box before replying to the thread");
             }
         }
 
@@ -76,8 +79,7 @@ namespace Fosec.WebPage
 
         private void GetThreadReply()
         {
-            //TODO check the length of reply
-            reply = ReplyThread.Text;
+            reply = ReplyThread.Text.Trim();
         }
 
 
