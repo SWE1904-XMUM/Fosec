@@ -20,17 +20,26 @@ namespace Fosec.Database
 
         public static bool DeleteThreadComment(string threadId)
         {
-            //TODO check whether the thread has comment
+            if (GetThreadCommentCount(threadId) <= 0)
+            {
+                return true;
+            }
+
             string query = "delete ThreadComment where threadId = @0";
             SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@0", threadId);
             int delete = cmd.ExecuteNonQuery();
 
-            if (delete > 0)
-            {
-                return true;
-            }
-            return false;
+            return delete > 0;
+        }
+
+        public static int GetThreadCommentCount(string threadId)
+        {
+            string query = "select count(commentid) from threadComment where threadid = @0";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@0", threadId);
+            SqlDataReader r = cmd.ExecuteReader();
+            return (r.Read()) ? r.GetInt32(0) : 0;
         }
     }
 }
