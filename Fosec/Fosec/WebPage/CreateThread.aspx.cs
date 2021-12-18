@@ -21,15 +21,25 @@ namespace Fosec.WebPage
         {
             if (SessionManager.GetUsername() == "")
             {
-                WebPageUtil.DisplayMessageAndRedirect("Please login before create thread", "/WebPage/SignupAndLogin.aspx?action=login", this.Page);
+                WebPageUtil.DisplayMessageAndRedirect("ERROR: Please login first", "/WebPage/SignupAndLogin.aspx?action=login", this.Page);
+                return;
             }
 
             DisplayTagsFromDb();
-
-            if (threadId != null && !IsPostBack)
+            if (threadId == null)
             {
+                threadContainer.Visible = true;
+            }
+            else if (ThreadDb.CheckThreadExistence(int.Parse(threadId)) && !IsPostBack)
+            {
+                threadContainer.Visible = true;
                 DisplayThreadContent();
             }
+            else
+            {
+                threadContainer.Visible = false;
+            }
+            errorContainer.Visible = !threadContainer.Visible;
         }
 
         private void tag_Click(object sender, EventArgs e)

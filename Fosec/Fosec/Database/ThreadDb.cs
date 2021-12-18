@@ -81,5 +81,13 @@ namespace Fosec.Database
             }
             return -1;
         }
+
+        public static bool CheckThreadExistence(int threadId)
+        {
+            string query = "select threadId from threads where threadId = @0";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@0", threadId);
+            return cmd.ExecuteReader().HasRows;
+        }
     }
 }
