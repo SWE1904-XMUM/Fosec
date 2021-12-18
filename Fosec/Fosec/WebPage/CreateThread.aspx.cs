@@ -12,6 +12,8 @@ namespace Fosec.WebPage
 {
     public partial class CreateThread : System.Web.UI.Page
     {
+        //TODO debug: title and content changed to the original one if change title/content, then select new tag
+
         // Thread page txt
         string titleTxt, contentTxt, tagTxt;
         string threadId = HttpContext.Current.Request.QueryString["threadid"];
@@ -30,7 +32,7 @@ namespace Fosec.WebPage
             {
                 threadContainer.Visible = true;
             }
-            else if (ThreadDb.CheckThreadExistence(int.Parse(threadId)) && !IsPostBack)
+            else if (ThreadDb.CheckThreadExistence(int.Parse(threadId)))
             {
                 threadContainer.Visible = true;
                 DisplayThreadContent();
@@ -147,30 +149,22 @@ namespace Fosec.WebPage
 
         private void DisplayThreadContent()
         {
-            SqlDataReader r = ThreadDb.GetThreadContentByThreadId(int.Parse(threadId));
-
-            if (r.HasRows)
+            (string d_title, string d_content, int d_tagNo) = ThreadDb.GetThreadContentByThreadId(int.Parse(threadId));
+            if (!d_tagNo.Equals(-1))
             {
-                while (r.Read())
+                string tagNameFromDb = TagDb.GetTagNameByTagId(d_tagNo);
+                SessionManager.SetTag(tagNameFromDb);
+                threadTitle.Text = d_title;
+                content.Text = d_content;
+
+                if (!tagNameFromDb.Equals("nothing"))
                 {
-                    threadTitle.Text = r.GetString(0);
-                    content.Text = r.GetString(2);
-                    int tagNoFromDb = r.GetInt32(1);
-
-                    if (!tagNoFromDb.Equals(-1))
+                    foreach (Button button in tagPlaceHolder.Controls.OfType<Button>())
                     {
-                        string tagNameFromDb = TagDb.GetTagNameByTagId(tagNoFromDb);
-                        SessionManager.SetTag(tagNameFromDb);
-
-                        if (!tagNameFromDb.Equals("nothing"))
+                        if (button.Text.Equals(tagNameFromDb))
                         {
-                            foreach (Button button in tagPlaceHolder.Controls.OfType<Button>())
-                            {
-                                if (button.Text.Equals(tagNameFromDb))
-                                {
-                                    button.Attributes.Add("style", "background-color: #05767B; color:#FFFFFF;");
-                                }
-                            }
+                            button.Attributes.Add("style", "background-color: #05767B; color:#FFFFFF;");
+                            break;
                         }
                     }
                 }

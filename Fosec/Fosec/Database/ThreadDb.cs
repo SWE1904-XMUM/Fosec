@@ -58,13 +58,18 @@ namespace Fosec.Database
             return false;
         }
 
-        public static SqlDataReader GetThreadContentByThreadId(int threadId)
+        public static (string, string, int) GetThreadContentByThreadId(int threadId)
         {
             // TODO return values instead of sqldatareader
             string query = "select title, tagNo, content from Threads where threadId = @0";
             SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@0", threadId);
-            return cmd.ExecuteReader();
+            SqlDataReader r = cmd.ExecuteReader();
+            if (r.HasRows && r.Read())
+            {
+                return (r.GetString(0), r.GetString(2), r.GetInt32(1));
+            }
+            return ("", "", -1);
         }
 
         public static int GetUserIdByThreadId(String threadId)
