@@ -17,6 +17,11 @@ namespace Fosec.WebPage
         // Server control's functions
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (SessionManager.GetUsername() == "")
+            {
+                WebPageUtil.DisplayMessageAndRedirect("Please login before create thread", "/WebPage/SignupAndLogin.aspx?action=login", this.Page);
+            }
+
             DisplayTagsFromDb();
 
             if (!String.IsNullOrEmpty(Request.QueryString["threadid"]) && !IsPostBack)
@@ -32,8 +37,6 @@ namespace Fosec.WebPage
 
             foreach (Button button in tagPlaceHolder.Controls.OfType<Button>())
             {
-                //TODO maybe use class rather than change the background color?
-                //the selected tag has black text
                 if (button.Text != SessionManager.GetTag())
                 {
                     button.Attributes.Add("style", "background-color: #C8EDEF; color:#000000;");
@@ -48,6 +51,7 @@ namespace Fosec.WebPage
 
         protected void submitThread_Click(object sender, EventArgs e)
         {
+            //TODO check the length of thread can fit into db field
             if (!String.IsNullOrEmpty(Request.QueryString["threadid"]))
             {
                 GetThreadText();
