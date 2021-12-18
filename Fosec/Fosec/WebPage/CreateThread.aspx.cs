@@ -12,8 +12,6 @@ namespace Fosec.WebPage
 {
     public partial class CreateThread : System.Web.UI.Page
     {
-        //TODO debug: title and content changed to the original one if change title/content, then select new tag
-
         // Thread page txt
         string titleTxt, contentTxt, tagTxt;
         string threadId = HttpContext.Current.Request.QueryString["threadid"];
@@ -34,7 +32,7 @@ namespace Fosec.WebPage
                 threadContainer.Visible = true;
             }
 
-            else if (ThreadDb.CheckThreadExistence(int.Parse(threadId)))
+            else if (ThreadDb.CheckThreadExistence(int.Parse(threadId)) && !IsPostBack)
             {
                 threadContainer.Visible = true;
                 DisplayThreadContent();
@@ -175,7 +173,7 @@ namespace Fosec.WebPage
                         if (button.Text.Equals(tagNameFromDb))
                         {
                             button.Attributes.Add("style", "background-color: #05767B; color:#FFFFFF;");
-                            break;
+                            //break;
                         }
                     }
                 }
