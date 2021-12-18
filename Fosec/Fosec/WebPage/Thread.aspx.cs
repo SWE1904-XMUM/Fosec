@@ -14,8 +14,6 @@ namespace Fosec.WebPage
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //TODO check if already login, if not show message and direct to login page
-
             // display error instead of thread if no threadid is given
             errorContainer.Visible = (threadid == null); //or threadid does not exist
             threadContainer.Visible = !errorContainer.Visible;
@@ -46,8 +44,7 @@ namespace Fosec.WebPage
 
                 if (insertComment)
                 {
-                    WebPageUtil.DisplayMessage("Your comment has been submitted");
-                    //TODO reload page
+                    WebPageUtil.DisplayMessageAndRedirect("Your comment has been submitted", Request.RawUrl, this.Page);
                 }
                 else
                 {
@@ -79,10 +76,11 @@ namespace Fosec.WebPage
 
         private void GetThreadReply()
         {
+            //TODO check the length of reply
             reply = ReplyThread.Text;
         }
 
-    
+
     }
 }
 
