@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Web;
 using System.Web.UI.WebControls;
 
 namespace Fosec.WebPage
@@ -13,18 +14,19 @@ namespace Fosec.WebPage
     {
         // Thread page txt
         string titleTxt, contentTxt, tagTxt;
+        string threadId = HttpContext.Current.Request.QueryString["threadid"];
 
         // Server control's functions
         protected void Page_Load(object sender, EventArgs e)
         {
-            /*if (SessionManager.GetUsername() == "")
+            if (SessionManager.GetUsername() == "")
             {
                 WebPageUtil.DisplayMessageAndRedirect("Please login before create thread", "/WebPage/SignupAndLogin.aspx?action=login", this.Page);
-            }*/
+            }
 
             DisplayTagsFromDb();
 
-            if (!String.IsNullOrEmpty(Request.QueryString["threadid"]) && !IsPostBack)
+            if (threadId != null && !IsPostBack)
             {
                 DisplayThreadContent();
             }
@@ -56,21 +58,16 @@ namespace Fosec.WebPage
                 WebPageUtil.DisplayMessage("The content has exceeded maximum length");
                 return;
             }
-            if (!String.IsNullOrEmpty(Request.QueryString["threadid"]))
+
+            if (threadId != null)
             {
                 GetThreadText();
                 UpdateThreadContent();
             }
-
             else
             {
                 InsertNewThread();
             }
-        }
-
-        protected void UpdateCharacterCount(object sender, EventArgs e)
-        {
-            characterCount.Text = content.Text.Length.ToString() + "/999";
         }
 
         // Other functions
@@ -95,7 +92,7 @@ namespace Fosec.WebPage
         private void InsertNewThread()
         {
             GetThreadText();
-
+            //TODO change order
             if (!titleTxt.Equals("") && !contentTxt.Equals(""))
             {
                 string uname = SessionManager.GetUsername();
@@ -135,7 +132,6 @@ namespace Fosec.WebPage
 
         private void DisplayThreadContent()
         {
-            string threadId = Request.QueryString["threadid"];
             SqlDataReader r = ThreadDb.GetThreadContentByThreadId(int.Parse(threadId));
 
             if (r.HasRows)
@@ -173,7 +169,6 @@ namespace Fosec.WebPage
 
         private void UpdateThreadContent()
         {
-            string threadId = Request.QueryString["threadid"];
             string tagName = SessionManager.GetTag();
             int tagNo = TagDb.GetTagIdByTagName(tagName);
 
@@ -181,22 +176,20 @@ namespace Fosec.WebPage
             {
                 bool editThread = ThreadDb.EditThread(int.Parse(threadId), titleTxt, tagNo, contentTxt);
 
-                //TODO edit message
                 if (editThread.Equals(true))
                 {
-                    WebPageUtil.DisplayMessageAndRedirect("Updated successful", "/WebPage/Home.aspx", this.Page);
+                    WebPageUtil.DisplayMessageAndRedirect("Your thread has been uploaded", "/WebPage/Thread.aspx?threadid=" + threadId, this.Page);
                 }
 
                 else
                 {
-                    WebPageUtil.DisplayMessage("Fail to update, please try again.");
+                    WebPageUtil.DisplayMessage("ERROR: Update Failed, please try again");
                 }
             }
 
             else
             {
-                //TODO tagNo??
-                WebPageUtil.DisplayMessage("No tagNo found.");
+                WebPageUtil.DisplayMessage("ERROR: Please try again");
             }
         }
 

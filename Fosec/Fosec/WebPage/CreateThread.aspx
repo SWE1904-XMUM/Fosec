@@ -28,6 +28,7 @@
     </div>
 
     <script type="text/javascript">
+        UpdateCharacterCount();
         document.querySelector("#PageContent_content").onkeyup = UpdateCharacterCount;
 
         function UpdateCharacterCount() {
