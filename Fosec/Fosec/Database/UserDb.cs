@@ -7,13 +7,23 @@ namespace Fosec.Database
     {
         private static SqlConnection connection = ConnectionProvider.GetDatabaseConnection();
 
-        public static bool InsertUsers(string username, string email, string pwd)
+        public static bool InsertUser(string username, string email)
         {
-            string query = "insert into Users (username, email, pwd) values (@0,@1,@2)";
+            string query = "insert into Users (username, email) values (@0,@1)";
             SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@0", username);
             cmd.Parameters.AddWithValue("@1", email);
-            cmd.Parameters.AddWithValue("@2", HashUtil.GetHashedStringByInput(string.Concat(pwd, "2")));
+
+            return cmd.ExecuteNonQuery() > 0;
+        }
+
+        public static bool InsertPassword(string uname, string pwd)
+        {
+            string userId = GetUserIdByUsername(uname).ToString();
+            string query = "update Users set pwd = @0 where username = @1";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@0", HashUtil.GetHashedStringByInput(string.Concat(pwd, userId)));
+            cmd.Parameters.AddWithValue("@1", uname);
 
             return cmd.ExecuteNonQuery() > 0;
         }
@@ -63,6 +73,7 @@ namespace Fosec.Database
 
         public static bool CheckUserPassword(string uname, string pwd)
         {
+            string userId = GetUserIdByUsername(uname).ToString();
             string query = "select pwd from Users where username = @0";
             SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@0", uname);
@@ -71,7 +82,7 @@ namespace Fosec.Database
             if (r.HasRows)
             {
                 r.Read();
-                bool compare = HashUtil.CompareHash(r.GetString(0), string.Concat(pwd, "2"));
+                bool compare = HashUtil.CompareHash(r.GetString(0), string.Concat(pwd, userId));
                 return compare.Equals(true);
             }
             return false;
@@ -79,7 +90,7 @@ namespace Fosec.Database
 
         public static bool UpdateUserProfileImage(int userid, byte[] profileImage)
         {
-            string query = "update users set profileImage = @0 where userId = @1";
+            string query = "update Users set profileImage = @0 where userId = @1";
             SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@0", profileImage);
             cmd.Parameters.AddWithValue("@1", userid);

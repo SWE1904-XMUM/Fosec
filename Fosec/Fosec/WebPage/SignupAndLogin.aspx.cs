@@ -64,12 +64,22 @@ namespace Fosec.WebPage
                 {
                     if (checkExistingUser.Equals(false))
                     {
-                        bool insertUser = UserDb.InsertUsers(signupUnameTxt, signupEmailTxt, signupPwdTxt);
+                        bool insertUser = UserDb.InsertUser(signupUnameTxt, signupEmailTxt);
 
                         if (insertUser.Equals(true))
                         {
-                            ClearSignupFields();
-                            WebPageUtil.DisplayMessageAndRedirect("Signup successfully! Please login.", "/WebPage/SignupAndLogin.aspx?action=login", this.Page);
+                            bool insertPassword = UserDb.InsertPassword(signupUnameTxt, signupPwdTxt);
+
+                            if(insertPassword.Equals(true))
+                            {
+                                ClearSignupFields();
+                                WebPageUtil.DisplayMessageAndRedirect("Signup successfully! Please login.", "/WebPage/SignupAndLogin.aspx?action=login", this.Page);
+                            }
+                            
+                            else
+                            {
+                                WebPageUtil.DisplayMessage("Fail to insert password");
+                            }
                         }
 
                         else
