@@ -37,6 +37,13 @@ a:hover {
     box-shadow: none !important;
 }
 
+.limitContent {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
 #fosecHeader {
     background-color: var(--color-white);
     padding: 0.5rem 3rem;
@@ -148,7 +155,7 @@ a:hover {
 }
 
 .threadContent {
-    padding: 0.8rem;
+    margin: 0.8rem;
 }
 
 /*start of master page css*/

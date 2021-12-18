@@ -41,7 +41,7 @@
                             <div class="threadInformation col-9 d-flex flex-column justify-content-between">
                                 <a class="threadInformation link-text-view" href='<%# @"/Webpage/Thread.aspx?threadid=" + Eval("threadId") %>'>
                                     <asp:Label CssClass="threadTitle row" runat="server" Text='<%# Eval("title") %>' />
-                                    <asp:Label CssClass="threadContent row" runat="server" Text='<%# Eval("content") %>' />
+                                    <asp:Label CssClass="threadContent row limitContent" runat="server" Text='<%# Eval("content") %>' />
                                 </a>
                                 <div>
                                     <hr />
@@ -57,7 +57,7 @@
                         <br />
                     </ItemTemplate>
                 </asp:Repeater>
-
+                
                 <%--Data Sources--%>
                 <asp:SqlDataSource ID="TagDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Tag]"></asp:SqlDataSource>
                 <asp:SqlDataSource ID="AllThreadDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT Threads.threadId as threadid, Threads.userId as userid, Threads.title as title, Threads.[content] as content, Threads.threadDate AS date, Tag.tagName as tagname, Users.profileImage as profileimage, Users.username as username

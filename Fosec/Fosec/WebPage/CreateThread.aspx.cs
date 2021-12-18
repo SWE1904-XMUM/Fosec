@@ -29,7 +29,12 @@ namespace Fosec.WebPage
             DisplayTagsFromDb();
 
             // TODO -> debug for update
-            if (ThreadDb.CheckThreadExistence(int.Parse(threadId)) && !IsPostBack)
+            if(threadId == null)
+            {
+                threadContainer.Visible = true;
+            }
+
+            else if (ThreadDb.CheckThreadExistence(int.Parse(threadId)) && !IsPostBack)
             {
                 DisplayThreadContent();
             }
@@ -115,7 +120,7 @@ namespace Fosec.WebPage
             GetThreadText();
 
             int userId = UserDb.GetUserIdByUsername(SessionManager.GetUsername());
-            int tagNo = TagDb.GetTagIdByTagName(SessionManager.GetTag());
+            int tagNo = TagDb.GetTagIdByTagName(selectedTag);
 
             if (userId <= 0)
             {
@@ -144,7 +149,7 @@ namespace Fosec.WebPage
                 if (result > 0)
                 {
                     threadTitle.Text = "";
-                    SessionManager.RemoveTag();
+                    selectedTag = "";
                     content.Text = "";
                     WebPageUtil.DisplayMessageAndRedirect("Submitted successful", "/WebPage/Thread.aspx?threadid=" + result, this.Page);
                 }
@@ -161,16 +166,15 @@ namespace Fosec.WebPage
             (string d_title, string d_content, int d_tagNo) = ThreadDb.GetThreadContentByThreadId(int.Parse(threadId));
             if (!d_tagNo.Equals(-1))
             {
-                string tagNameFromDb = TagDb.GetTagNameByTagId(d_tagNo);
-                SessionManager.SetTag(tagNameFromDb);
+                selectedTag = TagDb.GetTagNameByTagId(d_tagNo);
                 threadTitle.Text = d_title;
                 content.Text = d_content;
 
-                if (!tagNameFromDb.Equals("nothing"))
+                if (!selectedTag.Equals("nothing"))
                 {
                     foreach (Button button in tagPlaceHolder.Controls.OfType<Button>())
                     {
-                        if (button.Text.Equals(tagNameFromDb))
+                        if (button.Text.Equals(selectedTag))
                         {
                             button.Attributes.Add("style", "background-color: #05767B; color:#FFFFFF;");
                             break;
