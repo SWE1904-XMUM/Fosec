@@ -32,14 +32,17 @@ namespace Fosec.WebPage
         protected void ReplyBtn_Click(object sender, EventArgs e)
         {
             GetThreadReply();
+
             if (reply.Length > ThreadCommentDb.MAX_CONTENT_LENGTH)
             {
                 WebPageUtil.DisplayMessage("The reply content has exceeded maximum length");
             }
+
             else if (reply.Equals(""))
             {
                 WebPageUtil.DisplayMessage("Please write a reply in the text box before replying to the thread");
             }
+
             else
             {
                 int userId = UserDb.GetUserIdByUsername(SessionManager.GetUsername());
@@ -49,6 +52,7 @@ namespace Fosec.WebPage
                 {
                     WebPageUtil.Redirect(Request.RawUrl, this.Page);
                 }
+
                 else
                 {
                     WebPageUtil.DisplayMessage("ERROR: Error occurs when submitting the comment, please try again");
@@ -66,6 +70,7 @@ namespace Fosec.WebPage
                 {
                     WebPageUtil.DisplayMessageAndRedirect("Thread has been deleted", "/WebPage/Home.aspx", this.Page);
                 }
+
                 else
                 {
                     WebPageUtil.DisplayMessage("Thread deletion has failed, please try again");
@@ -77,8 +82,6 @@ namespace Fosec.WebPage
         {
             reply = ReplyThread.Text.Trim();
         }
-
-
     }
 }
 

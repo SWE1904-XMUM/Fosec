@@ -7,7 +7,6 @@
         <div class="col-lg-6 col-sm-12" id="background-container">
         </div>
         <div class="col-lg-6 col-sm-12" id="login-signup-container">
-            
             <div class="form-container">
                 <div class="mb-3" id="login-or-signup">
                     <ul class="nav nav-pills col-8 ml-auto mr-auto" id="pills-tab" role="tablist">
@@ -35,10 +34,12 @@
                         <div class="mb-2">
                             <label for="signupUname" class="form-label">Username</label>
                             <asp:TextBox ID="signupUname" CssClass="form-control" type="text" placeholder="Username" runat="server"></asp:TextBox>
+                            <asp:Label CssClass="signupReq" ID="unameReq" runat="server" Text="* At least 6 characters"></asp:Label>
                         </div>
                         <div class="mb-2">
                             <label for="signupPwd" class="form-label">Password</label>
                             <asp:TextBox ID="signupPwd" CssClass="form-control" type="password" placeholder="Password" runat="server"></asp:TextBox>
+                            <asp:Label CssClass="signupReq" ID="pwdReq" runat="server" Text="* At least 8 characters (combination of digits, uppercase, lowercase & special characters)"></asp:Label>
                         </div>
                         <div class="mb-3">
                             <label for="signupConfirmPwd" class="form-label">Confirm Password</label>
