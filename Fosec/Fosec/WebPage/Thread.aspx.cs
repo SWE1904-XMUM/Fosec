@@ -21,7 +21,7 @@ namespace Fosec.WebPage
             if (threadid != null)
             {
                 //display delete button if the current user is the author of current thread
-                editBtn.Visible = deleteBtn.Visible = (UserDb.GetUserIdByUsername(SessionManager.GetUsername()) == ThreadDb.GetUserIdByThreadId(threadid));
+                ViewState["btn"] = (UserDb.GetUserIdByUsername(SessionManager.GetUsername()) == ThreadDb.GetUserIdByThreadId(threadid));
 
                 //disable reply button if not logged in
                 //TODO add block to replace the comment area
@@ -79,6 +79,8 @@ namespace Fosec.WebPage
         {
             reply = ReplyThread.Text;
         }
+
+    
     }
 }
 

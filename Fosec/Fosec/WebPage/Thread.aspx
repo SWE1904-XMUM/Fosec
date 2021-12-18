@@ -18,11 +18,15 @@
             <div class="row">
                 <div class="text-right mt-3">
                     <!-- TODO debug: edit button not working -->
-                    <asp:LinkButton ID="editBtn" CssClass="btn" runat="server" href='<%# @"/WebPage/CreateThread.aspx?threadid=" + Eval("threadId") %>' Text="Edit"></asp:LinkButton>
+                    
                     <!-- TODO danger button -->
-                    <asp:Button ID="deleteBtn" CssClass="btn" runat="server" OnClick="DelBtn_Click" Text="Delete" />
+                    
+                    
                 </div>
             </div>
+            
+            
+            
             <asp:Repeater ID="threadRepeater" runat="server" DataSourceID="ThreadData">
                 <ItemTemplate>
                     <div class="threadContainer row">
@@ -34,7 +38,18 @@
                         </a>
                         <div class="threadInformation col-9 d-flex flex-column justify-content-between">
                             <div class="threadInformation link-text-view">
-                                <asp:Label CssClass="threadTitle row" runat="server" Text='<%# Eval("title") %>' />
+                                <div class="row">
+                                <asp:Label CssClass="threadTitle col-11" runat="server" Text='<%# Eval("title") %>' />
+                                <div class="dropdown col-1 d-flex align-items-start justify-content-end">
+                                  <asp:LinkButton ID="threadDropdown" runat="server"  CssClass="btn" data-bs-toggle="dropdown" aria-expanded="false" visible='<%# ViewState["btn"] %>'>
+                                        <i class="bi bi-three-dots-vertical"></i>
+                                  </asp:LinkButton>
+                                  <ul class="dropdown-menu dropdown-menu-end" runat="server" aria-labelledby="threadDropdown">
+                                    <li><asp:LinkButton ID="editBtn" runat="server" CssClass="dropdown-item" href='<%# @"/WebPage/CreateThread.aspx?threadid=" + Eval("threadId") %>' Text="Edit"></asp:LinkButton><li>
+                                    <li><asp:Button ID="deleteBtn" CssClass="dropdown-item" runat="server" OnClick="DelBtn_Click" Text="Delete" /></li>
+                                  </ul>
+                                </div>
+                                </div>
                                 <asp:Label CssClass="threadContent row" runat="server" Text='<%# Eval("content") %>' />
                             </div>
                             <div>
@@ -45,11 +60,13 @@
                                     </div>
                                     <asp:Label CssClass="threadDate col-4 text-right" runat="server" Text='<%# Eval("date") %>' />
                                 </div>
+
                             </div>
                         </div>
                     </div>
                 </ItemTemplate>
             </asp:Repeater>
+
 
             <!--get threadComments here -->
             <div class="row">

@@ -34,12 +34,12 @@ namespace Fosec.WebPage
             {
                 if (button.Text != SessionManager.GetTag())
                 {
-                    button.Attributes.Add("style", "background-color: #C8EDEF");
+                    button.Attributes.Add("style", "background-color: #C8EDEF; color:#000000;");
                 }
 
                 else
                 {
-                    button.Attributes.Add("style", "background-color: #05767B");
+                    button.Attributes.Add("style", "background-color: #05767B; color:#FFFFFF;");
                 }
             }
         }
@@ -140,7 +140,7 @@ namespace Fosec.WebPage
                             {
                                 if (button.Text.Equals(tagNameFromDb))
                                 {
-                                    button.Attributes.Add("style", "background-color: #05767B");
+                                    button.Attributes.Add("style", "background-color: #05767B; color:#FFFFFF;");
                                 }
                             }
                         }

@@ -137,6 +137,7 @@ a:hover {
 .threadTitle {
     font-weight: bold;
     font-size: 2rem;
+    padding-left: 0;
 }
 
 .threadContet {
@@ -289,10 +290,6 @@ a:hover {
     align-items: end;
 }
 
-/* TODO unit px??? */
-#view-thread-container{
-    width:1000px;
-}
 
 .threadContainer-profile {
     background-color: var(--primary-color);
@@ -300,4 +297,18 @@ a:hover {
     padding: 1rem;
     box-shadow: var(--box-shadow);
     border-radius: 0.5rem;
+}
+
+#PageContent_threadRepeater_threadDropdown_0 {
+    font-size: 1.5rem;
+    padding: 0;
+    background-color: var(--primary-color);
+    color: var(--color-black);
+}
+
+#PageContent_threadRepeater_threadDropdown_0:focus,
+#PageContent_threadRepeater_threadDropdown_0:hover,
+#PageContent_threadRepeater_threadDropdown_0:focus-visible {
+    background-color: var(--secondary-color);
+    color: var(--color-white);
 }
