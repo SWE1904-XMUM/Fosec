@@ -56,12 +56,12 @@
                             </ItemTemplate>
                         </asp:ListView>
 
-                        <div class="profile m-2">
+                        <div id="editProfileContainer" class="m-2" runat="server" visible="false">
                             <div class="m-1">
                                 <asp:Button ID="openEditProfileImageContainerBtn" CssClass="btn" runat="server" Text="Change Profile Image" OnClick="DisplayProfileImageUploadForm" />
                                 <asp:Button ID="openEditPasswordContainerBtn" CssClass="btn" runat="server" Text="Change Password" OnClick="DisplayChangePasswordForm" />
                             </div>
-                            <div id="editProfileContainer">
+                            <div>
                                 <div id="editProfileImageContainer" class="my-3 d-flex align-content-center flex-row flex-nowrap justify-content-center align-items-center" runat="server" visible="false">
                                     <asp:FileUpload ID="uploadProfileImage" runat="server" CssClass="form-control mx-2" />
                                     <asp:Button ID="submitProfileImageBtn" runat="server" OnClick="SubmitProfileImage" CssClass="btn mx-2" Text="Upload" />
