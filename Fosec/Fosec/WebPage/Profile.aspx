@@ -110,7 +110,29 @@
                         <h2><span><i class="bi bi-patch-question me-2"></i></span>Thread</h2>
                     </div>
                     <div class="profile-info-container">
-                        <asp:Repeater ID="userThreadRepeater" runat="server" DataSourceID="LoggedInUserThreadData">
+                        <asp:ListView ID="userThreadRepeater" runat="server" DataSourceID="LoggedInUserThreadData">
+                            <GroupTemplate>
+                                <div runat="server" id="itemPlaceholderContainer">
+                                    <div runat="server" id="itemPlaceholder"></div>
+                                </div>
+                            </GroupTemplate>
+                            <LayoutTemplate>
+                                <div runat="server" id="groupPlaceholderContainer">
+                                    <div runat="server" id="groupPlaceholder"></div>
+                                </div>
+                                <hr />
+                                <div runat="server" id="pagerContainer" class="d-flex align-items-center justify-content-around">
+                                    <asp:DataPager runat="server" PageSize="10" ID="pager">
+                                        <Fields>
+                                            <asp:NextPreviousPagerField ButtonType="Button" ShowFirstPageButton="false" ShowPreviousPageButton="true"
+                                                ShowNextPageButton="false" ButtonCssClass="mx-2 btn primaryBtn" />
+                                            <asp:NumericPagerField ButtonType="Button" NumericButtonCssClass="mx-2 btn primaryBtn" CurrentPageLabelCssClass="btn no-hover" />
+                                            <asp:NextPreviousPagerField ButtonType="Button" ShowNextPageButton="true" ShowLastPageButton="false" ShowPreviousPageButton="false" ButtonCssClass="mx-2 btn primaryBtn" />
+                                        </Fields>
+                                    </asp:DataPager>
+                                </div>
+                            </LayoutTemplate>
+
                             <ItemTemplate>
                                 <itemtemplate>
                                     <div class="threadContainer-profile row">
@@ -141,7 +163,7 @@
                                     <br />
                                 </itemtemplate>
                             </ItemTemplate>
-                        </asp:Repeater>
+                        </asp:ListView>
                     </div>
                 </div>
             </div>
