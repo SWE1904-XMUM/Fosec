@@ -48,7 +48,7 @@ namespace Fosec.WebPage
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater threadCommentRepeater;
+        protected global::System.Web.UI.WebControls.ListView threadCommentRepeater;
 
         /// <summary>
         /// commentEnabledContainer control.

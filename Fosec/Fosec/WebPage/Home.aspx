@@ -30,7 +30,28 @@
                 <asp:Label Text="All" ID="selectedTagName" class="text-center" runat="server"></asp:Label>
             </div>
             <div id="homeThreadContainer">
-                <asp:Repeater ID="threadRepeater" runat="server" DataSourceID="AllThreadDataSource">
+                <asp:ListView ID="threadRepeater" runat="server" DataSourceID="AllThreadDataSource">
+                    <GroupTemplate>
+                        <div runat="server" id="itemPlaceholderContainer">
+                            <div runat="server" id="itemPlaceholder"></div>
+                        </div>
+                    </GroupTemplate>
+                    <LayoutTemplate>
+                        <div runat="server" id="groupPlaceholderContainer">
+                            <div runat="server" id="groupPlaceholder"></div>
+                        </div>
+                        <hr />
+                        <div runat="server" id="pagerContainer" class="d-flex align-items-center justify-content-around">
+                            <asp:DataPager runat="server" PageSize="10" ID="pager">
+                                <Fields>
+                                    <asp:NextPreviousPagerField ButtonType="Button" ShowFirstPageButton="false" ShowPreviousPageButton="true"
+                                        ShowNextPageButton="false" ButtonCssClass="mx-2 btn primaryBtn" />
+                                    <asp:NumericPagerField ButtonType="Button" NumericButtonCssClass="mx-2 btn primaryBtn" CurrentPageLabelCssClass="btn no-hover" />
+                                    <asp:NextPreviousPagerField ButtonType="Button" ShowNextPageButton="true" ShowLastPageButton="false" ShowPreviousPageButton="false" ButtonCssClass="mx-2 btn primaryBtn" />
+                                </Fields>
+                            </asp:DataPager>
+                        </div>
+                    </LayoutTemplate>
                     <ItemTemplate>
                         <div class="threadContainer row">
                             <a class="userInformation link-text-view col-3" href='<%# @"/WebPage/Profile.aspx?userid=" + Eval("userid") %>'>
@@ -51,7 +72,7 @@
                                                 <li>
                                                     <asp:LinkButton ID="editBtn" runat="server" CssClass="dropdown-item" href='<%# @"/WebPage/CreateThread.aspx?threadid=" + Eval("threadId") %>' Text="Edit"></asp:LinkButton><li>
                                                 <li>
-                                                    <asp:Button ID="deleteBtn" CssClass="dropdown-item" runat="server" OnClick="DelBtn_Click" Text="Delete" CommandArgument='<%#Eval("threadid") %>'/></li>
+                                                    <asp:Button ID="deleteBtn" CssClass="dropdown-item" runat="server" OnClick="DelBtn_Click" Text="Delete" CommandArgument='<%#Eval("threadid") %>' /></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -70,7 +91,7 @@
                         </div>
                         <br />
                     </ItemTemplate>
-                </asp:Repeater>
+                </asp:ListView>
 
                 <%--Data Sources--%>
                 <asp:SqlDataSource ID="TagDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Tag]"></asp:SqlDataSource>
