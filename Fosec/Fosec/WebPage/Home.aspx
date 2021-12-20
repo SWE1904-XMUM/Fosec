@@ -29,7 +29,6 @@
             <div class="sectionTitle p-2">
                 <asp:Label Text="All" ID="selectedTagName" class="text-center" runat="server"></asp:Label>
             </div>
-
             <div id="homeThreadContainer">
                 <asp:Repeater ID="threadRepeater" runat="server" DataSourceID="AllThreadDataSource">
                     <ItemTemplate>
