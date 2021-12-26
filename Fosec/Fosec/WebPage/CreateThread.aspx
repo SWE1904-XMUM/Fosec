@@ -23,7 +23,7 @@
             </div>
             <div class="mb-2">
                 <label class="form-label thread-label">Subject</label>
-                <div id="tagContainer">
+                <div id="tagContainer" class="box-shadow">
                     <asp:PlaceHolder ID="tagPlaceHolder" runat="server"></asp:PlaceHolder>
                 </div>
             </div>
