@@ -297,6 +297,7 @@ a:hover {
     border-radius: 0.5rem 0.5rem 0 0;
     color: white;
     padding: 0.5rem 1rem;
+    box-shadow: 0 3.0px 3.0px rgba(0,0,0,0.15);
 }
 
 .profile-info-container {
