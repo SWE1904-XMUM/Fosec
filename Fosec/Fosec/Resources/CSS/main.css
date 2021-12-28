@@ -200,7 +200,7 @@ a:hover {
     margin-bottom: 0.2rem;
 }
 
-#threadContainer {
+#PageContent_threadContainer {
     margin-top: 2rem;
     margin-bottom: 2rem;
     background-color: var(--color-white);
@@ -297,6 +297,7 @@ a:hover {
     border-radius: 0.5rem 0.5rem 0 0;
     color: white;
     padding: 0.5rem 1rem;
+    box-shadow: var(--box-shadow);
 }
 
 .profile-info-container {
