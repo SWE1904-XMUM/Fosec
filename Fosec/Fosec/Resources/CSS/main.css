@@ -59,6 +59,12 @@ a:hover {
         align-items: center;
     }
 
+.dropdown-item.active,
+.dropdown-item:active {
+    color: var(--color-white);
+    background-color: var(--secondary-color);
+}
+
 .btn,
 .btn.no-hover:hover {
     background-color: var(--secondary-color);
